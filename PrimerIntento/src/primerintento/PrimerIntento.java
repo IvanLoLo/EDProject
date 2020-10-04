@@ -15,8 +15,8 @@ public class PrimerIntento {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        System.out.println("Esto es una prueba");
-        System.out.println("Esto es una pruebax2");
+        for(int i=0; i<100; i++)
+            System.out.println(i);
     }
     
 }
