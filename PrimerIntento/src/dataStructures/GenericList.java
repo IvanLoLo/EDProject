@@ -11,15 +11,15 @@ package dataStructures;
  * @author Sammy Guergachi <sguergachi at gmail.com>
  */
 public class GenericList<T extends Comparable<T>>{
-    private int N;
+    private final int N;
     private int position, count;
-    private T[] lArray;
+    private final T[] array;
     private T reference;
     
     public GenericList(int n) {
         this.N = n;
         count=0;
-        lArray = (T[]) new Comparable[N];
+        array = (T[]) new Comparable[N];
     }
     private boolean empty() {
         return count <= 0;
@@ -33,8 +33,8 @@ public class GenericList<T extends Comparable<T>>{
         if(!full())
             if (!search(item)){
                 for(int j=count; j>position; j--)
-                    lArray[j] = lArray[j-1];
-                lArray[position] = item;
+                    array[j] = array[j-1];
+                array[position] = item;
                 count++;
                 inserted = true;
             }else
@@ -48,7 +48,7 @@ public class GenericList<T extends Comparable<T>>{
         if(!empty())
             if(search(item)){
                 for(int j=position; j<count-1; j++)
-                    lArray[j] = lArray[j+1];
+                    array[j] = array[j+1];
                 count--;
                 deleted = true;
             }else
@@ -63,9 +63,9 @@ public class GenericList<T extends Comparable<T>>{
         stop = false;
         position = 0;
         while(position != count && !stop)
-            if(lArray[position].compareTo(item) >= 0){
+            if(array[position].compareTo(item) >= 0){
                 stop = true;
-                if(lArray[position].compareTo(item) == 0)
+                if(array[position].compareTo(item) == 0)
                     found = true;
             }
             else position++;
@@ -75,7 +75,7 @@ public class GenericList<T extends Comparable<T>>{
         System.out.print("List: ");
         int j = 0;
         while(j != count) {
-            System.out.print(lArray[j]+" ");
+            System.out.print(array[j]+" ");
             j++;
         }
         System.out.println();
