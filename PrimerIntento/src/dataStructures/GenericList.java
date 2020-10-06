@@ -1,37 +1,67 @@
 package dataStructures;
 
-public class GenericList<T>{
+import principal.Producto;
+
+public class GenericList<T extends Comparable<T>>{
     private final int N;
     private int position, count;
-    private final T[] array;
+    private T[] array;
     private T reference;
+    private boolean sorted;
     
     public GenericList(int n) {
         this.N = n;
         count=0;
         array = (T[]) new Comparable[N];
     }
+    
     private boolean empty() {
         return count <= 0;
     }
+    
     private boolean full() {
         return count >= N;
     }
-    /*public boolean insert(T item) {
+    
+    public boolean sortedInsert(T item) {
         boolean inserted=false;
         
-        if(!full())
+        if(!full()){
             if (!search(item)){
                 for(int j=count; j>position; j--)
                     array[j] = array[j-1];
                 array[position] = item;
                 count++;
                 inserted = true;
-            }else
-                System.out.println("List is Full");
+            }else System.out.println("Product is already in the list");
+        }else System.out.println("List is Full1");
         
         return inserted;
     }
+    
+    public void sort(){
+        sorted = true;
+        GenericList<T> temp = new GenericList<T>(N);
+        for(int i=0; i<count; i++)
+           temp.sortedInsert(array[i]);
+        array = temp.array;
+    }
+    
+    public boolean insert(T item){
+        boolean inserted = false;
+        
+        if(!full()){
+            if(!search(item)){
+                array[count++] = item;
+                inserted = true;
+                sorted = false;
+            }else System.out.println("Product is already in the list");
+        }else System.out.println("List is full2");
+        
+        return inserted;
+        
+    }
+    
     public boolean delete(T item) {
         
         boolean deleted=false;
@@ -41,8 +71,9 @@ public class GenericList<T>{
                     array[j] = array[j+1];
                 count--;
                 deleted = true;
-            }else
-                System.out.println("List is Empty");
+            }
+        else
+            System.out.println("List is Empty");
         
         return deleted;
     }
@@ -61,7 +92,9 @@ public class GenericList<T>{
             else position++;
         return found;
     }
-    public void output() {
+    
+    public void output(int n) {
+        if(n == 1 && !sorted) sort();
         System.out.print("List: ");
         int j = 0;
         while(j != count) {
@@ -70,6 +103,7 @@ public class GenericList<T>{
         }
         System.out.println();
     }
+    
     public int compareTo(T item) {
         int result;
         if(reference.compareTo(item) > 0)
@@ -80,6 +114,6 @@ public class GenericList<T>{
             result = 0;
         
         return result;
-    }*/
+    }
 
 }
