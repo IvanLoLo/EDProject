@@ -1,16 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package dataStructures;
 
-/**
- * 
- * @author Sammy Guergachi <sguergachi at gmail.com>
- */
-public class GenericList<T extends Comparable<T>>{
+public class GenericList<T>{
     private final int N;
     private int position, count;
     private final T[] array;
@@ -27,7 +17,7 @@ public class GenericList<T extends Comparable<T>>{
     private boolean full() {
         return count >= N;
     }
-    public boolean insert(T item) {
+    /*public boolean insert(T item) {
         boolean inserted=false;
         
         if(!full())
@@ -90,6 +80,6 @@ public class GenericList<T extends Comparable<T>>{
             result = 0;
         
         return result;
-    }
+    }*/
 
 }

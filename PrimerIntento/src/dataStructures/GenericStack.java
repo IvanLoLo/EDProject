@@ -40,5 +40,10 @@ public class GenericStack<T> {
             throw new RuntimeException("Stack is full");
         sarray[top]=item;
         top++;
-    } 
+    }
+    
+    public void print(String name){
+        //search(name);
+        System.out.println(sarray[top-1].toString());
+    }
 }
