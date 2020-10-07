@@ -4,10 +4,18 @@ import principal.Producto;
 
 public class GenericList<T extends Comparable<T>>{
     private final int N;
-    private int position, count;
+    private int count;
+    private int position;
     private T[] array;
     private T reference;
     private boolean sorted;
+
+    public int getCount() {
+        return count;
+    }
+    public void setCount(int count) {
+        this.count = count;
+    }
     
     public GenericList(int n) {
         this.N = n;
@@ -15,7 +23,7 @@ public class GenericList<T extends Comparable<T>>{
         array = (T[]) new Comparable[N];
     }
     
-    private boolean empty() {
+    public boolean empty() {
         return count <= 0;
     }
     
@@ -114,6 +122,11 @@ public class GenericList<T extends Comparable<T>>{
             result = 0;
         
         return result;
+    }
+    
+    public T giveMe(int n){
+        if(count>=n) return array[n];
+        return null;
     }
 
 }

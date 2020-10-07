@@ -18,6 +18,8 @@ public class Run {
         inventLista = new GenericList<Producto>(100);
         inventStack = new GenericStack<Producto>(100);
         
+        Reader read = new Reader(inventStack, inventLista);
+        
         while(true){
             System.out.println("Escoja una opcion:");
             System.out.println("1. Agregar");
@@ -29,13 +31,21 @@ public class Run {
                 break;
                 case 2: mostrar();
                 break;
-                case 9: return;
+                case 9: guardar();
+                return;
                 default: System.out.println("Que paso");
             }
             System.out.println("Presione cualquier tecla para continuar...");
             sc.nextLine();
         }
-    }      
+        
+    }
+    
+    private static void guardar(){
+        Saver save = null;
+        if(!inventLista.empty())
+            save = new Saver(inventLista);
+    }
     
     private static void agregar() {
         System.out.println("Informacion:");
@@ -47,7 +57,7 @@ public class Run {
     }
     
     private static void mostrar() {
-        inventStack.print("Hola");
+        inventStack.print("Hola", 1);
         inventLista.output(1);
     }
         

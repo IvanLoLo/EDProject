@@ -42,8 +42,8 @@ public class GenericStack<T extends Comparable<T>> {
         top++;
     }
     
-    public void print(String name){
-        sort();
+    public void print(String name, int n){
+        if(n==1) sortV2();
         System.out.print("Stack: ");
         for(int i=0; i<top; i++){
             System.out.print(sarray[i].toString()+" ");
@@ -51,7 +51,25 @@ public class GenericStack<T extends Comparable<T>> {
         System.out.println("");
     }
     
-    public void sort(){
+    public T peek(){
+        if(!this.empty()) return sarray[top-1];
+        return null;
+    }
+    
+    public void sortV1(){
+        GenericStack<T> aux = new GenericStack<T>(N);
+        while(!this.empty()){
+            T temp = this.pop();
+            while(!aux.empty() && aux.peek().compareTo(temp)>0)
+                this.push(aux.pop());
+            aux.push(temp);
+        }
+        this.top = aux.top;
+        this.sarray = aux.sarray;
+        
+    }
+    
+    public void sortV2(){
         GenericStack<T> aux1 = new GenericStack<T>(N);
         GenericStack<T> aux2 = new GenericStack<T>(N);
         int max = top-1;
@@ -59,7 +77,7 @@ public class GenericStack<T extends Comparable<T>> {
         for(int i=0; i<max; i++){
             int j = aux1.top;
             T item = this.pop();
-            while(j>0 && !aux1.empty() && item.compareTo(aux1.sarray[j-1])>0){
+            while(j>0 && !aux1.empty() && item.compareTo(aux1.sarray[j-1])<0){
                 aux2.push(aux1.pop());
                 j--;
             }
@@ -68,9 +86,13 @@ public class GenericStack<T extends Comparable<T>> {
                 aux1.push(aux2.pop());
         }
         
-        while(!aux1.empty())
-            this.push(aux1.pop());
-        
+        this.top = aux1.top;
+        this.sarray = aux1.sarray;
+    }
+    
+    public T giveMe(int n){
+        if(top>n) return sarray[n];
+        return null;
     }
     
     

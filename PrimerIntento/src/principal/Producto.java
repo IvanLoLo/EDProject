@@ -33,11 +33,10 @@ public class Producto implements Comparable<Producto>{
 
     @Override
     public String toString() {
-        return "Producto{" + "nombre=" + nombre + ", precio=" + precio + ", cantidad=" + stock + '}';
+        return nombre + " " + precio + " " + stock ;
     }
 
-    /*public int compareTo(Producto item) { // Comparar por precio
-        System.out.print("Actual: "+nombre+":"+precio+" Param: "+item.nombre+":"+item.precio);
+    /*public int compareTo(Producto item) {
         int rta=-1;
         if(Long.parseLong(precio)==Long.parseLong(item.getPrecio())) rta = 0;
         else if (Long.parseLong(precio)>Long.parseLong(item.getPrecio())) rta = 1;
