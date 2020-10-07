@@ -10,7 +10,7 @@ package dataStructures;
  * 
  * @author Sammy Guergachi <sguergachi at gmail.com>
  */
-public class GenericStack<T> {
+public class GenericStack<T extends Comparable<T>> {
     private int N;
     private int top;
     private T[] sarray;
@@ -19,7 +19,7 @@ public class GenericStack<T> {
     public GenericStack(int n) {
         this.N = n;
         this.top = 0;
-        this.sarray = (T[]) new Object[N];
+        this.sarray = (T[]) new Comparable[N];
     }
     // value returning methods
     public boolean empty() {
@@ -43,7 +43,35 @@ public class GenericStack<T> {
     }
     
     public void print(String name){
-        //search(name);
-        System.out.println(sarray[top-1].toString());
+        sort();
+        System.out.print("Stack: ");
+        for(int i=0; i<top; i++){
+            System.out.print(sarray[i].toString()+" ");
+        }
+        System.out.println("");
     }
+    
+    public void sort(){
+        GenericStack<T> aux1 = new GenericStack<T>(N);
+        GenericStack<T> aux2 = new GenericStack<T>(N);
+        int max = top-1;
+        if(!this.empty()) aux1.push(this.pop());
+        for(int i=0; i<max; i++){
+            int j = aux1.top;
+            T item = this.pop();
+            while(j>0 && !aux1.empty() && item.compareTo(aux1.sarray[j-1])>0){
+                aux2.push(aux1.pop());
+                j--;
+            }
+            aux1.push(item);
+            while(!aux2.empty())
+                aux1.push(aux2.pop());
+        }
+        
+        while(!aux1.empty())
+            this.push(aux1.pop());
+        
+    }
+    
+    
 }

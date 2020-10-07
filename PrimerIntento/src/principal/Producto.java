@@ -37,9 +37,12 @@ public class Producto implements Comparable<Producto>{
     }
 
     /*public int compareTo(Producto item) { // Comparar por precio
-        if(precio.equals(item.getPrecio())) return 0;
-        else if (Long.parseLong(precio)>(Long.parseLong(item.getPrecio()))) return 1;
-        return -1;
+        System.out.print("Actual: "+nombre+":"+precio+" Param: "+item.nombre+":"+item.precio);
+        int rta=-1;
+        if(Long.parseLong(precio)==Long.parseLong(item.getPrecio())) rta = 0;
+        else if (Long.parseLong(precio)>Long.parseLong(item.getPrecio())) rta = 1;
+        System.out.println(" Estado: "+rta);
+        return rta;
     }*/
     
     public int compareTo(Producto item) { //Comparar por Nombre
