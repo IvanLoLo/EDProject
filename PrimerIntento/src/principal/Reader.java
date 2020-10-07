@@ -29,7 +29,7 @@ public class Reader {
             String[] linea;
             while(sc.hasNextLine()) {
                 linea=sc.nextLine().split(" ");
-                temp = new Producto(linea[0], linea[1], 1);
+                temp = new Producto(linea[0], linea[1], Integer.parseInt(linea[2]));
                 stack.push(temp);
                 list.insert(temp);
             }

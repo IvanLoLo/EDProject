@@ -23,13 +23,16 @@ public class Run {
         while(true){
             System.out.println("Escoja una opcion:");
             System.out.println("1. Agregar");
-            System.out.println("2. Mostrar Todos");
+            System.out.println("2. Mostrar Stack");
+            System.out.println("3. Mostrar Lista");
             System.out.println("9. Salir");
             opcion = Integer.valueOf(sc.nextLine());
             switch(opcion){
                 case 1: agregar();
                 break;
-                case 2: mostrar();
+                case 2: mostrarStack();
+                break;
+                case 3: mostrarList();
                 break;
                 case 9: guardar();
                 return;
@@ -56,8 +59,11 @@ public class Run {
         
     }
     
-    private static void mostrar() {
+    private static void mostrarStack() {
         inventStack.print("Hola", 1);
+    }
+    
+    private static void mostrarList() {
         inventLista.output(1);
     }
         

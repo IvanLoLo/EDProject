@@ -43,10 +43,9 @@ public class GenericStack<T extends Comparable<T>> {
     }
     
     public void print(String name, int n){
-        if(n==1) sortV2();
-        System.out.print("Stack: ");
+        if(n==1) sortV1();
         for(int i=0; i<top; i++){
-            System.out.print(sarray[i].toString()+" ");
+            System.out.print(sarray[i].toString()+" | ");
         }
         System.out.println("");
     }

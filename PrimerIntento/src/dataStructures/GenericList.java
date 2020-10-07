@@ -103,10 +103,9 @@ public class GenericList<T extends Comparable<T>>{
     
     public void output(int n) {
         if(n == 1 && !sorted) sort();
-        System.out.print("List: ");
         int j = 0;
         while(j != count) {
-            System.out.print(array[j]+" ");
+            System.out.print(array[j]+" | ");
             j++;
         }
         System.out.println();
