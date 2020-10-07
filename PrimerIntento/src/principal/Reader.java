@@ -23,7 +23,7 @@ public class Reader {
     public void read(){
         
         try {
-            File file = new File("C:\\Users\\Ivan L\\Desktop\\datos.txt");
+            File file = new File("C:\\Users\\Ivan L\\Desktop\\final.txt");
             Producto temp;
             Scanner sc = new Scanner(file);
             String[] linea;

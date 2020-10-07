@@ -15,8 +15,8 @@ public class Run {
         
         sc = new Scanner(System.in);
         
-        inventLista = new GenericList<Producto>(100);
-        inventStack = new GenericStack<Producto>(100);
+        inventLista = new GenericList<Producto>(101);
+        inventStack = new GenericStack<Producto>(101);
         
         Reader read = new Reader(inventStack, inventLista);
         
