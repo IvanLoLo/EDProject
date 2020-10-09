@@ -6,20 +6,30 @@
 
 package dataStructures;
 
+import principal.Producto;
+
 /**
  * 
  * @author Sammy Guergachi <sguergachi at gmail.com>
  */
-public class GenericStack<T extends Comparable<T>> {
+public class GenericStack {
     private int N;
     private int top;
-    private T[] sarray;
+    private Producto[] sarray;
+    private boolean sorted;
+
+    public int getTop() {
+        return top;
+    }
+    public void setTop(int top) {
+        this.top = top;
+    }
     // constructors
     
     public GenericStack(int n) {
         this.N = n;
         this.top = 0;
-        this.sarray = (T[]) new Comparable[N];
+        this.sarray = new Producto[N];
     }
     // value returning methods
     public boolean empty() {
@@ -28,54 +38,60 @@ public class GenericStack<T extends Comparable<T>> {
     private boolean full() {
         return top >= sarray.length;
     }
-    public T pop() {
+    public Producto pop() {
         if(empty())
             throw new RuntimeException("Stack is empty");
         top--;
         return sarray[top];
     }
     // void method
-    public void push(T item) {
+    public void push(Producto item) {
         if(full())
             throw new RuntimeException("Stack is full");
+        if(!empty() && item.compareTo(peek())<0) sorted = false;
         sarray[top]=item;
         top++;
     }
     
-    public void print(String name, int n){
-        if(n==1) sortV1();
+    public void print(int n){
+        if(!sorted)
+            if(n==1) sortV1();
+            else if(n==2) sortV2();
         for(int i=0; i<top; i++){
             System.out.print(sarray[i].toString()+" | ");
         }
         System.out.println("");
     }
     
-    public T peek(){
-        if(!this.empty()) return sarray[top-1];
-        return null;
+    public Producto peek(){
+        if(empty()) throw new RuntimeException("Stack is empty");
+        return sarray[top-1];
     }
     
     public void sortV1(){
-        GenericStack<T> aux = new GenericStack<T>(N);
+        long timeStack = System.nanoTime();
+        GenericStack aux = new GenericStack(N);
         while(!this.empty()){
-            T temp = this.pop();
+            Producto temp = this.pop();
             while(!aux.empty() && aux.peek().compareTo(temp)>0)
                 this.push(aux.pop());
             aux.push(temp);
         }
         this.top = aux.top;
         this.sarray = aux.sarray;
-        
+        sorted = true;
+        System.out.println("Sort1 Stack: "+(System.nanoTime()-timeStack));
     }
     
     public void sortV2(){
-        GenericStack<T> aux1 = new GenericStack<T>(N);
-        GenericStack<T> aux2 = new GenericStack<T>(N);
+        long timeStack = System.nanoTime();
+        GenericStack aux1 = new GenericStack(N);
+        GenericStack aux2 = new GenericStack(N);
         int max = top-1;
         if(!this.empty()) aux1.push(this.pop());
         for(int i=0; i<max; i++){
             int j = aux1.top;
-            T item = this.pop();
+            Producto item = this.pop();
             while(j>0 && !aux1.empty() && item.compareTo(aux1.sarray[j-1])<0){
                 aux2.push(aux1.pop());
                 j--;
@@ -87,9 +103,11 @@ public class GenericStack<T extends Comparable<T>> {
         
         this.top = aux1.top;
         this.sarray = aux1.sarray;
+        sorted = true;
+        System.out.println("Sort2 Stack: "+(System.nanoTime()-timeStack));
     }
     
-    public T giveMe(int n){
+    public Producto giveMe(int n){
         if(top>n) return sarray[n];
         return null;
     }

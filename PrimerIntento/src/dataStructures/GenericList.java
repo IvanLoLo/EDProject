@@ -2,12 +2,12 @@ package dataStructures;
 
 import principal.Producto;
 
-public class GenericList<T extends Comparable<T>>{
+public class GenericList{
     private final int N;
     private int count;
     private int position;
-    private T[] array;
-    private T reference;
+    private Producto[] array;
+    private Producto reference;
     private boolean sorted;
 
     public int getCount() {
@@ -20,7 +20,7 @@ public class GenericList<T extends Comparable<T>>{
     public GenericList(int n) {
         this.N = n;
         count=0;
-        array = (T[]) new Comparable[N];
+        array = new Producto[N];
     }
     
     public boolean empty() {
@@ -31,16 +31,17 @@ public class GenericList<T extends Comparable<T>>{
         return count >= N;
     }
     
-    public boolean sortedInsert(T item) {
+    public boolean sortedInsert(Producto item) {
         boolean inserted=false;
         
         if(!full()){
-            if (!search(item)){
+            if (!smartSearch(item)){
                 for(int j=count; j>position; j--)
                     array[j] = array[j-1];
                 array[position] = item;
                 count++;
                 inserted = true;
+                sorted = true;
             }else System.out.println("Product is already in the list");
         }else System.out.println("List is Full1");
         
@@ -48,18 +49,20 @@ public class GenericList<T extends Comparable<T>>{
     }
     
     public void sort(){
-        sorted = true;
-        GenericList<T> temp = new GenericList<T>(N);
+        long timeList = System.nanoTime();
+        GenericList temp = new GenericList(N);
         for(int i=0; i<count; i++)
            temp.sortedInsert(array[i]);
         array = temp.array;
+        sorted = true;
+        System.out.println("Sort List: "+(System.nanoTime()-timeList));
     }
     
-    public boolean insert(T item){
+    public boolean insert(Producto item){
         boolean inserted = false;
         
         if(!full()){
-            if(!search(item)){
+            if(!smartSearch(item)){
                 array[count++] = item;
                 inserted = true;
                 sorted = false;
@@ -70,7 +73,7 @@ public class GenericList<T extends Comparable<T>>{
         
     }
     
-    public boolean delete(T item) {
+    public boolean delete(Producto item) {
         
         boolean deleted=false;
         if(!empty())
@@ -86,7 +89,8 @@ public class GenericList<T extends Comparable<T>>{
         return deleted;
     }
     
-    public boolean search(T item) {
+    public boolean search(Producto item) {
+        //long timeSearch = System.nanoTime();
         boolean found, stop;
         found = false;
         stop = false;
@@ -98,6 +102,28 @@ public class GenericList<T extends Comparable<T>>{
                     found = true;
             }
             else position++;
+        //System.out.println("Searching List: "+(System.nanoTime()-timeSearch));
+        return found;
+    }
+    
+    public boolean smartSearch(Producto item){
+        position = 0;
+        if(empty()) return false;
+        boolean found = false;
+        long timeSearch = System.nanoTime();
+        int i = 0;
+        int j = count-1;
+        int k;
+        do{
+            k = (i+j)/2;
+            if(array[k].compareTo(item)<=0) i=k+1;
+            if(array[k].compareTo(item)>=0) j=k-1;
+            System.out.println(i+" "+j+" "+k);
+        }while(i<=j);
+        position = k;
+        if(item.compareTo(array[position])== 0) found = true;
+        System.out.println("Searching List: "+(System.nanoTime()-timeSearch));
+        System.out.println(array[position]+" at: "+k+" found: "+found);
         return found;
     }
     
@@ -111,7 +137,7 @@ public class GenericList<T extends Comparable<T>>{
         System.out.println();
     }
     
-    public int compareTo(T item) {
+    public int compareTo(Producto item) {
         int result;
         if(reference.compareTo(item) > 0)
             result = 1;
@@ -123,7 +149,7 @@ public class GenericList<T extends Comparable<T>>{
         return result;
     }
     
-    public T giveMe(int n){
+    public Producto giveMe(int n){
         if(count>=n) return array[n];
         return null;
     }
