@@ -2,7 +2,7 @@ package dataStructures;
 
 import principal.Producto;
 
-public class GenericList{
+public class List{
     private final int N;
     private int count;
     private int position;
@@ -17,7 +17,7 @@ public class GenericList{
         this.count = count;
     }
     
-    public GenericList(int n) {
+    public List(int n) {
         this.N = n;
         count=0;
         array = new Producto[N];
@@ -50,7 +50,7 @@ public class GenericList{
     
     public void sort(){
         long timeList = System.nanoTime();
-        GenericList temp = new GenericList(N);
+        List temp = new List(N);
         for(int i=0; i<count; i++)
            temp.sortedInsert(array[i]);
         array = temp.array;
@@ -137,7 +137,7 @@ public class GenericList{
         System.out.println();
     }
     
-    public int compareTo(Producto item) {
+    /*public int compareTo(Producto item) {
         int result;
         if(reference.compareTo(item) > 0)
             result = 1;
@@ -147,7 +147,7 @@ public class GenericList{
             result = 0;
         
         return result;
-    }
+    }*/
     
     public Producto giveMe(int n){
         if(count>=n) return array[n];

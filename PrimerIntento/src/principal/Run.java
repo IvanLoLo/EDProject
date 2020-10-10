@@ -7,16 +7,16 @@ import java.util.Scanner;
 public class Run {
     
     static int opcion;
-    static GenericList inventLista;
-    static GenericStack inventStack;
+    static List inventLista;
+    static Stack inventStack;
     static  Scanner sc;
     
     public static void main(String[] args){
         
         sc = new Scanner(System.in);
         
-        inventLista = new GenericList(102);
-        inventStack = new GenericStack(102);
+        inventLista = new List(102);
+        inventStack = new Stack(102);
         
         Reader read = new Reader(inventStack, inventLista);
         

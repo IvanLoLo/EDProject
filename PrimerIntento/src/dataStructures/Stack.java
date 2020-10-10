@@ -12,7 +12,7 @@ import principal.Producto;
  * 
  * @author Sammy Guergachi <sguergachi at gmail.com>
  */
-public class GenericStack {
+public class Stack {
     private int N;
     private int top;
     private Producto[] sarray;
@@ -26,7 +26,7 @@ public class GenericStack {
     }
     // constructors
     
-    public GenericStack(int n) {
+    public Stack(int n) {
         this.N = n;
         this.top = 0;
         this.sarray = new Producto[N];
@@ -70,7 +70,7 @@ public class GenericStack {
     
     public void sortV1(){
         long timeStack = System.nanoTime();
-        GenericStack aux = new GenericStack(N);
+        Stack aux = new Stack(N);
         while(!this.empty()){
             Producto temp = this.pop();
             while(!aux.empty() && aux.peek().compareTo(temp)>0)
@@ -85,8 +85,8 @@ public class GenericStack {
     
     public void sortV2(){
         long timeStack = System.nanoTime();
-        GenericStack aux1 = new GenericStack(N);
-        GenericStack aux2 = new GenericStack(N);
+        Stack aux1 = new Stack(N);
+        Stack aux2 = new Stack(N);
         int max = top-1;
         if(!this.empty()) aux1.push(this.pop());
         for(int i=0; i<max; i++){

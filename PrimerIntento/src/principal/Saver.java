@@ -10,9 +10,9 @@ import java.io.IOException;
  * @author Sammy Guergachi <sguergachi at gmail.com>
  */
 public class Saver{
-    private GenericList list;
+    private List list;
 
-    public Saver(GenericList list) {
+    public Saver(List list) {
         this.list = list;
         save();
     }

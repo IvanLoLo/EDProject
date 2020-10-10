@@ -11,10 +11,10 @@ import java.util.Scanner;
  */
 public class Reader {
     
-    private GenericStack stack;
-    private GenericList list;
+    private Stack stack;
+    private List list;
 
-    public Reader(GenericStack stack, GenericList list) {
+    public Reader(Stack stack, List list) {
         this.stack = stack;
         this.list = list;
         read();
