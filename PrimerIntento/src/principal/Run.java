@@ -25,7 +25,8 @@ public class Run {
             System.out.println("1. Agregar");
             System.out.println("2. Mostrar Stack");
             System.out.println("3. Mostrar Lista");
-            System.out.println("3. Buscar");
+            System.out.println("4. Buscar en Stack");
+            System.out.println("5. Buscar en Lista");
             System.out.println("9. Salir");
             opcion = Integer.valueOf(sc.nextLine());
             switch(opcion){
@@ -35,8 +36,9 @@ public class Run {
                 break;
                 case 3: mostrarList();
                 break;
-                case 4: System.out.println("Ingrese el nombre del producto");
-                    buscar(sc.nextLine());
+                case 4: 
+                case 5: System.out.println("Ingrese el nombre del producto");
+                    buscar(sc.nextLine(), opcion);
                 break;
                 case 9: guardar();
                 return;
@@ -59,7 +61,7 @@ public class Run {
         String[] info = sc.nextLine().split(" ");
         Producto producto = new Producto(info[0], info[1], 1);
         inventStack.push(producto);
-        inventLista.insert(producto);
+        inventLista.sortedInsert(producto);
         
     }
     
@@ -71,9 +73,14 @@ public class Run {
         inventLista.output(1);
     }
     
-    private static void buscar(String name){
+    private static void buscar(String name, int opc){
         Producto item = new Producto(name, "", 0);
-        inventLista.smartSearch(item);
+        if(opc==4 && inventStack.doSearch(item))
+            System.out.println(inventStack.giveMe(inventStack.getPosition()));
+        else if(inventLista.doSearch(item))
+            System.out.println(inventLista.giveMe(inventLista.getPosition()));
+        else System.out.println("No se ha encontrado un producto con el nombre señalado");//No esta
+            
     }
         
 }

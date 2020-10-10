@@ -39,7 +39,7 @@ public class Reader {
             while(sc.hasNextLine()) {
                 linea=sc.nextLine().split(" ");
                 temp = new Producto(linea[0], linea[1], Integer.parseInt(linea[2]));
-                list.insert(temp);
+                list.sortedInsert(temp);
             }
             System.out.println("Inserting "+list.getCount()+" elements List: "+(System.nanoTime()-timeList));
             sc.close();

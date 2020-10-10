@@ -13,8 +13,7 @@ import principal.Producto;
  * @author Sammy Guergachi <sguergachi at gmail.com>
  */
 public class Stack {
-    private int N;
-    private int top;
+    private int N, top, position;
     private Producto[] sarray;
     private boolean sorted;
 
@@ -24,27 +23,35 @@ public class Stack {
     public void setTop(int top) {
         this.top = top;
     }
-    // constructors
+    public int getPosition() {
+        return position;
+    }
+    public void setPosition(int position) {
+        this.position = position;
+    }
+    
     
     public Stack(int n) {
         this.N = n;
         this.top = 0;
         this.sarray = new Producto[N];
     }
-    // value returning methods
+    
     public boolean empty() {
         return top <= 0;
     }
+    
     private boolean full() {
         return top >= sarray.length;
     }
+    
     public Producto pop() {
         if(empty())
             throw new RuntimeException("Stack is empty");
         top--;
         return sarray[top];
     }
-    // void method
+    
     public void push(Producto item) {
         if(full())
             throw new RuntimeException("Stack is full");
@@ -53,21 +60,12 @@ public class Stack {
         top++;
     }
     
-    public void print(int n){
-        if(!sorted)
-            if(n==1) sortV1();
-            else if(n==2) sortV2();
-        for(int i=0; i<top; i++){
-            System.out.print(sarray[i].toString()+" | ");
-        }
-        System.out.println("");
-    }
-    
     public Producto peek(){
         if(empty()) throw new RuntimeException("Stack is empty");
         return sarray[top-1];
     }
     
+    //Decidir que Sort dejar (el mas rapido)
     public void sortV1(){
         long timeStack = System.nanoTime();
         Stack aux = new Stack(N);
@@ -82,7 +80,6 @@ public class Stack {
         sorted = true;
         System.out.println("Sort1 Stack: "+(System.nanoTime()-timeStack));
     }
-    
     public void sortV2(){
         long timeStack = System.nanoTime();
         Stack aux1 = new Stack(N);
@@ -107,7 +104,64 @@ public class Stack {
         System.out.println("Sort2 Stack: "+(System.nanoTime()-timeStack));
     }
     
-    public Producto giveMe(int n){
+    public boolean search(Producto item) {//Posicion por posicion O(n)
+        //long timeSearch = System.nanoTime();
+        boolean found, stop;
+        found = false;
+        stop = false;
+        position = 0;
+        while(position != (top-1) && !found){
+            if(sarray[position].compareTo(item) == 0)
+                    found = true;
+            else position++;
+        }
+        //System.out.println("Searching List: "+(System.nanoTime()-timeSearch));
+        return found;
+    }
+    
+    public boolean smartSearch(Producto item){
+        position = 0;
+        if(empty()) return false;
+        boolean found = false;
+        long timeSearch = System.nanoTime();
+        int i = 0;
+        int j = top-1;
+        int k;
+        do{
+            k = (i+j)/2;
+            if(sarray[k].compareTo(item)<=0) i=k+1;
+            if(sarray[k].compareTo(item)>=0) j=k-1;
+        }while(i<=j);
+        position = k;
+        if(item.compareTo(sarray[position])== 0) found = true;
+        //System.out.println("Searching List: "+(System.nanoTime()-timeSearch));
+        System.out.println(sarray[position]+" at: "+k+" found: "+found);
+        return found;
+    }
+    
+    public boolean doSearch(Producto item){
+        if(sorted) return smartSearch(item);
+        System.out.println("Voy por la normal");
+        return search(item);
+    }
+    
+    public boolean update(Producto item){
+        if(!doSearch(item)) return false;
+        sarray[position] = item;
+        return true;
+    }
+    
+    public void print(int n){
+        if(!sorted)
+            if(n==1) sortV1();
+            else if(n==2) sortV2();
+        for(int i=0; i<top; i++){
+            System.out.println(sarray[i].toString()+" | ");
+        }
+        System.out.println("");
+    }
+    
+    public Producto giveMe(int n){//No se si se esta usando :v
         if(top>n) return sarray[n];
         return null;
     }

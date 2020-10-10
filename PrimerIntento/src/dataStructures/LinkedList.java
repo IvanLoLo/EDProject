@@ -3,10 +3,6 @@ package dataStructures;
 
 import principal.Producto;
 
-/**
- * 
- * @author Sammy Guergachi <sguergachi at gmail.com>
- */
 public class LinkedList {
     
     private GenericNode<Producto> head;
@@ -55,6 +51,11 @@ public class LinkedList {
         if(!search(item) || empty()) return false; //No esta en la lista
         //Hay que buscar si el siguiente al actual es el que buscamos
         //porque no hay forma de mirar el anterior nodo
+        GenericNode<Producto> ptr = head;
+        while(/*ptr.getNext() != null && */((Producto)ptr.getNext().getData()).compareTo(item)<0)
+            ptr = ptr.getNext();
+        if(ptr.getData()==item) head = head.getNext();
+        else ptr.setNext(ptr.getNext().getNext());
         return true;
     }
 
