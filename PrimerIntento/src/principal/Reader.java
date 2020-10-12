@@ -23,22 +23,25 @@ public class Reader {
     public void read(){
         
         try {
-            File file = new File("C:\\Users\\Ivan L\\Desktop\\final.txt");
+            //File file = new File("C:\\Users\\Ivan L\\Desktop\\final.txt"); //RUTA IVAN
+            //File file = new File("C:\\Users\\dsrod\\Documents\\UN\\2020-2\\Estructuras de datos\\Proyecto\\final.txt");//RUTA SANTIAGO
             Producto temp;
-            Scanner sc = new Scanner(file);
+            //Scanner sc = new Scanner(file);
+            Scanner sc = new Scanner(new File("final.txt"));
             String[] linea;
             long timeStack = System.nanoTime();
             while(sc.hasNextLine()) {
                 linea=sc.nextLine().split(" ");
-                temp = new Producto(linea[0], linea[1], Integer.parseInt(linea[2]));
+                temp = new Producto(linea[0], Long.parseLong(linea[1]), Integer.parseInt(linea[2]));
                 stack.push(temp);
             }
             System.out.println("Inserting "+stack.getTop()+" elements Stack: "+(System.nanoTime()-timeStack));
-            sc = new Scanner(file);
+            //sc = new Scanner(file);
+            sc = new Scanner(new File("final.txt"));
             long timeList = System.nanoTime();
             while(sc.hasNextLine()) {
                 linea=sc.nextLine().split(" ");
-                temp = new Producto(linea[0], linea[1], Integer.parseInt(linea[2]));
+                temp = new Producto(linea[0], Long.parseLong(linea[1]), Integer.parseInt(linea[2]));
                 list.sortedInsert(temp);
             }
             System.out.println("Inserting "+list.getCount()+" elements List: "+(System.nanoTime()-timeList));

@@ -59,7 +59,7 @@ public class Run {
     private static void agregar() {
         System.out.println("Informacion:");
         String[] info = sc.nextLine().split(" ");
-        Producto producto = new Producto(info[0], info[1], 1);
+        Producto producto = new Producto(info[0], Long.parseLong(info[1]), 1);
         inventStack.push(producto);
         inventLista.sortedInsert(producto);
         
@@ -74,7 +74,7 @@ public class Run {
     }
     
     private static void buscar(String name, int opc){
-        Producto item = new Producto(name, "", 0);
+        Producto item = new Producto(name, 0, 0);
         if(opc==4 && inventStack.doSearch(item))
             System.out.println(inventStack.giveMe(inventStack.getPosition()));
         else if(inventLista.doSearch(item))

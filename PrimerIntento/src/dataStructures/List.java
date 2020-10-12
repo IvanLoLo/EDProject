@@ -98,7 +98,7 @@ public class List{
         System.out.println("Sort List: "+(System.nanoTime()-timeList));
     }*/
     
-    public boolean search(Producto item) {//Busqueda posicion por posicion O(n)
+    public boolean search(Producto item) {//Busqueda posicion por posicion O(n) ->Nombre
         if(empty()){
             return false;
         }
