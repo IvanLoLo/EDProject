@@ -3,7 +3,8 @@ package principal;
 
 public class Producto implements Comparable<Producto>{
     
-    String nombre, precio;
+    String nombre;
+    long precio;
     int stock;
     
     public String getNombre() {
@@ -12,10 +13,10 @@ public class Producto implements Comparable<Producto>{
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-    public String getPrecio() {
+    public long getPrecio() {
         return precio;
     }
-    public void setPrecio(String precio) {
+    public void setPrecio(long precio) {
         this.precio = precio;
     }
     public int getStock() {
@@ -25,7 +26,7 @@ public class Producto implements Comparable<Producto>{
         this.stock = stock;
     }
     
-    public Producto(String nombre, String precio, int stock) {
+    public Producto(String nombre, long precio, int stock) { //CONSTRUCTOR DE PRUEBA PRECIO DOUBLE
         this.nombre = nombre;
         this.precio = precio;
         this.stock = stock;
@@ -47,5 +48,30 @@ public class Producto implements Comparable<Producto>{
     public int compareTo(Producto item) { //Comparar por Nombre
         return nombre.compareToIgnoreCase(item.getNombre());
     }
-
+    public byte compareToPrecio(Producto item){ //Comparar por precio
+        byte compare;
+        if(precio==item.getPrecio()){
+            compare=0;
+        }
+        else if(precio<item.getPrecio()){
+            compare=-1;
+        }
+        else {
+            compare=1;
+        }
+        return compare;
+    }
+    public byte compareToStock(Producto item){ //Comparar por cantidad Stock
+        byte compare;
+        if(stock==item.getStock()){
+            compare=0;
+        }
+        else if(stock<item.getStock()){
+            compare=-1;
+        }
+        else {
+            compare=1;
+        }
+        return compare;
+    }
 }

@@ -99,19 +99,22 @@ public class List{
     }*/
     
     public boolean search(Producto item) {//Busqueda posicion por posicion O(n)
-        //long timeSearch = System.nanoTime();
+        if(empty()){
+            return false;
+        }
         boolean found, stop;
         found = false;
         stop = false;
         position = 0;
-        while(position != count && !stop)
+        long timeSearch = System.nanoTime();
+        while(position < count && !stop)
             if(array[position].compareTo(item) >= 0){
                 stop = true;
                 if(array[position].compareTo(item) == 0)
                     found = true;
             }
             else position++;
-        //System.out.println("Searching List: "+(System.nanoTime()-timeSearch));
+        System.out.println("Searching List: "+(System.nanoTime()-timeSearch));
         //System.out.println(array[position]+" at: "+k+" found: "+found);
         return found;
     }
@@ -120,10 +123,10 @@ public class List{
         position = 0;
         if(empty()) return false;
         boolean found = false;
-        long timeSearch = System.nanoTime();
         int i = 0;
         int j = count-1;
         int k;
+        long timeSearch=System.nanoTime();
         do{
             k = (i+j)/2;
             if(array[k].compareTo(item)<=0) i=k+1;
@@ -131,8 +134,8 @@ public class List{
         }while(i<=j);
         position = k;
         if(item.compareTo(array[position])== 0) found = true;
-        //System.out.println("Searching List: "+(System.nanoTime()-timeSearch));
-        System.out.println(array[position]+" at: "+k+" found: "+found);
+        System.out.println("Searching List: "+(System.nanoTime()-timeSearch));
+        //System.out.println(array[position]+" at: "+k+" found: "+found);
         return found;
     }
     
@@ -148,12 +151,9 @@ public class List{
     
     public void output(int n) {
         //if(n == 1 && !sorted) sort();
-        int j = 0;
-        while(j != count) {
-            System.out.print(array[j]+" | ");
-            j++;
+        for(int i=0;i<count;i++){
+            System.out.println(array[i].toString());
         }
-        System.out.println();
     }
 
 }
