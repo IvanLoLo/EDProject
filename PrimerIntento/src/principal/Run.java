@@ -15,8 +15,10 @@ public class Run {
         
         sc = new Scanner(System.in);
         
-        inventLista = new List(102);
-        inventStack = new Stack(102);
+        //inventLista = new List(102);
+        //inventStack = new Stack(102);
+        inventLista = new List(10001);
+        inventStack = new Stack(10001);
         
         Reader read = new Reader(inventStack, inventLista);
         
@@ -28,7 +30,7 @@ public class Run {
             System.out.println("4. Buscar en Stack");
             System.out.println("5. Buscar en Lista");
             System.out.println("9. Salir");
-            opcion = Integer.valueOf(sc.nextLine());
+            opcion = sc.nextInt();
             switch(opcion){
                 case 1: agregar();
                 break;
