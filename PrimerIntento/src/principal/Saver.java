@@ -30,7 +30,7 @@ public class Saver{
             }
             fw.close();
         }catch(IOException e) {
-                System.out.println("No fue posible guardar los contactos. Disculpe las molestias");
+                System.out.println("No fue posible guardar. Disculpe las molestias");
         }
     }
 

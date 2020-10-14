@@ -2,6 +2,7 @@
 package principal;
 
 import dataStructures.*;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Run {
@@ -30,7 +31,11 @@ public class Run {
             System.out.println("4. Buscar en Stack");
             System.out.println("5. Buscar en Lista");
             System.out.println("9. Salir");
-            opcion = sc.nextInt();
+            opcion = comprobar(sc);
+            while(opcion<1 || (opcion>5 && opcion<9) || opcion>9){
+                System.out.println("Ingrese una opción válida");
+                opcion = comprobar(sc);
+            }
             switch(opcion){
                 case 1: agregar();
                 break;
@@ -50,6 +55,15 @@ public class Run {
             sc.nextLine();
         }
         
+    }
+    
+    private static int comprobar(Scanner scan){
+        try{
+            int temp = scan.nextInt();
+            return temp;
+        }catch(InputMismatchException e){
+            return -1;
+        }
     }
     
     private static void guardar(){

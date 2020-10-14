@@ -6,21 +6,37 @@ import principal.Producto;
 public class LinkedList {
     
     private GenericNode<Producto> head;
-    private GenericNode<Producto> position;
+    private GenericNode<Producto> position, cola;
 
     public LinkedList(){
-        head = null;
+        head = position = cola = null;
     }
 
     public boolean empty(){
         return head == null;
     }
+    
+    /*public boolean insert(Producto item){
+        boolean inserted = false;
+        if(search(item)) return false;
+        GenericNode<Producto> temp = new GenericNode<>(item);
+        if(cola==null){
+            cola = temp;
+            if(head==null) head = cola;
+        }
+        else{
+            cola.setNext(temp);
+            cola = cola.getNext();
+        }
+        
+        
+        return inserted;
+    }*/
 
-    public boolean insert(Producto item) {
+    public boolean sortedInsert(Producto item) {
 
-        boolean inserted;
+        boolean inserted = false;
         GenericNode<Producto> ptr;
-        inserted = false;
 
         if(search(item)) return false;//Ya esta en la lista
 
@@ -52,7 +68,7 @@ public class LinkedList {
         //Hay que buscar si el siguiente al actual es el que buscamos
         //porque no hay forma de mirar el anterior nodo
         GenericNode<Producto> ptr = head;
-        while(/*ptr.getNext() != null && */((Producto)ptr.getNext().getData()).compareTo(item)<0)
+        while(((Producto)ptr.getNext().getData()).compareTo(item)<0)
             ptr = ptr.getNext();
         if(ptr.getData()==item) head = head.getNext();
         else ptr.setNext(ptr.getNext().getNext());

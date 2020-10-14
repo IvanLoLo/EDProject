@@ -59,7 +59,7 @@ public class List{
     public boolean sortedInsert(Producto item) {
         boolean inserted=false;
         if(!full()){
-            if (!search(item)){
+            if (!smartSearch(item)){
                 for(int j=count; j>position; j--)
                     array[j] = array[j-1];
                 array[position] = item;
@@ -114,7 +114,7 @@ public class List{
                     found = true;
             }
             else position++;
-        System.out.println("Searching List: "+(System.nanoTime()-timeSearch));
+        //System.out.println("DumpSearching List: "+(System.nanoTime()-timeSearch));
         //System.out.println(array[position]+" at: "+k+" found: "+found);
         return found;
     }
@@ -134,7 +134,7 @@ public class List{
         }while(i<=j);
         position = k;
         if(item.compareTo(array[position])== 0) found = true;
-        System.out.println("Searching List: "+(System.nanoTime()-timeSearch));
+        //System.out.println("SmartSearching List: "+(System.nanoTime()-timeSearch));
         //System.out.println(array[position]+" at: "+k+" found: "+found);
         return found;
     }
@@ -152,7 +152,7 @@ public class List{
     public void output(int n) {
         //if(n == 1 && !sorted) sort();
         for(int i=0;i<count;i++){
-            System.out.println(array[i].toString());
+            System.out.print(array[i].toString()+" | ");
         }
     }
 

@@ -156,7 +156,7 @@ public class Stack {
             if(n==1) sortV1();
             else if(n==2) sortV2();
         for(int i=0; i<top; i++){
-            System.out.println(sarray[i].toString()+" | ");
+            System.out.print(sarray[i].toString()+" | ");
         }
         System.out.println("");
     }

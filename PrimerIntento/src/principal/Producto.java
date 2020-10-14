@@ -48,6 +48,7 @@ public class Producto implements Comparable<Producto>{
     public int compareTo(Producto item) { //Comparar por Nombre
         return nombre.compareToIgnoreCase(item.getNombre());
     }
+    
     public byte compareToPrecio(Producto item){ //Comparar por precio
         byte compare;
         if(precio==item.getPrecio()){
@@ -61,6 +62,7 @@ public class Producto implements Comparable<Producto>{
         }
         return compare;
     }
+    
     public byte compareToStock(Producto item){ //Comparar por cantidad Stock
         byte compare;
         if(stock==item.getStock()){
