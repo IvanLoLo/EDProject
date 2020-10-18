@@ -7,7 +7,6 @@ public class List{
     private int count;
     private int position;
     private Producto[] array;
-    private boolean sorted;
 
     public int getCount() {
         return count;
@@ -60,12 +59,15 @@ public class List{
         boolean inserted=false;
         if(!full()){
             if (!smartSearch(item)){
+                if(array[position]!=null && array[position].compareTo(item)<0){
+                    position++;
+                    System.out.println("Menor");
+                }
                 for(int j=count; j>position; j--)
                     array[j] = array[j-1];
                 array[position] = item;
                 count++;
                 inserted = true;
-                sorted = true;
             }else System.out.println("Product is already in the list");
         }else System.out.println("List is Full1");
         
@@ -76,7 +78,7 @@ public class List{
         
         boolean deleted=false;
         if(!empty())
-            if(doSearch(item)){
+            if(smartSearch(item)){
                 for(int j=position; j<count-1; j++)
                     array[j] = array[j+1];
                 count--;
@@ -129,6 +131,7 @@ public class List{
         long timeSearch=System.nanoTime();
         do{
             k = (i+j)/2;
+            //System.out.println("Buscado en "+k+": "+array[k]);
             if(array[k].compareTo(item)<=0) i=k+1;
             if(array[k].compareTo(item)>=0) j=k-1;
         }while(i<=j);
@@ -139,18 +142,17 @@ public class List{
         return found;
     }
     
-    public boolean doSearch(Producto item){
+    /*public boolean doSearch(Producto item){
         return sorted ? smartSearch(item) : search(item);
-    }
+    }*/
     
     public boolean update(Producto item){
-        if(!doSearch(item)) return false;
+        if(!smartSearch(item)) return false;
         array[position] = item;
         return true;
     }
     
     public void output(int n) {
-        //if(n == 1 && !sorted) sort();
         for(int i=0;i<count;i++){
             System.out.print(array[i].toString()+" | ");
         }

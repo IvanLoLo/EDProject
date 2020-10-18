@@ -30,9 +30,11 @@ public class Run {
             System.out.println("3. Mostrar Lista");
             System.out.println("4. Buscar en Stack");
             System.out.println("5. Buscar en Lista");
-            System.out.println("9. Salir");
+            System.out.println("6. Prueba GiveMe");
+            System.out.println("8. Guardar y salir");
+            System.out.println("9. Salir sin guardar");
             opcion = comprobar(sc);
-            while(opcion<1 || (opcion>5 && opcion<9) || opcion>9){
+            while(opcion<1 || (opcion>6 && opcion<8) || opcion>9){
                 System.out.println("Ingrese una opción válida");
                 opcion = comprobar(sc);
             }
@@ -47,8 +49,10 @@ public class Run {
                 case 5: System.out.println("Ingrese el nombre del producto");
                     buscar(sc.nextLine(), opcion);
                 break;
-                case 9: guardar();
-                return;
+                case 6: System.out.println(inventLista.giveMe(comprobar(sc)));
+                break;
+                case 8: guardar();
+                case 9: return;
                 default: System.out.println("Que paso");
             }
             System.out.println("Presione cualquier tecla para continuar...");
@@ -59,9 +63,9 @@ public class Run {
     
     private static int comprobar(Scanner scan){
         try{
-            int temp = scan.nextInt();
-            return temp;
-        }catch(InputMismatchException e){
+            String temp = scan.nextLine();
+            return Integer.parseInt(temp);
+        }catch(NumberFormatException e){
             return -1;
         }
     }
@@ -69,7 +73,7 @@ public class Run {
     private static void guardar(){
         Saver save = null;
         if(!inventLista.empty())
-            save = new Saver(inventLista);
+            save = new Saver(inventLista, inventStack);
     }
     
     private static void agregar() {
@@ -77,7 +81,7 @@ public class Run {
         String[] info = sc.nextLine().split(" ");
         Producto producto = new Producto(info[0], Long.parseLong(info[1]), 1);
         inventStack.push(producto);
-        inventLista.sortedInsert(producto);
+        System.out.println(inventLista.sortedInsert(producto));
         
     }
     
@@ -93,7 +97,7 @@ public class Run {
         Producto item = new Producto(name, 0, 0);
         if(opc==4 && inventStack.doSearch(item))
             System.out.println(inventStack.giveMe(inventStack.getPosition()));
-        else if(inventLista.doSearch(item))
+        else if(opc==5 && inventLista.smartSearch(item))
             System.out.println(inventLista.giveMe(inventLista.getPosition()));
         else System.out.println("No se ha encontrado un producto con el nombre señalado");//No esta
             

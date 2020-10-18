@@ -8,6 +8,13 @@ public class LinkedList {
     private GenericNode<Producto> head;
     private GenericNode<Producto> position, cola;
 
+    public GenericNode<Producto> getHead() {
+        return head;
+    }
+    public void setHead(GenericNode<Producto> head) {
+        this.head = head;
+    }
+    
     public LinkedList(){
         head = position = cola = null;
     }
@@ -28,7 +35,7 @@ public class LinkedList {
             cola.setNext(temp);
             cola = cola.getNext();
         }
-        
+        inserted = true;
         
         return inserted;
     }*/
@@ -64,6 +71,7 @@ public class LinkedList {
     }
 
     public boolean delete(Producto item){
+        System.out.println(search(item));
         if(!search(item) || empty()) return false; //No esta en la lista
         //Hay que buscar si el siguiente al actual es el que buscamos
         //porque no hay forma de mirar el anterior nodo
@@ -79,8 +87,9 @@ public class LinkedList {
 
         GenericNode<Producto> ptr = head;
         GenericNode<Producto> prev = null;
-
+        System.out.println("Punteros:");
         while(ptr != null && ptr.getData().compareTo(item)<0) {
+            System.out.println(ptr.getData());
             prev = ptr;
             ptr = ptr.getNext();
         }
@@ -92,7 +101,7 @@ public class LinkedList {
         return false;
     }
 
-    private void printR(GenericNode<Producto> p) {
+    public void printR(GenericNode<Producto> p) {
             if(p != null) {
                     System.out.print(p.getData()+" ");
                     printR(p.getNext());

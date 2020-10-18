@@ -55,7 +55,7 @@ public class Stack {
     public void push(Producto item) {
         if(full())
             throw new RuntimeException("Stack is full");
-        if(!empty() && item.compareTo(peek())<0) sorted = false;
+        //if(!empty() && item.compareTo(peek())<0) sorted = false;
         sarray[top]=item;
         top++;
     }
@@ -110,12 +110,13 @@ public class Stack {
         found = false;
         stop = false;
         position = 0;
-        while(position != (top-1) && !found){
+        while(position != top && !found){
             if(sarray[position].compareTo(item) == 0)
-                    found = true;
+                found = true;
             else position++;
         }
         //System.out.println("Searching List: "+(System.nanoTime()-timeSearch));
+        System.out.println(sarray[position]+" at: "+position+" found: "+found);
         return found;
     }
     
@@ -140,8 +141,10 @@ public class Stack {
     }
     
     public boolean doSearch(Producto item){
-        if(sorted) return smartSearch(item);
-        System.out.println("Voy por la normal");
+        if(sorted){
+            System.out.println("Inteligente");
+            return smartSearch(item);
+        }
         return search(item);
     }
     

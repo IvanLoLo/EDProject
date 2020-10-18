@@ -24,10 +24,11 @@ public class Reader {
         
         try {
             //File file = new File("C:\\Users\\Ivan L\\Desktop\\final.txt"); //RUTA IVAN
-            //File file = new File("C:\\Users\\dsrod\\Documents\\UN\\2020-2\\Estructuras de datos\\Proyecto\\final.txt");//RUTA SANTIAGO
+            //File file = new File("C:\\Users\\dsrod\\Documents\\UN\\2020-2\\Estructuras de datos\\Proyecto\\final.txt"); //RUTA SANTIAGO
             Producto temp;
             //Scanner sc = new Scanner(file);
-            Scanner sc = new Scanner(new File("final.txt"));
+            File file = new File("src\\recursos\\final10k.txt");
+            Scanner sc = new Scanner(file);
             String[] linea;
             long timeStack = System.nanoTime();
             while(sc.hasNextLine()) {
@@ -37,7 +38,7 @@ public class Reader {
             }
             System.out.println("Inserting "+stack.getTop()+" elements Stack: "+(System.nanoTime()-timeStack));
             //sc = new Scanner(file);
-            sc = new Scanner(new File("final.txt"));
+            sc = new Scanner(file);
             long timeList = System.nanoTime();
             while(sc.hasNextLine()) {
                 linea=sc.nextLine().split(" ");
