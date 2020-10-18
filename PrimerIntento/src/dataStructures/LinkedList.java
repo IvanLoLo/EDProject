@@ -71,10 +71,11 @@ public class LinkedList {
     }
 
     public boolean delete(Producto item){
-        System.out.println(search(item));
-        if(!search(item) || empty()) return false; //No esta en la lista
+        if(empty()) return false; //No esta en la lista
         //Hay que buscar si el siguiente al actual es el que buscamos
         //porque no hay forma de mirar el anterior nodo
+        search(item);
+        if(position!=null && ((Producto)position.getNext().getData()).compareTo(item)!=0) return false;
         GenericNode<Producto> ptr = head;
         while(((Producto)ptr.getNext().getData()).compareTo(item)<0)
             ptr = ptr.getNext();
@@ -87,9 +88,7 @@ public class LinkedList {
 
         GenericNode<Producto> ptr = head;
         GenericNode<Producto> prev = null;
-        System.out.println("Punteros:");
         while(ptr != null && ptr.getData().compareTo(item)<0) {
-            System.out.println(ptr.getData());
             prev = ptr;
             ptr = ptr.getNext();
         }
