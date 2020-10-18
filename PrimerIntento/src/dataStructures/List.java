@@ -58,11 +58,9 @@ public class List{
     public boolean sortedInsert(Producto item) {
         boolean inserted=false;
         if(!full()){
-            if (!smartSearch(item)){
-                if(array[position]!=null && array[position].compareTo(item)<0){
+            if (!smartSearch(item,0)){
+                if(array[position]!=null && array[position].compareTo(item)<0)
                     position++;
-                    System.out.println("Menor");
-                }
                 for(int j=count; j>position; j--)
                     array[j] = array[j-1];
                 array[position] = item;
@@ -78,7 +76,7 @@ public class List{
         
         boolean deleted=false;
         if(!empty())
-            if(smartSearch(item)){
+            if(smartSearch(item,0)){
                 for(int j=position; j<count-1; j++)
                     array[j] = array[j+1];
                 count--;
@@ -121,7 +119,7 @@ public class List{
         return found;
     }
     
-    public boolean smartSearch(Producto item){//Busqueda binaria
+    public boolean smartSearch(Producto item, int n){//Busqueda binaria
         position = 0;
         if(empty()) return false;
         boolean found = false;
@@ -137,7 +135,7 @@ public class List{
         }while(i<=j);
         position = k;
         if(item.compareTo(array[position])== 0) found = true;
-        //System.out.println("SmartSearching List: "+(System.nanoTime()-timeSearch));
+        if(n==1) System.out.println("SmartSearching List: "+(System.nanoTime()-timeSearch));
         //System.out.println(array[position]+" at: "+k+" found: "+found);
         return found;
     }
@@ -147,15 +145,16 @@ public class List{
     }*/
     
     public boolean update(Producto item){
-        if(!smartSearch(item)) return false;
+        if(!smartSearch(item,0)) return false;
         array[position] = item;
         return true;
     }
     
-    public void output(int n) {
+    public void output() {
         for(int i=0;i<count;i++){
             System.out.print(array[i].toString()+" | ");
         }
+        System.out.println("");
     }
 
 }

@@ -55,7 +55,6 @@ public class Stack {
     public void push(Producto item) {
         if(full())
             throw new RuntimeException("Stack is full");
-        //if(!empty() && item.compareTo(peek())<0) sorted = false;
         sarray[top]=item;
         top++;
     }
@@ -66,21 +65,7 @@ public class Stack {
     }
     
     //Decidir que Sort dejar (el mas rapido)
-    public void sortV1(){
-        long timeStack = System.nanoTime();
-        Stack aux = new Stack(N);
-        while(!this.empty()){
-            Producto temp = this.pop();
-            while(!aux.empty() && aux.peek().compareTo(temp)>0)
-                this.push(aux.pop());
-            aux.push(temp);
-        }
-        this.top = aux.top;
-        this.sarray = aux.sarray;
-        sorted = true;
-        System.out.println("Sort1 Stack: "+(System.nanoTime()-timeStack));
-    }
-    public void sortV2(){
+    public void sort(){
         long timeStack = System.nanoTime();
         Stack aux1 = new Stack(N);
         Stack aux2 = new Stack(N);
@@ -101,11 +86,11 @@ public class Stack {
         this.top = aux1.top;
         this.sarray = aux1.sarray;
         sorted = true;
-        System.out.println("Sort2 Stack: "+(System.nanoTime()-timeStack));
+        System.out.println("Sort Stack: "+(System.nanoTime()-timeStack));
     }
     
     public boolean search(Producto item) {//Posicion por posicion O(n)
-        //long timeSearch = System.nanoTime();
+        long timeSearch = System.nanoTime();
         boolean found, stop;
         found = false;
         stop = false;
@@ -115,12 +100,12 @@ public class Stack {
                 found = true;
             else position++;
         }
-        //System.out.println("Searching List: "+(System.nanoTime()-timeSearch));
-        System.out.println(sarray[position]+" at: "+position+" found: "+found);
+        System.out.println("Searching Stack: "+(System.nanoTime()-timeSearch));
+        //System.out.println(sarray[position]+" at: "+position+" found: "+found);
         return found;
     }
     
-    public boolean smartSearch(Producto item){
+    public boolean smartSearch(Producto item, int n){
         position = 0;
         if(empty()) return false;
         boolean found = false;
@@ -135,29 +120,25 @@ public class Stack {
         }while(i<=j);
         position = k;
         if(item.compareTo(sarray[position])== 0) found = true;
-        //System.out.println("Searching List: "+(System.nanoTime()-timeSearch));
-        System.out.println(sarray[position]+" at: "+k+" found: "+found);
+        if(n==1)System.out.println("SmartSearching Stack: "+(System.nanoTime()-timeSearch));
+        //System.out.println(sarray[position]+" at: "+k+" found: "+found);
         return found;
     }
     
-    public boolean doSearch(Producto item){
-        if(sorted){
-            System.out.println("Inteligente");
-            return smartSearch(item);
-        }
+    public boolean doSearch(Producto item, int n){
+        if(sorted) return smartSearch(item, n);
         return search(item);
     }
     
     public boolean update(Producto item){
-        if(!doSearch(item)) return false;
+        if(!doSearch(item,0)) return false;
         sarray[position] = item;
         return true;
     }
     
-    public void print(int n){
+    public void print(){
         if(!sorted)
-            if(n==1) sortV1();
-            else if(n==2) sortV2();
+            sort();
         for(int i=0; i<top; i++){
             System.out.print(sarray[i].toString()+" | ");
         }

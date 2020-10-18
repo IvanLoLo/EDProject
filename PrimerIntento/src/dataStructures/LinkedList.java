@@ -7,6 +7,7 @@ public class LinkedList {
     
     private GenericNode<Producto> head;
     private GenericNode<Producto> position, cola;
+    private int cant;
 
     public GenericNode<Producto> getHead() {
         return head;
@@ -14,9 +15,23 @@ public class LinkedList {
     public void setHead(GenericNode<Producto> head) {
         this.head = head;
     }
+    public GenericNode<Producto> getPosition() {
+        return position;
+    }
+    public void setPosition(GenericNode<Producto> position) {
+        this.position = position;
+    }
+    public int getCant() {
+        return cant;
+    }
+    public void setCant(int cant) {
+        this.cant = cant;
+    }
+    
     
     public LinkedList(){
         head = position = cola = null;
+        cant = 0;
     }
 
     public boolean empty(){
@@ -40,12 +55,12 @@ public class LinkedList {
         return inserted;
     }*/
 
-    public boolean sortedInsert(Producto item) {
+    public boolean insert(Producto item) {
 
         boolean inserted = false;
         GenericNode<Producto> ptr;
 
-        if(search(item)) return false;//Ya esta en la lista
+        if(search(item,0)) return false;//Ya esta en la lista
 
         ptr = position;
         if(position == null) ptr = head;
@@ -60,12 +75,14 @@ public class LinkedList {
             else
                 position.setNext(newp);
         }
+        
+        if(inserted) cant++;
 
         return inserted;
     }
 
     public boolean update(Producto item){
-        if(!search(item)) return false; //No esta en la lista
+        if(!search(item,0)) return false; //No esta en la lista
         position.setData(item);
         return true;
     }
@@ -74,7 +91,7 @@ public class LinkedList {
         if(empty()) return false; //No esta en la lista
         //Hay que buscar si el siguiente al actual es el que buscamos
         //porque no hay forma de mirar el anterior nodo
-        search(item);
+        search(item,0);
         if(position!=null && ((Producto)position.getNext().getData()).compareTo(item)!=0) return false;
         GenericNode<Producto> ptr = head;
         while(((Producto)ptr.getNext().getData()).compareTo(item)<0)
@@ -84,8 +101,9 @@ public class LinkedList {
         return true;
     }
 
-    public boolean search(Producto item){
-
+    public boolean search(Producto item, int n){
+        if(head==null) return false;
+        long timeSearch = System.nanoTime();
         GenericNode<Producto> ptr = head;
         GenericNode<Producto> prev = null;
         while(ptr != null && ptr.getData().compareTo(item)<0) {
@@ -94,6 +112,7 @@ public class LinkedList {
         }
 
         position = prev;
+        if(n==1) System.out.println("Searching LinkedList: "+(System.nanoTime()-timeSearch));
 
         if(position == null) return false;
         if(position.getData().compareTo(item)==0) return true;
@@ -101,10 +120,16 @@ public class LinkedList {
     }
 
     public void printR(GenericNode<Producto> p) {
-            if(p != null) {
-                    System.out.print(p.getData()+" ");
-                    printR(p.getNext());
-            }
+        while(p!=null){
+            System.out.print(p.getData()+" | ");
+            p = p.getNext();
+        }
+        System.out.println("");
+    }
+    
+    public Producto giveMe(GenericNode<Producto> p){
+        if(p!=null) return p.getData();
+        return null;
     }
 
 }

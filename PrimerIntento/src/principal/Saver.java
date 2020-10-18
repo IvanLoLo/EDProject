@@ -12,19 +12,20 @@ import java.io.IOException;
 public class Saver{
     private List list;
     private Stack stack;
+    private LinkedList listRef;
 
-    public Saver(List list, Stack stack) {
+    public Saver(List list, Stack stack, LinkedList listRef) {
         this.list = list;
         this.stack = stack;
+        this.listRef = listRef;
         save();
     }
     
     public void save(){
         try {
-            FileWriter fw = new FileWriter("src\\recursos\\nuevosDatos.txt");
+            FileWriter fw = new FileWriter("src\\recursos\\nuevosDatosLista.txt");
             for(int i=0; i<list.getCount(); i++) {
                 Producto item = list.giveMe(i);
-                System.out.println(item);
                 String[] datos = item.toString().split(" ");
                 fw.write(datos[0]);
                 fw.write(" "+datos[1]);
@@ -32,7 +33,8 @@ public class Saver{
                 fw.write("\r\n");
             }
             fw.close();
-            FileWriter fw2 = new FileWriter("src\\recursos\\nuevosDatos2.txt");
+            
+            FileWriter fw2 = new FileWriter("src\\recursos\\nuevosDatosStack.txt");
             for(int i=0; i<stack.getTop(); i++) {
                 Producto item = stack.giveMe(i);
                 String[] datos = item.toString().split(" ");
@@ -42,6 +44,19 @@ public class Saver{
                 fw2.write("\r\n");
             }
             fw2.close();
+            
+            FileWriter fw3 = new FileWriter("src\\recursos\\nuevosDatosListaRef.txt");
+            GenericNode<Producto> current = listRef.getHead();
+            while(current!=null) {
+                Producto item = listRef.giveMe(current);
+                String[] datos = item.toString().split(" ");
+                fw3.write(datos[0]);
+                fw3.write(" "+datos[1]);
+                fw3.write(" "+datos[2]);
+                fw3.write("\r\n");
+                current = current.getNext();
+            }
+            fw3.close();
         }catch(IOException e) {
                 System.out.println("No fue posible guardar. Disculpe las molestias");
         }
