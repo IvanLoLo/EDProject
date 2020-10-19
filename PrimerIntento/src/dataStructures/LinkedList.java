@@ -68,7 +68,6 @@ public class LinkedList {
         if(position == null) ptr = head;
         else ptr = position.getNext();
         */
-        //Hola
         while(ptr != null && ptr.getData().compareTo(item)<0) {
             prev = ptr;
             ptr = ptr.getNext();
@@ -77,7 +76,7 @@ public class LinkedList {
             inserted = true;
             GenericNode<Producto> newp = new GenericNode<Producto>(item);
             newp.setNext(ptr);
-            if(position == null)
+            if(prev == null)
                 head = newp;
             else
                 prev.setNext(newp);
@@ -107,7 +106,7 @@ public class LinkedList {
         return true;
     }
 
-    public boolean search(Producto item, int n){
+    /*public boolean search(Producto item, int n){
         if(head==null) return false;
         long timeSearch = System.nanoTime();
         GenericNode<Producto> ptr = head;
@@ -123,6 +122,26 @@ public class LinkedList {
         
         if(position == null) return false;
         if(position.getData().compareTo(item)==0) return true;
+        return false;
+    }*/
+    
+    public boolean search(Producto item, int n){
+        if(head==null) return false;
+        long timeSearch = System.nanoTime();
+        
+        GenericNode<Producto> ptr = head;
+        GenericNode<Producto> prev = null;
+        while(ptr != null && ptr.getData().compareTo(item)<0) {
+            prev = ptr;
+            ptr = ptr.getNext();
+        }
+        position = prev;
+        
+        if(n==1) System.out.println("Searching LinkedList: "+(System.nanoTime()-timeSearch));
+        
+        if(position == null) return false;
+        if(position.getData().compareTo(item)==0) return true;
+        
         return false;
     }
 
