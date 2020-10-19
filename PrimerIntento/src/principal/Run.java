@@ -18,8 +18,8 @@ public class Run {
         
         //inventLista = new List(102);
         //inventStack = new Stack(102);
-        inventLista = new List(10005);
-        inventStack = new Stack(10005);
+        inventLista = new List(100005);
+        inventStack = new Stack(100005);
         inventListaRef = new LinkedList();
         
         Reader read = new Reader(inventStack, inventLista, inventListaRef);

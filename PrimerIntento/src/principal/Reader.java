@@ -29,7 +29,7 @@ public class Reader {
             //File file = new File("C:\\Users\\dsrod\\Documents\\UN\\2020-2\\Estructuras de datos\\Proyecto\\final.txt"); //RUTA SANTIAGO
             Producto temp;
             //Scanner sc = new Scanner(file);
-            File file = new File("src\\recursos\\final10k.txt");
+            File file = new File("src\\recursos\\Prueba100k.txt");
             Scanner sc = new Scanner(file);
             String[] linea;
             long timeStack = System.nanoTime();
