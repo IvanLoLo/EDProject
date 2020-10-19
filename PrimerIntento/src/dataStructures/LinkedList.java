@@ -68,7 +68,7 @@ public class LinkedList {
         if(position == null) ptr = head;
         else ptr = position.getNext();
         */
-        
+        //Hola
         while(ptr != null && ptr.getData().compareTo(item)<0) {
             prev = ptr;
             ptr = ptr.getNext();
