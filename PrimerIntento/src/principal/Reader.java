@@ -27,15 +27,16 @@ public class Reader {
         try {
             //File file = new File("C:\\Users\\Ivan L\\Desktop\\final.txt"); //RUTA IVAN
             //File file = new File("C:\\Users\\dsrod\\Documents\\UN\\2020-2\\Estructuras de datos\\Proyecto\\final.txt"); //RUTA SANTIAGO
+            
             Producto temp;
             //Scanner sc = new Scanner(file);
-            File file = new File("src\\recursos\\final10k.txt");
+            File file = new File("src\\recursos\\Prueba1M.txt");
             Scanner sc = new Scanner(file);
             String[] linea;
             long timeStack = System.nanoTime();
             while(sc.hasNextLine()) {
                 linea=sc.nextLine().split(" ");
-                temp = new Producto(linea[0], Long.parseLong(linea[1]), Integer.parseInt(linea[2]));
+                temp = new Producto(linea[0], Long.parseLong((linea[1])), Integer.parseInt(linea[2]));
                 stack.push(temp);
             }
             System.out.println("Inserting "+stack.getTop()+" elements Stack: "+(System.nanoTime()-timeStack));
