@@ -37,52 +37,30 @@ public class LinkedList {
     public boolean empty(){
         return head == null;
     }
-    
-    /*public boolean insert(Producto item){
-        boolean inserted = false;
-        if(search(item)) return false;
-        GenericNode<Producto> temp = new GenericNode<>(item);
-        if(cola==null){
-            cola = temp;
-            if(head==null) head = cola;
-        }
-        else{
-            cola.setNext(temp);
-            cola = cola.getNext();
-        }
-        inserted = true;
-        
-        return inserted;
-    }*/
 
     public boolean insert(Producto item) {
 
         boolean inserted = false;
-        
-        GenericNode<Producto> ptr = head;
-        GenericNode<Producto> prev = null;
-        
-        /*if(search(item,0)) return false;//Ya esta en la lista
+        GenericNode<Producto> ptr;
+
+        if(search(item,0)) return false;//Ya esta en la lista
 
         ptr = position;
         if(position == null) ptr = head;
         else ptr = position.getNext();
-        */
-        while(ptr != null && ptr.getData().compareTo(item)<0) {
-            prev = ptr;
-            ptr = ptr.getNext();
-        }
+
         if (ptr == null || ptr.getData()!=item) {
             inserted = true;
             GenericNode<Producto> newp = new GenericNode<Producto>(item);
             newp.setNext(ptr);
-            if(prev == null)
+            if(position == null)
                 head = newp;
             else
-                prev.setNext(newp);
+                position.setNext(newp);
         }
         
         if(inserted) cant++;
+
         return inserted;
     }
 
@@ -106,42 +84,21 @@ public class LinkedList {
         return true;
     }
 
-    /*public boolean search(Producto item, int n){
-        if(head==null) return false;
-        long timeSearch = System.nanoTime();
-        GenericNode<Producto> ptr = head;
-        GenericNode<Producto> prev = null;
-        while(ptr != null && ptr.getData().compareTo(item)<0) {
-            prev = ptr;
-            ptr = ptr.getNext();
-        }
-        
-        position = prev;
-        
-        if(n==1) System.out.println("Searching LinkedList: "+(System.nanoTime()-timeSearch));
-        
-        if(position == null) return false;
-        if(position.getData().compareTo(item)==0) return true;
-        return false;
-    }*/
-    
     public boolean search(Producto item, int n){
         if(head==null) return false;
         long timeSearch = System.nanoTime();
-        
         GenericNode<Producto> ptr = head;
         GenericNode<Producto> prev = null;
         while(ptr != null && ptr.getData().compareTo(item)<0) {
             prev = ptr;
             ptr = ptr.getNext();
         }
+
         position = prev;
-        
-        //if(n==1) System.out.println("Searching LinkedList: "+(System.nanoTime()-timeSearch));
-        
+        if(n==1) System.out.println("Searching LinkedList: "+(System.nanoTime()-timeSearch));
+
         if(position == null) return false;
         if(position.getData().compareTo(item)==0) return true;
-        
         return false;
     }
 
