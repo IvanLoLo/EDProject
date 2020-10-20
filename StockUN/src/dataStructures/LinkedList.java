@@ -84,7 +84,7 @@ public class LinkedList {
         return true;
     }
 
-    public boolean search(Producto item, int n){
+    public boolean search(Producto item, int n){//Metodo search
         if(head==null) return false;
         long timeSearch = System.nanoTime();
         GenericNode<Producto> ptr = head;
