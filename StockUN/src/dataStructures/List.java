@@ -73,19 +73,11 @@ public class List{
     }
     
     public boolean delete(Producto item) {
-        
-        boolean deleted=false;
-        if(!empty())
-            if(smartSearch(item,0)){
-                for(int j=position; j<count-1; j++)
-                    array[j] = array[j+1];
-                count--;
-                deleted = true;
-            }
-        else
-            System.out.println("List is Empty");
-        
-        return deleted;
+        if(!smartSearch(item, 0)) return false;
+        for(int j=position; j<count-1; j++)
+            array[j] = array[j+1];
+        count--;
+        return true;
     }
     
     /*public void sort(){

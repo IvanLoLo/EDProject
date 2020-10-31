@@ -41,6 +41,8 @@ public class Run {
                 opcion = comprobar(sc);
             }
             switch(opcion){
+                //case 0: delete();
+                //    break;
                 case 1: agregar();
                     break;
                 case 2: inventStack.print();
@@ -88,12 +90,6 @@ public class Run {
         inventListaRef.insert(producto);
     }
     
-    private static void mostrarStack() {
-    }
-    
-    private static void mostrarList() {
-    }
-    
     private static void buscar(String name, int opc){
         Producto item = new Producto(name, 0, 0);
         if(opc==5 && inventStack.doSearch(item,1))
@@ -119,6 +115,17 @@ public class Run {
             }
             if(esta) System.out.println(inventListaRef.giveMe(inventListaRef.getPosition()));
             else System.out.println("No se ha encontrado un producto con el nombre señalado");
+    }
+    
+    private static void delete(){
+        String name = sc.nextLine().split(" ")[0];
+        Producto temp = new Producto(name, 0, 0);
+        if(!inventStack.delete(temp))
+            System.out.println("No se ha encontrado un producto con el nombre señalado");
+        if(!inventLista.delete(temp))
+            System.out.println("No se ha encontrado un producto con el nombre señalado");
+        if(!inventListaRef.delete(temp))
+            System.out.println("No se ha encontrado un producto con el nombre señalado");
     }
         
 }

@@ -30,7 +30,7 @@ public class Reader {
             
             Producto temp;
             //Scanner sc = new Scanner(file);
-            File file = new File("src\\recursos\\Prueba10k.txt");
+            File file = new File("src\\recursos\\Prrueba10k.txt");
             Scanner sc = new Scanner(file);
             String[] linea;
             long timeStack = System.nanoTime();
