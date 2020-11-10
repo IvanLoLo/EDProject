@@ -3,7 +3,6 @@ package principal;
 
 import dataStructures.*;
 import java.util.Scanner;
-import userInterface.*;
 
 public class Run {
     
@@ -14,9 +13,6 @@ public class Run {
     static  Scanner sc;
     
     public static void main(String[] args){
-        
-        Ventana prueba = new Ventana();
-        prueba.setVisible(true);
         
         sc = new Scanner(System.in);
         

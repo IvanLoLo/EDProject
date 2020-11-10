@@ -1,5 +1,7 @@
 package ventanas;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Diego
@@ -10,10 +12,8 @@ public class InterfazPrincipal extends javax.swing.JFrame {
     String contraseña = "";
     public InterfazPrincipal() {
         initComponents();
-        setResizable(false);        
+        this.setResizable(false);        
         this.setLocationRelativeTo(null);
-        
-       
     }
 
     /**
@@ -36,7 +36,6 @@ public class InterfazPrincipal extends javax.swing.JFrame {
         jLabelFondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jButtonRegistrarse.setBackground(new java.awt.Color(0, 0, 0));
@@ -72,7 +71,7 @@ public class InterfazPrincipal extends javax.swing.JFrame {
         });
         getContentPane().add(jButtonExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 0, -1, -1));
 
-        jLabelUsuario.setBackground(new java.awt.Color(0, 0, 0, 75)
+        jLabelUsuario.setBackground(new java.awt.Color(0, 0, 0, 100)
         );
         jLabelUsuario.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabelUsuario.setForeground(new java.awt.Color(255, 255, 255));
@@ -116,21 +115,19 @@ public class InterfazPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonExitActionPerformed
 
     private void jButtonRegistrarseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistrarseActionPerformed
-        dispose();
+        this.dispose();
         new Registro().setVisible(true);
     }//GEN-LAST:event_jButtonRegistrarseActionPerformed
 
     private void jButtonIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIniciarSesionActionPerformed
         usuario = Usuario.getText().trim(); 
         contraseña = Contraseña.getText().trim();
-        if (usuario.equals("")|| contraseña.equals("")) {   
-                       
-        
-        }
-        else 
+        if (usuario.equals("")|| contraseña.equals("")) {
+            JOptionPane.showMessageDialog(this, "Campo de usuario o contraseña vacios");
+        }else{//Falta confirmar que esten registrados
             dispose();
             new General().setVisible(true);
-        
+        }
             
     }//GEN-LAST:event_jButtonIniciarSesionActionPerformed
 
