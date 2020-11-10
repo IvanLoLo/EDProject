@@ -6,12 +6,14 @@ package ventanas;
  */
 public class InterfazPrincipal extends javax.swing.JFrame {
 
-    /**
-     * Creates new form InterfazPrincipal
-     */
+    public static String usuario = "";
+    String contraseña = "";
     public InterfazPrincipal() {
         initComponents();
+        setResizable(false);        
         this.setLocationRelativeTo(null);
+        
+       
     }
 
     /**
@@ -28,8 +30,8 @@ public class InterfazPrincipal extends javax.swing.JFrame {
         jButtonExit = new javax.swing.JButton();
         jLabelUsuario = new javax.swing.JLabel();
         jLabelContraseña = new javax.swing.JLabel();
-        jTextFieldUsuario = new javax.swing.JTextField();
-        jPasswordFieldCOntraseña = new javax.swing.JPasswordField();
+        Usuario = new javax.swing.JTextField();
+        Contraseña = new javax.swing.JPasswordField();
         jLabelIcono = new javax.swing.JLabel();
         jLabelFondo = new javax.swing.JLabel();
 
@@ -77,7 +79,7 @@ public class InterfazPrincipal extends javax.swing.JFrame {
         jLabelUsuario.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelUsuario.setText("Usuario:");
         jLabelUsuario.setOpaque(true);
-        getContentPane().add(jLabelUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 160, 110, 30));
+        getContentPane().add(jLabelUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(104, 160, -1, 30));
 
         jLabelContraseña.setBackground(new java.awt.Color(0, 0, 0, 100));
         jLabelContraseña.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -85,22 +87,22 @@ public class InterfazPrincipal extends javax.swing.JFrame {
         jLabelContraseña.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelContraseña.setText("Contraseña:");
         jLabelContraseña.setOpaque(true);
-        getContentPane().add(jLabelContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 210, 120, 30));
+        getContentPane().add(jLabelContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 210, -1, 30));
 
-        jTextFieldUsuario.setBackground(new java.awt.Color(0, 0, 0, 150));
-        jTextFieldUsuario.setForeground(new java.awt.Color(255, 255, 255));
-        getContentPane().add(jTextFieldUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 160, 170, 30));
+        Usuario.setBackground(new java.awt.Color(0, 0, 0, 150));
+        Usuario.setForeground(new java.awt.Color(255, 255, 255));
+        getContentPane().add(Usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 160, 170, 30));
 
-        jPasswordFieldCOntraseña.setBackground(new java.awt.Color(0, 0, 0, 150));
-        jPasswordFieldCOntraseña.setForeground(new java.awt.Color(255, 255, 255));
-        getContentPane().add(jPasswordFieldCOntraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 210, 170, 30));
+        Contraseña.setBackground(new java.awt.Color(0, 0, 0, 150));
+        Contraseña.setForeground(new java.awt.Color(255, 255, 255));
+        getContentPane().add(Contraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 210, 170, 30));
 
         jLabelIcono.setBackground(new java.awt.Color(0, 0, 0, 100));
         jLabelIcono.setFont(new java.awt.Font("Times New Roman", 3, 36)); // NOI18N
         jLabelIcono.setForeground(new java.awt.Color(255, 255, 255));
         jLabelIcono.setText("Stock UN");
         jLabelIcono.setOpaque(true);
-        getContentPane().add(jLabelIcono, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 30, -1, 70));
+        getContentPane().add(jLabelIcono, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 10, -1, 70));
 
         jLabelFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/unnamed.jpg"))); // NOI18N
         jLabelFondo.setText("jLabel1");
@@ -114,11 +116,22 @@ public class InterfazPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonExitActionPerformed
 
     private void jButtonRegistrarseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistrarseActionPerformed
-        // TODO add your handling code here:
+        dispose();
+        new Registro().setVisible(true);
     }//GEN-LAST:event_jButtonRegistrarseActionPerformed
 
     private void jButtonIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIniciarSesionActionPerformed
-        // TODO add your handling code here:
+        usuario = Usuario.getText().trim(); 
+        contraseña = Contraseña.getText().trim();
+        if (usuario.equals("")|| contraseña.equals("")) {   
+                       
+        
+        }
+        else 
+            dispose();
+            new General().setVisible(true);
+        
+            
     }//GEN-LAST:event_jButtonIniciarSesionActionPerformed
 
     /**
@@ -157,6 +170,8 @@ public class InterfazPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPasswordField Contraseña;
+    private javax.swing.JTextField Usuario;
     private javax.swing.JButton jButtonExit;
     private javax.swing.JButton jButtonIniciarSesion;
     private javax.swing.JButton jButtonRegistrarse;
@@ -164,7 +179,5 @@ public class InterfazPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelFondo;
     private javax.swing.JLabel jLabelIcono;
     private javax.swing.JLabel jLabelUsuario;
-    private javax.swing.JPasswordField jPasswordFieldCOntraseña;
-    private javax.swing.JTextField jTextFieldUsuario;
     // End of variables declaration//GEN-END:variables
 }
