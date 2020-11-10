@@ -12,10 +12,11 @@ import javax.swing.*;
  */
 public class Ventana extends JFrame{
     
-    private JButton btn1, btn2;
+    private JButton btnLogin, btnRegistro;
     private JPanel nombre, campos, botones;
     private JLabel userlbl, passlbl;
     private JTextField user;
+    private JPasswordField pass;
     
     public Ventana(){
         this.setTitle("StockUN");
@@ -47,7 +48,7 @@ public class Ventana extends JFrame{
         user.setMinimumSize(new Dimension(300,20));
         user.setMaximumSize(new Dimension(300,20));
         
-        JPasswordField pass = new JPasswordField();
+        pass = new JPasswordField();
         pass.setMinimumSize(new Dimension(300,20));
         pass.setMaximumSize(new Dimension(300,20));
         
@@ -60,18 +61,16 @@ public class Ventana extends JFrame{
         
         botones = new JPanel();
         botones.setLayout(new BoxLayout(botones, BoxLayout.Y_AXIS));
-        btn1 = new JButton("Ingresar");
-        btn1.setAlignmentX(0.5F);
-        btn1.addActionListener(new ActionListener() {
+        btnLogin = createButton("Ingresar");
+        btnLogin.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent arg0) {
                 System.out.println("Hola");
             }
         });
         
-        btn2 = new JButton("Registrarse");
-        btn2.setAlignmentX(0.5F);
-        btn2.addActionListener(new ActionListener() {
+        btnRegistro = createButton("Registrarse");
+        btnRegistro.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent arg0) {
                 System.out.println("Hola2");
@@ -79,13 +78,23 @@ public class Ventana extends JFrame{
         });
         
         botones.add(Box.createRigidArea(new Dimension(1,50)));
-        botones.add(btn1);
+        botones.add(btnLogin);
         botones.add(Box.createRigidArea(new Dimension(1,20)));
-        botones.add(btn2);
+        botones.add(btnRegistro);
         
         getContentPane().add(nombre);
         getContentPane().add(campos);
         getContentPane().add(botones);
-    } 
+    }
+    
+    private JButton createButton(String msg){
+        JButton temp = new JButton(msg);
+        temp.setAlignmentX(0.5F);
+        temp.setBackground(new java.awt.Color(0, 0, 0));
+        temp.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        temp.setForeground(new java.awt.Color(255, 255, 255));
+        
+        return temp;
+    }
     
 }
