@@ -57,6 +57,7 @@ public class Stack {
             throw new RuntimeException("Stack is full");
         sarray[top]=item;
         top++;
+        sorted = false;
     }
     
     public Producto peek(){
@@ -89,7 +90,7 @@ public class Stack {
         System.out.println("Sort Stack: "+(System.nanoTime()-timeStack));
     }
     
-    public boolean search(Producto item) {//Posicion por posicion O(n)
+    private boolean search(Producto item, int n) {//Posicion por posicion O(n)
         long timeSearch = System.nanoTime();
         boolean found, stop;
         found = false;
@@ -100,12 +101,12 @@ public class Stack {
                 found = true;
             else position++;
         }
-        System.out.println("Searching Stack: "+(System.nanoTime()-timeSearch));
+        if(n==1) System.out.println("Searching Stack: "+(System.nanoTime()-timeSearch));
         //System.out.println(sarray[position]+" at: "+position+" found: "+found);
         return found;
     }
     
-    public boolean smartSearch(Producto item, int n){
+    private boolean smartSearch(Producto item, int n){
         position = 0;
         if(empty()) return false;
         boolean found = false;
@@ -127,12 +128,28 @@ public class Stack {
     
     public boolean doSearch(Producto item, int n){
         if(sorted) return smartSearch(item, n);
-        return search(item);
+        return search(item, n);
     }
     
     public boolean update(Producto item){
         if(!doSearch(item,0)) return false;
         sarray[position] = item;
+        return true;
+    }
+    
+    public boolean delete(Producto item){
+        if(!doSearch(item, 0)) return false;
+        Stack aux = new Stack(top);
+        int count = top;
+        while(count!=position+1){
+            aux.push(this.pop());
+            count--;
+        }
+        top = position+1;
+        this.pop();
+        while(!aux.empty())
+            this.push(aux.pop());
+        
         return true;
     }
     

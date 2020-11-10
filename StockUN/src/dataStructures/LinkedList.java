@@ -65,8 +65,17 @@ public class LinkedList {
     }
 
     public boolean update(Producto item){
-        if(!search(item,0)) return false; //No esta en la lista
-        position.setData(item);
+        /*if(!search(item,0)) return false; //No esta en la lista
+        position.setData(item);*/
+        
+        search(item,0);
+        if(position!=null && ((Producto)position.getNext().getData()).compareTo(item)!=0) return false;
+        GenericNode<Producto> ptr = head;
+        while(((Producto)ptr.getNext().getData()).compareTo(item)<0)
+            ptr = ptr.getNext();
+        if(ptr.getData().compareTo(item)==0) head.setData(item);
+        else ptr.getNext().setData(item);
+        
         return true;
     }
 
@@ -79,7 +88,7 @@ public class LinkedList {
         GenericNode<Producto> ptr = head;
         while(((Producto)ptr.getNext().getData()).compareTo(item)<0)
             ptr = ptr.getNext();
-        if(ptr.getData()==item) head = head.getNext();
+        if(ptr.getData().compareTo(item)==0) head = head.getNext();
         else ptr.setNext(ptr.getNext().getNext());
         return true;
     }
