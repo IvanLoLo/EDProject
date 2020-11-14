@@ -8,7 +8,7 @@ import principal.Producto;
  */
 public class VentanaProducto extends javax.swing.JDialog {
 
-    public static boolean pulsado, cambioNombre;
+    public static boolean pulsado;
     private Producto temp;
     private String nameBtn;
 
@@ -22,7 +22,6 @@ public class VentanaProducto extends javax.swing.JDialog {
     public VentanaProducto(java.awt.Frame parent, boolean modal, String name) {
         super(parent, modal);        
         pulsado = false;
-        cambioNombre = false;
         nameBtn = name;
         initComponents();
         initComponents();
@@ -30,6 +29,7 @@ public class VentanaProducto extends javax.swing.JDialog {
         this.setLocationRelativeTo(null);
         if(btn.getText().equals("Guardar Cambios")){
             nameText.setText(GeneralPrueba.getInformation()[0]);
+            nameText.setEditable(false);
             precioText.setText(GeneralPrueba.getInformation()[1]);
             stockText.setText(GeneralPrueba.getInformation()[2]);
         }
@@ -95,9 +95,9 @@ public class VentanaProducto extends javax.swing.JDialog {
         jLabelIcono.setBackground(new java.awt.Color(0, 0, 0, 100));
         jLabelIcono.setFont(new java.awt.Font("Times New Roman", 3, 36)); // NOI18N
         jLabelIcono.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelIcono.setText("Agregar Producto");
+        jLabelIcono.setText("Producto");
         jLabelIcono.setOpaque(true);
-        getContentPane().add(jLabelIcono, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 10, -1, 70));
+        getContentPane().add(jLabelIcono, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 20, -1, 70));
 
         precioText.setBackground(new java.awt.Color(0, 0, 0, 150));
         precioText.setForeground(new java.awt.Color(255, 255, 255));
@@ -139,8 +139,6 @@ public class VentanaProducto extends javax.swing.JDialog {
             temp = new Producto(nameText.getText(), Long.parseLong(precioText.getText()), Integer.parseInt(stockText.getText()));
             System.out.println("Pulsado papá");
             dispose();
-            if(!nameText.getText().equals(GeneralPrueba.getInformation()[0]))
-                cambioNombre = true;
         }
     }//GEN-LAST:event_btnActionPerformed
 
@@ -158,6 +156,10 @@ public class VentanaProducto extends javax.swing.JDialog {
 
     public boolean comprobarCampos(){
         return true;
+    }
+    
+    public static void main(String[] args) {
+        new VentanaProducto(null, true, "Agregar").setVisible(true);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

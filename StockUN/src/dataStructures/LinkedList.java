@@ -27,6 +27,17 @@ public class LinkedList {
     public void setCant(int cant) {
         this.cant = cant;
     }
+    public Object[] toArray(){
+        
+        Producto[] temp = new Producto[cant];
+        GenericNode<Producto> curr = head;
+        int i = 0;
+        while(curr!=null){
+            temp[i++] = curr.getData();
+        }
+        
+        return temp;
+    }
     
     
     public LinkedList(){

@@ -29,6 +29,12 @@ public class Stack {
     public void setPosition(int position) {
         this.position = position;
     }
+    public Producto[] getSarray() {
+        return sarray;
+    }
+    public void setSarray(Producto[] sarray) {
+        this.sarray = sarray;
+    }
     
     
     public Stack(int n) {

@@ -18,7 +18,8 @@ public class GeneralPrueba extends JFrame{
     static JTable tabla;
     JScrollPane scrollPaneTabla;
     ModeloTabla modelo;
-    dataStructures.List lista;
+    Object lista;
+    static int structure;
     
     
     public static String[] getInformation(){
@@ -35,19 +36,32 @@ public class GeneralPrueba extends JFrame{
         new GeneralPrueba();
     }
     
+    private Object asignarEstructura(int size){
+        
+        switch(structure){
+            case 1: return new dataStructures.Stack(size);
+            case 2: return new dataStructures.List(size);
+            case 3: return new dataStructures.LinkedList();
+            //case 4: return new dataStructures.Arbol();
+            default: System.out.println("Estructura no encontrada");
+        }
+        
+        return null;
+    }
+    
     public GeneralPrueba(){
         initComponents();
-        this.setResizable(false);  
-        this.setLocationRelativeTo(null);
-        lista = new dataStructures.List(10005);
+        structure = 1;
+        lista = asignarEstructura(10005);
         construirTabla();
         
         
-        this.setVisible(true);       
+        this.setVisible(true);
+        this.setLocationRelativeTo(null);
         //this.setExtendedState(MAXIMIZED_BOTH);
-        this.setMinimumSize(new Dimension(1000,600));
+        this.setMinimumSize(new Dimension(600,600));
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-       this.getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
+        this.getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
         this.pack();
     }
     
@@ -78,7 +92,8 @@ public class GeneralPrueba extends JFrame{
                 VentanaProducto nuevo = new VentanaProducto(null, true, "Agregar Producto");
                 nuevo.setVisible(true);
                 if(nuevo.pulsado){
-                    lista.sortedInsert(nuevo.getTemp());
+                    insertarEstructura(nuevo.getTemp());
+                    //lista.sortedInsert(nuevo.getTemp());
                     construirTabla();
                 }
             }
@@ -94,8 +109,8 @@ public class GeneralPrueba extends JFrame{
                     VentanaProducto nuevo = new VentanaProducto(null, true, "Guardar Cambios");
                     nuevo.setVisible(true);
                     if(nuevo.pulsado){
-                        lista.update(nuevo.cambioNombre, getInformation()[0],nuevo.getTemp());
-                        if(nuevo.cambioNombre) lista.sort();
+                        actualizarProducto(getInformation()[0], nuevo.getTemp());
+                        //lista.update(nuevo.cambioNombre, getInformation()[0],nuevo.getTemp());
                         construirTabla();
                     }
                 }
@@ -109,10 +124,12 @@ public class GeneralPrueba extends JFrame{
                 if(tabla.getSelectedRow()==-1){
                     JOptionPane.showMessageDialog(null, "Por favor seleccione la fila que desea eliminar");
                 }else{
-                    lista.delete(new Producto(getInformation()[0], 0, 0));
+                    eliminarProducto();
+                    //lista.delete(new Producto(getInformation()[0], 0, 0));
                     DefaultTableModel dtm = (DefaultTableModel) tabla.getModel();
                     dtm.removeRow(tabla.getSelectedRow());
-                    lista.output();
+                    imprimirEstructura();
+                    //lista.output();
                 }
             }
         });
@@ -128,8 +145,6 @@ public class GeneralPrueba extends JFrame{
         scrollPaneTabla = new JScrollPane();
         
         tabla = new JTable();
-        tabla.setFont(new java.awt.Font("Tahoma", 0, 22));
-        tabla.setRowHeight(22);
         scrollPaneTabla.setViewportView(tabla);
         
         panelTabla.add(scrollPaneTabla);
@@ -166,9 +181,9 @@ public class GeneralPrueba extends JFrame{
     
     private Object[] consultarProductos(){
         
-        if(lista.empty()) new principal.Reader(null, lista, null);
+        if(estructuraVacia()) new principal.newReader(lista, structure);
         
-        return Arrays.copyOfRange(lista.getArray(), 0, lista.getCount());
+        return Arrays.copyOfRange(arrayEstructura(), 0, countEstructura());
     }
     
     private JButton crearBtn(String msg, String path){
@@ -200,6 +215,120 @@ public class GeneralPrueba extends JFrame{
         } catch (InterruptedException ex) {
             System.out.println("Algo malo paso");
         }
+    }
+    
+    private void insertarEstructura(Producto producto){
+        
+        switch(structure){
+            case 1: ((dataStructures.Stack) lista).push(producto);
+            break;
+            case 2: ((dataStructures.List) lista).sortedInsert(producto);
+            break;
+            case 3: ((dataStructures.LinkedList) lista).insert(producto);
+            break;
+            //case 4: ((dataStructures.Arbol) lista).insertar(producto);
+            default: System.out.println("Estructura no encontrada");
+        }
+        
+    }
+    
+    private void actualizarProducto(String oldName, Producto newProduct){
+        
+        switch(structure){
+            //case 1: return new dataStructures.Stack(size);
+            case 2: ((dataStructures.List) lista).update(oldName, newProduct);
+            break;
+            //case 3: return new dataStructures.LinkedList();
+            //case 4: return new dataStructures.Arbol();
+            default: System.out.println("Estructura no encontrada");
+        }
+        
+    }
+    
+    private void ordenarEstructura(){
+        
+        switch(structure){
+            case 1: ((dataStructures.Stack) lista).sort();
+            break;
+            case 2: ((dataStructures.List) lista).sort();
+            break;
+            case 3: //((dataStructures.LinkedList) lista); No tenemos un ordenamiento para LinkedList
+            //case 4: ((dataStructures.Arbol) lista).insertar(producto);
+            default: System.out.println("Estructura no encontrada");
+        }
+        
+    }
+    
+    private void eliminarProducto(){
+        
+        Producto item = new Producto(getInformation()[0], 0, 0);
+        
+        switch(structure){
+            case 1: ((dataStructures.Stack) lista).delete(item);
+            break;
+            case 2: ((dataStructures.List) lista).delete(item);
+            break;
+            case 3: ((dataStructures.LinkedList) lista).delete(item);
+            break;
+            //case 4: ((dataStructures.Arbol) lista).insertar(producto);
+            default: System.out.println("Estructura no encontrada");
+        }
+        
+    }
+    
+    private boolean estructuraVacia(){
+        
+        switch(structure){
+            case 1: return ((dataStructures.Stack) lista).empty();
+            case 2: return ((dataStructures.List) lista).empty();
+            case 3: return ((dataStructures.LinkedList) lista).empty();
+            //case 4: ((dataStructures.Arbol) lista).insertar(producto);
+            default: System.out.println("Estructura no encontrada");
+        }
+        
+        return true;
+    }
+    
+    private void imprimirEstructura(){
+        
+        switch(structure){
+            case 1: ((dataStructures.Stack) lista).print();
+            break;
+            case 2: ((dataStructures.List) lista).output();
+            break;
+            case 3: ((dataStructures.LinkedList) lista).printR(((dataStructures.LinkedList) lista).getHead());
+            break;
+            //case 4: ((dataStructures.Arbol) lista).insertar(producto);
+            default: System.out.println("Estructura no encontrada");
+        }
+        
+    }
+    
+    private Object[] arrayEstructura(){
+        
+        switch(structure){
+            case 1: return ((dataStructures.Stack) lista).getSarray();
+            case 2: return ((dataStructures.List) lista).getArray();
+            case 3: return ((dataStructures.LinkedList) lista).toArray();
+            //case 4: ((dataStructures.Arbol) lista).insertar(producto);
+            default: System.out.println("Estructura no encontrada");
+        }
+        
+        return null;
+    }
+    
+    private int countEstructura(){
+        
+        switch(structure){
+            case 1: return ((dataStructures.Stack) lista).getTop();
+            case 2: return ((dataStructures.List) lista).getCount();
+            case 3: return ((dataStructures.LinkedList) lista).getCant();
+            //case 4: ((dataStructures.Arbol) lista).insertar(producto);
+            default: System.out.println("Estructura no encontrada");
+        }
+        
+        return -1;
+        
     }
 
 }

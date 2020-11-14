@@ -142,9 +142,8 @@ public class List{
         return sorted ? smartSearch(item) : search(item);
     }*/
     
-    public boolean update(boolean nameChange, String antName, Producto item){
-        if(!nameChange && !smartSearch(item,0)) return false;
-        smartSearch(new Producto(antName, 0, 0), 0);
+    public boolean update(String antName, Producto item){
+        if(!smartSearch(item,0)) return false;
         array[position] = item;
         return true;
     }
