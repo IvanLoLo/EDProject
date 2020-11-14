@@ -14,6 +14,8 @@ public class Run {
     
     public static void main(String[] args){
         
+        new ventanas.InterfazPrincipal().setVisible(true);
+        
         sc = new Scanner(System.in);
         
         //inventLista = new List(102);
@@ -36,7 +38,7 @@ public class Run {
             System.out.println("8. Guardar y salir");
             System.out.println("9. Salir sin guardar");
             opcion = comprobar(sc);
-            while(opcion<1 || opcion>9){
+            while(opcion<1 || opcion>10){
                 System.out.println("Ingrese una opción válida");
                 opcion = comprobar(sc);
             }
@@ -58,6 +60,7 @@ public class Run {
                     break;
                 case 8: guardar();
                 case 9: return;
+                case 10: inventLista.delete(new Producto("AaczwdzwWl", 0, 0));
                 default: System.out.println("Que paso");
             }
             System.out.println("Presione cualquier tecla para continuar...");

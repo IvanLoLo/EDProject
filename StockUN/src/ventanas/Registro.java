@@ -40,12 +40,11 @@ public class Registro extends javax.swing.JFrame {
         jTextFieldUsuario2 = new javax.swing.JTextField();
         jTextFieldUsuario5 = new javax.swing.JTextField();
         jTextFieldUsuario7 = new javax.swing.JTextField();
-        Contraseña = new javax.swing.JPasswordField();
-        Contraseña1 = new javax.swing.JPasswordField();
+        Contrasenia = new javax.swing.JPasswordField();
+        Contrasenia1 = new javax.swing.JPasswordField();
         jLabelWalpaper = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         Permisos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrador" }));
@@ -173,20 +172,20 @@ public class Registro extends javax.swing.JFrame {
         });
         getContentPane().add(jTextFieldUsuario7, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 250, 90, 30));
 
-        Contraseña.setBackground(new java.awt.Color(0, 0, 0, 150));
-        Contraseña.setForeground(new java.awt.Color(255, 255, 255));
-        Contraseña.addActionListener(new java.awt.event.ActionListener() {
+        Contrasenia.setBackground(new java.awt.Color(0, 0, 0, 150));
+        Contrasenia.setForeground(new java.awt.Color(255, 255, 255));
+        Contrasenia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ContraseñaActionPerformed(evt);
+                ContraseniaActionPerformed(evt);
             }
         });
-        getContentPane().add(Contraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 250, 100, 30));
+        getContentPane().add(Contrasenia, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 250, 100, 30));
 
-        Contraseña1.setBackground(new java.awt.Color(0, 0, 0, 150));
-        Contraseña1.setForeground(new java.awt.Color(255, 255, 255));
-        getContentPane().add(Contraseña1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 200, 100, 30));
+        Contrasenia1.setBackground(new java.awt.Color(0, 0, 0, 150));
+        Contrasenia1.setForeground(new java.awt.Color(255, 255, 255));
+        getContentPane().add(Contrasenia1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 200, 100, 30));
 
-        jLabelWalpaper.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/unnamed.jpg"))); // NOI18N
+        jLabelWalpaper.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Inicio.jpg"))); // NOI18N
         getContentPane().add(jLabelWalpaper, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
@@ -209,9 +208,9 @@ public class Registro extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldUsuario7ActionPerformed
 
-    private void ContraseñaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ContraseñaActionPerformed
+    private void ContraseniaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ContraseniaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_ContraseñaActionPerformed
+    }//GEN-LAST:event_ContraseniaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -249,8 +248,8 @@ public class Registro extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPasswordField Contraseña;
-    private javax.swing.JPasswordField Contraseña1;
+    private javax.swing.JPasswordField Contrasenia;
+    private javax.swing.JPasswordField Contrasenia1;
     private javax.swing.JComboBox<String> Permisos;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabelIcono;

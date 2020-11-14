@@ -10,11 +10,11 @@ import java.io.IOException;
  * @author Sammy Guergachi <sguergachi at gmail.com>
  */
 public class Saver{
-    private List list;
-    private Stack stack;
-    private LinkedList listRef;
+    private dataStructures.List list;
+    private dataStructures.Stack stack;
+    private dataStructures.LinkedList listRef;
 
-    public Saver(List list, Stack stack, LinkedList listRef) {
+    public Saver(dataStructures.List list, dataStructures.Stack stack, dataStructures.LinkedList listRef) {
         this.list = list;
         this.stack = stack;
         this.listRef = listRef;

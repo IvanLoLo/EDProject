@@ -20,6 +20,13 @@ public class List{
     public void setPosition(int position) {
         this.position = position;
     }
+    public Producto[] getArray() {
+        return array;
+    }
+    public void setArray(Producto[] array) {
+        this.array = array;
+    }
+    
     
     public List(int n) {
         this.N = n;
@@ -80,15 +87,14 @@ public class List{
         return true;
     }
     
-    /*public void sort(){
+    public void sort(){
         long timeList = System.nanoTime();
         List temp = new List(N);
         for(int i=0; i<count; i++)
            temp.sortedInsert(array[i]);
         array = temp.array;
-        sorted = true;
         System.out.println("Sort List: "+(System.nanoTime()-timeList));
-    }*/
+    }
     
     public boolean search(Producto item) {//Busqueda posicion por posicion O(n) ->Nombre
         if(empty()){
@@ -136,8 +142,9 @@ public class List{
         return sorted ? smartSearch(item) : search(item);
     }*/
     
-    public boolean update(Producto item){
-        if(!smartSearch(item,0)) return false;
+    public boolean update(boolean nameChange, String antName, Producto item){
+        if(!nameChange && !smartSearch(item,0)) return false;
+        smartSearch(new Producto(antName, 0, 0), 0);
         array[position] = item;
         return true;
     }

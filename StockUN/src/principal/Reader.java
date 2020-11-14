@@ -30,9 +30,10 @@ public class Reader {
             
             Producto temp;
             //Scanner sc = new Scanner(file);
-            File file = new File("src\\recursos\\Prrueba10k.txt");
+            File file = new File("src\\recursos\\Prueba10k.txt");
             Scanner sc = new Scanner(file);
             String[] linea;
+            /*
             long timeStack = System.nanoTime();
             while(sc.hasNextLine()) {
                 linea=sc.nextLine().split(" ");
@@ -40,7 +41,7 @@ public class Reader {
                 stack.push(temp);
             }
             System.out.println("Inserting "+stack.getTop()+" elements Stack: "+(System.nanoTime()-timeStack));
-            
+            */
             sc = new Scanner(file);
             long timeList = System.nanoTime();
             while(sc.hasNextLine()) {
@@ -49,7 +50,7 @@ public class Reader {
                 list.sortedInsert(temp);
             }
             System.out.println("Inserting "+list.getCount()+" elements List: "+(System.nanoTime()-timeList));
-            
+            /*
             sc = new Scanner(file);
             long timeListRef = System.nanoTime();
             while(sc.hasNextLine()) {
@@ -58,6 +59,7 @@ public class Reader {
                 listRef.insert(temp);
             }
             System.out.println("Inserting "+listRef.getCant()+" elements LinkedList: "+(System.nanoTime()-timeListRef));
+            */
             sc.close();
         }catch(FileNotFoundException e) {
             System.out.println("Error en la lectura del archivo\n"+e.getMessage());

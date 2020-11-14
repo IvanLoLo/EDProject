@@ -9,7 +9,7 @@ import javax.swing.JOptionPane;
 public class InterfazPrincipal extends javax.swing.JFrame {
 
     public static String usuario = "";
-    String contraseña = "";
+    String contrasenia = "";
     public InterfazPrincipal() {
         initComponents();
         this.setResizable(false);        
@@ -27,11 +27,10 @@ public class InterfazPrincipal extends javax.swing.JFrame {
 
         jButtonRegistrarse = new javax.swing.JButton();
         jButtonIniciarSesion = new javax.swing.JButton();
-        jButtonExit = new javax.swing.JButton();
         jLabelUsuario = new javax.swing.JLabel();
-        jLabelContraseña = new javax.swing.JLabel();
+        jLabelContrasenia = new javax.swing.JLabel();
         Usuario = new javax.swing.JTextField();
-        Contraseña = new javax.swing.JPasswordField();
+        Contrasenia = new javax.swing.JPasswordField();
         jLabelIcono = new javax.swing.JLabel();
         jLabelFondo = new javax.swing.JLabel();
 
@@ -60,17 +59,6 @@ public class InterfazPrincipal extends javax.swing.JFrame {
         });
         getContentPane().add(jButtonIniciarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 260, 150, -1));
 
-        jButtonExit.setBackground(new java.awt.Color(0, 0, 0));
-        jButtonExit.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
-        jButtonExit.setForeground(new java.awt.Color(255, 255, 255));
-        jButtonExit.setText("X");
-        jButtonExit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonExitActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButtonExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 0, -1, -1));
-
         jLabelUsuario.setBackground(new java.awt.Color(0, 0, 0, 100)
         );
         jLabelUsuario.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -80,21 +68,21 @@ public class InterfazPrincipal extends javax.swing.JFrame {
         jLabelUsuario.setOpaque(true);
         getContentPane().add(jLabelUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(104, 160, -1, 30));
 
-        jLabelContraseña.setBackground(new java.awt.Color(0, 0, 0, 100));
-        jLabelContraseña.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabelContraseña.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelContraseña.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabelContraseña.setText("Contraseña:");
-        jLabelContraseña.setOpaque(true);
-        getContentPane().add(jLabelContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 210, -1, 30));
+        jLabelContrasenia.setBackground(new java.awt.Color(0, 0, 0, 100));
+        jLabelContrasenia.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabelContrasenia.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelContrasenia.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelContrasenia.setText("Contraseña:");
+        jLabelContrasenia.setOpaque(true);
+        getContentPane().add(jLabelContrasenia, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 210, -1, 30));
 
         Usuario.setBackground(new java.awt.Color(0, 0, 0, 150));
         Usuario.setForeground(new java.awt.Color(255, 255, 255));
         getContentPane().add(Usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 160, 170, 30));
 
-        Contraseña.setBackground(new java.awt.Color(0, 0, 0, 150));
-        Contraseña.setForeground(new java.awt.Color(255, 255, 255));
-        getContentPane().add(Contraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 210, 170, 30));
+        Contrasenia.setBackground(new java.awt.Color(0, 0, 0, 150));
+        Contrasenia.setForeground(new java.awt.Color(255, 255, 255));
+        getContentPane().add(Contrasenia, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 210, 170, 30));
 
         jLabelIcono.setBackground(new java.awt.Color(0, 0, 0, 100));
         jLabelIcono.setFont(new java.awt.Font("Times New Roman", 3, 36)); // NOI18N
@@ -103,16 +91,12 @@ public class InterfazPrincipal extends javax.swing.JFrame {
         jLabelIcono.setOpaque(true);
         getContentPane().add(jLabelIcono, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 10, -1, 70));
 
-        jLabelFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/unnamed.jpg"))); // NOI18N
+        jLabelFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Inicio.jpg"))); // NOI18N
         jLabelFondo.setText("jLabel1");
         getContentPane().add(jLabelFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 512, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jButtonExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExitActionPerformed
-       System.exit(0);
-    }//GEN-LAST:event_jButtonExitActionPerformed
 
     private void jButtonRegistrarseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistrarseActionPerformed
         this.dispose();
@@ -121,12 +105,12 @@ public class InterfazPrincipal extends javax.swing.JFrame {
 
     private void jButtonIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIniciarSesionActionPerformed
         usuario = Usuario.getText().trim(); 
-        contraseña = Contraseña.getText().trim();
-        if (usuario.equals("")|| contraseña.equals("")) {
+        contrasenia = Contrasenia.getText().trim();
+        if (usuario.equals("")|| contrasenia.equals("")) {
             JOptionPane.showMessageDialog(this, "Campo de usuario o contraseña vacios");
         }else{//Falta confirmar que esten registrados
             dispose();
-            new General().setVisible(true);
+            new GeneralPrueba();
         }
             
     }//GEN-LAST:event_jButtonIniciarSesionActionPerformed
@@ -167,12 +151,11 @@ public class InterfazPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPasswordField Contraseña;
+    private javax.swing.JPasswordField Contrasenia;
     private javax.swing.JTextField Usuario;
-    private javax.swing.JButton jButtonExit;
     private javax.swing.JButton jButtonIniciarSesion;
     private javax.swing.JButton jButtonRegistrarse;
-    private javax.swing.JLabel jLabelContraseña;
+    private javax.swing.JLabel jLabelContrasenia;
     private javax.swing.JLabel jLabelFondo;
     private javax.swing.JLabel jLabelIcono;
     private javax.swing.JLabel jLabelUsuario;
