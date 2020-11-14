@@ -37,16 +37,17 @@ public class GeneralPrueba extends JFrame{
     
     public GeneralPrueba(){
         initComponents();
+        this.setResizable(false);  
+        this.setLocationRelativeTo(null);
         lista = new dataStructures.List(10005);
         construirTabla();
         
         
-        this.setVisible(true);
-        this.setLocationRelativeTo(null);
+        this.setVisible(true);       
         //this.setExtendedState(MAXIMIZED_BOTH);
-        this.setMinimumSize(new Dimension(600,600));
+        this.setMinimumSize(new Dimension(1000,600));
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        this.getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
+       this.getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
         this.pack();
     }
     
@@ -127,6 +128,8 @@ public class GeneralPrueba extends JFrame{
         scrollPaneTabla = new JScrollPane();
         
         tabla = new JTable();
+        tabla.setFont(new java.awt.Font("Tahoma", 0, 22));
+        tabla.setRowHeight(22);
         scrollPaneTabla.setViewportView(tabla);
         
         panelTabla.add(scrollPaneTabla);

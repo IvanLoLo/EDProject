@@ -29,7 +29,6 @@ public class Registro extends javax.swing.JFrame {
         jLabelIcono = new javax.swing.JLabel();
         jLabelUsuario = new javax.swing.JLabel();
         jLabelUsuario1 = new javax.swing.JLabel();
-        jLabelUsuario2 = new javax.swing.JLabel();
         jLabelUsuario3 = new javax.swing.JLabel();
         jLabelUsuario4 = new javax.swing.JLabel();
         jLabelUsuario5 = new javax.swing.JLabel();
@@ -40,8 +39,9 @@ public class Registro extends javax.swing.JFrame {
         jTextFieldUsuario2 = new javax.swing.JTextField();
         jTextFieldUsuario5 = new javax.swing.JTextField();
         jTextFieldUsuario7 = new javax.swing.JTextField();
-        Contrasenia = new javax.swing.JPasswordField();
         Contrasenia1 = new javax.swing.JPasswordField();
+        jLabelUsuario10 = new javax.swing.JLabel();
+        jTextFieldUsuario8 = new javax.swing.JTextField();
         jLabelWalpaper = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -53,7 +53,7 @@ public class Registro extends javax.swing.JFrame {
                 PermisosActionPerformed(evt);
             }
         });
-        getContentPane().add(Permisos, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 200, 100, 30));
+        getContentPane().add(Permisos, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 310, 140, 30));
 
         jButton1.setText("Registrar ");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -61,14 +61,14 @@ public class Registro extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 300, -1, -1));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 350, -1, -1));
 
         jLabelIcono.setBackground(new java.awt.Color(0, 0, 0, 100));
         jLabelIcono.setFont(new java.awt.Font("Times New Roman", 3, 36)); // NOI18N
         jLabelIcono.setForeground(new java.awt.Color(255, 255, 255));
         jLabelIcono.setText("Registro");
         jLabelIcono.setOpaque(true);
-        getContentPane().add(jLabelIcono, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 10, -1, 70));
+        getContentPane().add(jLabelIcono, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 10, -1, 70));
 
         jLabelUsuario.setBackground(new java.awt.Color(0, 0, 0, 75)
         );
@@ -77,7 +77,7 @@ public class Registro extends javax.swing.JFrame {
         jLabelUsuario.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelUsuario.setText("Nombres:");
         jLabelUsuario.setOpaque(true);
-        getContentPane().add(jLabelUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 100, 90, 30));
+        getContentPane().add(jLabelUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 90, 30));
 
         jLabelUsuario1.setBackground(new java.awt.Color(0, 0, 0, 75)
         );
@@ -86,16 +86,7 @@ public class Registro extends javax.swing.JFrame {
         jLabelUsuario1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelUsuario1.setText("Apellidos:");
         jLabelUsuario1.setOpaque(true);
-        getContentPane().add(jLabelUsuario1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, 90, 30));
-
-        jLabelUsuario2.setBackground(new java.awt.Color(0, 0, 0, 75)
-        );
-        jLabelUsuario2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabelUsuario2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelUsuario2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabelUsuario2.setText("Permisos:");
-        jLabelUsuario2.setOpaque(true);
-        getContentPane().add(jLabelUsuario2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 200, 90, 30));
+        getContentPane().add(jLabelUsuario1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 90, 90, 30));
 
         jLabelUsuario3.setBackground(new java.awt.Color(0, 0, 0, 75)
         );
@@ -104,7 +95,7 @@ public class Registro extends javax.swing.JFrame {
         jLabelUsuario3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelUsuario3.setText("Fecha de nacimiento:");
         jLabelUsuario3.setOpaque(true);
-        getContentPane().add(jLabelUsuario3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, 110, 30));
+        getContentPane().add(jLabelUsuario3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 260, 210, 30));
 
         jLabelUsuario4.setBackground(new java.awt.Color(0, 0, 0, 75)
         );
@@ -113,7 +104,7 @@ public class Registro extends javax.swing.JFrame {
         jLabelUsuario4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelUsuario4.setText("Email:");
         jLabelUsuario4.setOpaque(true);
-        getContentPane().add(jLabelUsuario4, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 100, 60, 30));
+        getContentPane().add(jLabelUsuario4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 60, 30));
 
         jLabelUsuario5.setBackground(new java.awt.Color(0, 0, 0, 75)
         );
@@ -122,16 +113,16 @@ public class Registro extends javax.swing.JFrame {
         jLabelUsuario5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelUsuario5.setText("Usuario:");
         jLabelUsuario5.setOpaque(true);
-        getContentPane().add(jLabelUsuario5, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 150, 80, 30));
+        getContentPane().add(jLabelUsuario5, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 130, 90, 30));
 
         jLabelUsuario6.setBackground(new java.awt.Color(0, 0, 0, 75)
         );
         jLabelUsuario6.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabelUsuario6.setForeground(new java.awt.Color(255, 255, 255));
         jLabelUsuario6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabelUsuario6.setText("Contraseña");
+        jLabelUsuario6.setText("Contraseña:");
         jLabelUsuario6.setOpaque(true);
-        getContentPane().add(jLabelUsuario6, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 200, 110, 30));
+        getContentPane().add(jLabelUsuario6, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 170, 120, 30));
 
         jLabelUsuario7.setBackground(new java.awt.Color(0, 0, 0, 75)
         );
@@ -140,19 +131,29 @@ public class Registro extends javax.swing.JFrame {
         jLabelUsuario7.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelUsuario7.setText("Confirmar Contraseña:");
         jLabelUsuario7.setOpaque(true);
-        getContentPane().add(jLabelUsuario7, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 250, 120, 30));
+        getContentPane().add(jLabelUsuario7, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 210, 210, 30));
 
         jTextFieldUsuario.setBackground(new java.awt.Color(0, 0, 0, 150));
         jTextFieldUsuario.setForeground(new java.awt.Color(255, 255, 255));
-        getContentPane().add(jTextFieldUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 100, 100, 30));
+        getContentPane().add(jTextFieldUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 90, 160, 30));
 
         jTextFieldUsuario1.setBackground(new java.awt.Color(0, 0, 0, 150));
         jTextFieldUsuario1.setForeground(new java.awt.Color(255, 255, 255));
-        getContentPane().add(jTextFieldUsuario1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 100, 100, 30));
+        jTextFieldUsuario1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldUsuario1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jTextFieldUsuario1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 130, 190, 30));
 
         jTextFieldUsuario2.setBackground(new java.awt.Color(0, 0, 0, 150));
         jTextFieldUsuario2.setForeground(new java.awt.Color(255, 255, 255));
-        getContentPane().add(jTextFieldUsuario2, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 150, 100, 30));
+        jTextFieldUsuario2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldUsuario2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jTextFieldUsuario2, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 130, 220, 30));
 
         jTextFieldUsuario5.setBackground(new java.awt.Color(0, 0, 0, 150));
         jTextFieldUsuario5.setForeground(new java.awt.Color(255, 255, 255));
@@ -161,7 +162,7 @@ public class Registro extends javax.swing.JFrame {
                 jTextFieldUsuario5ActionPerformed(evt);
             }
         });
-        getContentPane().add(jTextFieldUsuario5, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 150, 100, 30));
+        getContentPane().add(jTextFieldUsuario5, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 90, 220, 30));
 
         jTextFieldUsuario7.setBackground(new java.awt.Color(0, 0, 0, 150));
         jTextFieldUsuario7.setForeground(new java.awt.Color(255, 255, 255));
@@ -170,23 +171,37 @@ public class Registro extends javax.swing.JFrame {
                 jTextFieldUsuario7ActionPerformed(evt);
             }
         });
-        getContentPane().add(jTextFieldUsuario7, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 250, 90, 30));
-
-        Contrasenia.setBackground(new java.awt.Color(0, 0, 0, 150));
-        Contrasenia.setForeground(new java.awt.Color(255, 255, 255));
-        Contrasenia.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ContraseniaActionPerformed(evt);
-            }
-        });
-        getContentPane().add(Contrasenia, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 250, 100, 30));
+        getContentPane().add(jTextFieldUsuario7, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 260, 230, 30));
 
         Contrasenia1.setBackground(new java.awt.Color(0, 0, 0, 150));
         Contrasenia1.setForeground(new java.awt.Color(255, 255, 255));
-        getContentPane().add(Contrasenia1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 200, 100, 30));
+        Contrasenia1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Contrasenia1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(Contrasenia1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 170, 230, 30));
 
-        jLabelWalpaper.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Inicio.jpg"))); // NOI18N
-        getContentPane().add(jLabelWalpaper, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        jLabelUsuario10.setBackground(new java.awt.Color(0, 0, 0, 75)
+        );
+        jLabelUsuario10.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabelUsuario10.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelUsuario10.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelUsuario10.setText("Permisos:");
+        jLabelUsuario10.setOpaque(true);
+        getContentPane().add(jLabelUsuario10, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 310, 90, 30));
+
+        jTextFieldUsuario8.setBackground(new java.awt.Color(0, 0, 0, 150));
+        jTextFieldUsuario8.setForeground(new java.awt.Color(255, 255, 255));
+        jTextFieldUsuario8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldUsuario8ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jTextFieldUsuario8, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 210, 230, 30));
+
+        jLabelWalpaper.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/InicioNormal.jpg"))); // NOI18N
+        getContentPane().add(jLabelWalpaper, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 630, 380));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -200,17 +215,29 @@ public class Registro extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_PermisosActionPerformed
 
-    private void jTextFieldUsuario5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldUsuario5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldUsuario5ActionPerformed
-
     private void jTextFieldUsuario7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldUsuario7ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldUsuario7ActionPerformed
 
-    private void ContraseniaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ContraseniaActionPerformed
+    private void jTextFieldUsuario2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldUsuario2ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_ContraseniaActionPerformed
+    }//GEN-LAST:event_jTextFieldUsuario2ActionPerformed
+
+    private void Contrasenia1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Contrasenia1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Contrasenia1ActionPerformed
+
+    private void jTextFieldUsuario1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldUsuario1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldUsuario1ActionPerformed
+
+    private void jTextFieldUsuario5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldUsuario5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldUsuario5ActionPerformed
+
+    private void jTextFieldUsuario8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldUsuario8ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldUsuario8ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -248,14 +275,13 @@ public class Registro extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPasswordField Contrasenia;
     private javax.swing.JPasswordField Contrasenia1;
     private javax.swing.JComboBox<String> Permisos;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabelIcono;
     private javax.swing.JLabel jLabelUsuario;
     private javax.swing.JLabel jLabelUsuario1;
-    private javax.swing.JLabel jLabelUsuario2;
+    private javax.swing.JLabel jLabelUsuario10;
     private javax.swing.JLabel jLabelUsuario3;
     private javax.swing.JLabel jLabelUsuario4;
     private javax.swing.JLabel jLabelUsuario5;
@@ -267,5 +293,6 @@ public class Registro extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldUsuario2;
     private javax.swing.JTextField jTextFieldUsuario5;
     private javax.swing.JTextField jTextFieldUsuario7;
+    private javax.swing.JTextField jTextFieldUsuario8;
     // End of variables declaration//GEN-END:variables
 }

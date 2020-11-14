@@ -46,7 +46,7 @@ public class InterfazPrincipal extends javax.swing.JFrame {
                 jButtonRegistrarseActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonRegistrarse, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 290, 110, -1));
+        getContentPane().add(jButtonRegistrarse, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 330, 110, -1));
 
         jButtonIniciarSesion.setBackground(new java.awt.Color(0, 0, 0));
         jButtonIniciarSesion.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
@@ -57,7 +57,7 @@ public class InterfazPrincipal extends javax.swing.JFrame {
                 jButtonIniciarSesionActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonIniciarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 260, 150, -1));
+        getContentPane().add(jButtonIniciarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 290, 150, -1));
 
         jLabelUsuario.setBackground(new java.awt.Color(0, 0, 0, 100)
         );
@@ -66,7 +66,7 @@ public class InterfazPrincipal extends javax.swing.JFrame {
         jLabelUsuario.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelUsuario.setText("Usuario:");
         jLabelUsuario.setOpaque(true);
-        getContentPane().add(jLabelUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(104, 160, -1, 30));
+        getContentPane().add(jLabelUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 160, -1, 30));
 
         jLabelContrasenia.setBackground(new java.awt.Color(0, 0, 0, 100));
         jLabelContrasenia.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -74,26 +74,38 @@ public class InterfazPrincipal extends javax.swing.JFrame {
         jLabelContrasenia.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabelContrasenia.setText("Contraseña:");
         jLabelContrasenia.setOpaque(true);
-        getContentPane().add(jLabelContrasenia, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 210, -1, 30));
+        getContentPane().add(jLabelContrasenia, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 210, -1, 30));
 
         Usuario.setBackground(new java.awt.Color(0, 0, 0, 150));
         Usuario.setForeground(new java.awt.Color(255, 255, 255));
-        getContentPane().add(Usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 160, 170, 30));
+        Usuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                UsuarioActionPerformed(evt);
+            }
+        });
+        getContentPane().add(Usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 160, 170, 30));
 
         Contrasenia.setBackground(new java.awt.Color(0, 0, 0, 150));
         Contrasenia.setForeground(new java.awt.Color(255, 255, 255));
-        getContentPane().add(Contrasenia, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 210, 170, 30));
+        Contrasenia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ContraseniaActionPerformed(evt);
+            }
+        });
+        getContentPane().add(Contrasenia, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 210, 170, 30));
 
         jLabelIcono.setBackground(new java.awt.Color(0, 0, 0, 100));
         jLabelIcono.setFont(new java.awt.Font("Times New Roman", 3, 36)); // NOI18N
         jLabelIcono.setForeground(new java.awt.Color(255, 255, 255));
         jLabelIcono.setText("Stock UN");
         jLabelIcono.setOpaque(true);
-        getContentPane().add(jLabelIcono, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 10, -1, 70));
+        getContentPane().add(jLabelIcono, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 30, -1, 70));
 
-        jLabelFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Inicio.jpg"))); // NOI18N
+        jLabelFondo.setBackground(new java.awt.Color(255, 255, 255));
+        jLabelFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/InicioNormal.jpg"))); // NOI18N
         jLabelFondo.setText("jLabel1");
-        getContentPane().add(jLabelFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 512, -1));
+        jLabelFondo.setAutoscrolls(true);
+        getContentPane().add(jLabelFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 630, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -114,6 +126,14 @@ public class InterfazPrincipal extends javax.swing.JFrame {
         }
             
     }//GEN-LAST:event_jButtonIniciarSesionActionPerformed
+
+    private void UsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UsuarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_UsuarioActionPerformed
+
+    private void ContraseniaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ContraseniaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ContraseniaActionPerformed
 
     /**
      * @param args the command line arguments

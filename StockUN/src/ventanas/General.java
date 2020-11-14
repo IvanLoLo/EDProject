@@ -11,6 +11,7 @@ public class General extends javax.swing.JFrame {
      */
     public General() {
         initComponents();
+        this.setLocationRelativeTo(null);
         setTitle("general");
     }
 
@@ -67,6 +68,8 @@ public class General extends javax.swing.JFrame {
 
         jPanel1.setLayout(new java.awt.BorderLayout());
 
+        jTable1.setBorder(new javax.swing.border.MatteBorder(null));
+        jTable1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {"Cerveza",  new Long(2500),  new Integer(50)}
@@ -90,7 +93,12 @@ public class General extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        jTable1.setColumnSelectionAllowed(true);
+        jTable1.setEditingColumn(1);
+        jTable1.setRowHeight(34);
+        jTable1.setSelectionBackground(new java.awt.Color(0, 0, 153));
         jScrollPane1.setViewportView(jTable1);
+        jTable1.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 
         jPanel1.add(jScrollPane1, java.awt.BorderLayout.CENTER);
 

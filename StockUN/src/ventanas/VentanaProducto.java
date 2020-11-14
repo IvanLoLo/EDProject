@@ -20,11 +20,14 @@ public class VentanaProducto extends javax.swing.JDialog {
     }
     
     public VentanaProducto(java.awt.Frame parent, boolean modal, String name) {
-        super(parent, modal);
+        super(parent, modal);        
         pulsado = false;
         cambioNombre = false;
         nameBtn = name;
         initComponents();
+        initComponents();
+        this.setResizable(false);        
+        this.setLocationRelativeTo(null);
         if(btn.getText().equals("Guardar Cambios")){
             nameText.setText(GeneralPrueba.getInformation()[0]);
             precioText.setText(GeneralPrueba.getInformation()[1]);
@@ -41,12 +44,18 @@ public class VentanaProducto extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        nameText = new javax.swing.JTextField();
-        precioText = new javax.swing.JTextField();
-        stockText = new javax.swing.JTextField();
         btn = new javax.swing.JButton();
+        jLabelUsuario = new javax.swing.JLabel();
+        jLabelUsuario1 = new javax.swing.JLabel();
+        jLabelUsuario2 = new javax.swing.JLabel();
+        jLabelIcono = new javax.swing.JLabel();
+        precioText = new javax.swing.JTextField();
+        nameText = new javax.swing.JTextField();
+        stockText = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btn.setText(nameBtn);
         btn.addActionListener(new java.awt.event.ActionListener() {
@@ -54,33 +63,72 @@ public class VentanaProducto extends javax.swing.JDialog {
                 btnActionPerformed(evt);
             }
         });
+        getContentPane().add(btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 310, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(142, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(stockText)
-                    .addComponent(precioText)
-                    .addComponent(nameText))
-                .addGap(153, 153, 153))
+        jLabelUsuario.setBackground(new java.awt.Color(0, 0, 0, 75)
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(49, 49, 49)
-                .addComponent(nameText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
-                .addComponent(precioText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
-                .addComponent(stockText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
-                .addComponent(btn)
-                .addGap(34, 34, 34))
+        jLabelUsuario.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabelUsuario.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelUsuario.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelUsuario.setText("Precio:");
+        jLabelUsuario.setOpaque(true);
+        getContentPane().add(jLabelUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 160, 70, 30));
+
+        jLabelUsuario1.setBackground(new java.awt.Color(0, 0, 0, 75)
         );
+        jLabelUsuario1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabelUsuario1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelUsuario1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelUsuario1.setText("Cantidad:");
+        jLabelUsuario1.setOpaque(true);
+        getContentPane().add(jLabelUsuario1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 210, 90, 30));
+
+        jLabelUsuario2.setBackground(new java.awt.Color(0, 0, 0, 75)
+        );
+        jLabelUsuario2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabelUsuario2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelUsuario2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelUsuario2.setText("Nombre:");
+        jLabelUsuario2.setOpaque(true);
+        getContentPane().add(jLabelUsuario2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 110, -1, 30));
+
+        jLabelIcono.setBackground(new java.awt.Color(0, 0, 0, 100));
+        jLabelIcono.setFont(new java.awt.Font("Times New Roman", 3, 36)); // NOI18N
+        jLabelIcono.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelIcono.setText("Agregar Producto");
+        jLabelIcono.setOpaque(true);
+        getContentPane().add(jLabelIcono, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 10, -1, 70));
+
+        precioText.setBackground(new java.awt.Color(0, 0, 0, 150));
+        precioText.setForeground(new java.awt.Color(255, 255, 255));
+        precioText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                precioTextActionPerformed(evt);
+            }
+        });
+        getContentPane().add(precioText, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 110, 170, 30));
+
+        nameText.setBackground(new java.awt.Color(0, 0, 0, 150));
+        nameText.setForeground(new java.awt.Color(255, 255, 255));
+        nameText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nameTextActionPerformed(evt);
+            }
+        });
+        getContentPane().add(nameText, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 210, 170, 30));
+
+        stockText.setBackground(new java.awt.Color(0, 0, 0, 150));
+        stockText.setForeground(new java.awt.Color(255, 255, 255));
+        stockText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                stockTextActionPerformed(evt);
+            }
+        });
+        getContentPane().add(stockText, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 160, 170, 30));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/InicioNormal.jpg"))); // NOI18N
+        jLabel1.setText("jLabel1");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 640, 380));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -96,12 +144,29 @@ public class VentanaProducto extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_btnActionPerformed
 
+    private void nameTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameTextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nameTextActionPerformed
+
+    private void precioTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_precioTextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_precioTextActionPerformed
+
+    private void stockTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stockTextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_stockTextActionPerformed
+
     public boolean comprobarCampos(){
         return true;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabelIcono;
+    private javax.swing.JLabel jLabelUsuario;
+    private javax.swing.JLabel jLabelUsuario1;
+    private javax.swing.JLabel jLabelUsuario2;
     private javax.swing.JTextField nameText;
     private javax.swing.JTextField precioText;
     private javax.swing.JTextField stockText;
