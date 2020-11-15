@@ -68,7 +68,7 @@ public class GeneralPrueba extends JFrame{
     public void initComponents(){
         
         panelBtn = new JPanel();
-        panelBtn.setLayout(new FlowLayout(FlowLayout.LEFT));
+        panelBtn.setLayout(new FlowLayout(FlowLayout.CENTER));
         
         panelTabla = new JPanel();
         panelTabla.setLayout(new BorderLayout());
@@ -141,6 +141,22 @@ public class GeneralPrueba extends JFrame{
                 System.out.println("Venta");
             }
         });
+        JTextField Buscar = new JTextField();
+        Buscar.setBackground(new java.awt.Color(0, 0, 0, 150));
+        Buscar.setForeground(new java.awt.Color(255, 255, 255));
+        Buscar.setSize(100,30);
+        panelBtn.add(Buscar);
+        
+       
+       
+        JButton btnBuscar = crearBtn("Buscar", "/Imagenes/Buscar.png");
+        btnBuscar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+                System.out.println("Buscando");
+            }
+        });
+        
         
         scrollPaneTabla = new JScrollPane();
         
@@ -164,6 +180,8 @@ public class GeneralPrueba extends JFrame{
     private void construirTabla(String[] titulos, Object[][] datos){
         modelo = new ModeloTabla(datos, titulos);
         tabla.setModel(modelo);
+        tabla.setFont(new java.awt.Font("Tahoma", 0, 26));
+        tabla.setRowHeight(26);
     }
     
     private Object[][] obtenerDatos(int titulosTam, Object[] productos){

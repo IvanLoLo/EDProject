@@ -32,6 +32,7 @@ public class General extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jButton5 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -63,6 +64,9 @@ public class General extends javax.swing.JFrame {
         jPanel3.add(jLabel1);
 
         jPanel2.add(jPanel3);
+
+        jTextField1.setText("jTextField1");
+        jPanel2.add(jTextField1);
 
         getContentPane().add(jPanel2);
 
@@ -154,5 +158,6 @@ public class General extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }

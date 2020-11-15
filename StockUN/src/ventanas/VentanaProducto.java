@@ -1,5 +1,6 @@
 package ventanas;
 
+import javax.swing.JOptionPane;
 import principal.Producto;
 
 /**
@@ -11,6 +12,9 @@ public class VentanaProducto extends javax.swing.JDialog {
     public static boolean pulsado;
     private Producto temp;
     private String nameBtn;
+    String Nombre;
+    String Precio;
+    String Stock;
 
     public Producto getTemp() {
         return temp;
@@ -28,10 +32,11 @@ public class VentanaProducto extends javax.swing.JDialog {
         this.setResizable(false);        
         this.setLocationRelativeTo(null);
         if(btn.getText().equals("Guardar Cambios")){
-            nameText.setText(GeneralPrueba.getInformation()[0]);
-            nameText.setEditable(false);
-            precioText.setText(GeneralPrueba.getInformation()[1]);
-            stockText.setText(GeneralPrueba.getInformation()[2]);
+            stockText.setText(GeneralPrueba.getInformation()[0]);
+            stockText.setEditable(false);
+            nombreText.setText(GeneralPrueba.getInformation()[1]);
+            precioText.setText(GeneralPrueba.getInformation()[2]);
+            
         }
     }
 
@@ -44,26 +49,19 @@ public class VentanaProducto extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btn = new javax.swing.JButton();
         jLabelUsuario = new javax.swing.JLabel();
         jLabelUsuario1 = new javax.swing.JLabel();
         jLabelUsuario2 = new javax.swing.JLabel();
         jLabelIcono = new javax.swing.JLabel();
-        precioText = new javax.swing.JTextField();
-        nameText = new javax.swing.JTextField();
+        nombreText = new javax.swing.JTextField();
         stockText = new javax.swing.JTextField();
+        precioText = new javax.swing.JTextField();
+        btn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        btn.setText(nameBtn);
-        btn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 310, -1, -1));
 
         jLabelUsuario.setBackground(new java.awt.Color(0, 0, 0, 75)
         );
@@ -99,23 +97,19 @@ public class VentanaProducto extends javax.swing.JDialog {
         jLabelIcono.setOpaque(true);
         getContentPane().add(jLabelIcono, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 20, -1, 70));
 
-        precioText.setBackground(new java.awt.Color(0, 0, 0, 150));
-        precioText.setForeground(new java.awt.Color(255, 255, 255));
-        precioText.addActionListener(new java.awt.event.ActionListener() {
+        nombreText.setBackground(new java.awt.Color(0, 0, 0, 150));
+        nombreText.setForeground(new java.awt.Color(255, 255, 255));
+        nombreText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                precioTextActionPerformed(evt);
+                nombreTextActionPerformed(evt);
             }
         });
-        getContentPane().add(precioText, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 110, 170, 30));
-
-        nameText.setBackground(new java.awt.Color(0, 0, 0, 150));
-        nameText.setForeground(new java.awt.Color(255, 255, 255));
-        nameText.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nameTextActionPerformed(evt);
+        nombreText.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                nombreTextKeyTyped(evt);
             }
         });
-        getContentPane().add(nameText, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 210, 170, 30));
+        getContentPane().add(nombreText, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 110, 170, 30));
 
         stockText.setBackground(new java.awt.Color(0, 0, 0, 150));
         stockText.setForeground(new java.awt.Color(255, 255, 255));
@@ -124,7 +118,37 @@ public class VentanaProducto extends javax.swing.JDialog {
                 stockTextActionPerformed(evt);
             }
         });
-        getContentPane().add(stockText, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 160, 170, 30));
+        stockText.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                stockTextKeyTyped(evt);
+            }
+        });
+        getContentPane().add(stockText, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 210, 170, 30));
+
+        precioText.setBackground(new java.awt.Color(0, 0, 0, 150));
+        precioText.setForeground(new java.awt.Color(255, 255, 255));
+        precioText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                precioTextActionPerformed(evt);
+            }
+        });
+        precioText.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                precioTextKeyTyped(evt);
+            }
+        });
+        getContentPane().add(precioText, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 160, 170, 30));
+
+        btn.setBackground(new java.awt.Color(0, 0, 0));
+        btn.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        btn.setForeground(new java.awt.Color(255, 255, 255));
+        btn.setText("Guardar Cambios");
+        btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 300, 140, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/InicioNormal.jpg"))); // NOI18N
         jLabel1.setText("jLabel1");
@@ -133,28 +157,49 @@ public class VentanaProducto extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActionPerformed
-        if(comprobarCampos()){
-            pulsado = true;
-            temp = new Producto(nameText.getText(), Long.parseLong(precioText.getText()), Integer.parseInt(stockText.getText()));
-            System.out.println("Pulsado papá");
-            dispose();
-        }
-    }//GEN-LAST:event_btnActionPerformed
-
-    private void nameTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameTextActionPerformed
+    private void stockTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stockTextActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_nameTextActionPerformed
+    }//GEN-LAST:event_stockTextActionPerformed
+
+    private void nombreTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nombreTextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nombreTextActionPerformed
 
     private void precioTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_precioTextActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_precioTextActionPerformed
 
-    private void stockTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stockTextActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_stockTextActionPerformed
+    private void btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActionPerformed
+      if(comprobarCampos()){
+            pulsado = true;
+            temp = new Producto(stockText.getText(), Long.parseLong(nombreText.getText()), Integer.parseInt(precioText.getText()));
+            System.out.println("Pulsado papá");
+            dispose();
+        }
+    }//GEN-LAST:event_btnActionPerformed
+
+    private void nombreTextKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nombreTextKeyTyped
+      char caracter=evt.getKeyChar();
+      if(caracter<'a'||caracter>'z'&& (caracter<'A'||caracter>'Z'))evt.consume();
+    }//GEN-LAST:event_nombreTextKeyTyped
+
+    private void stockTextKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_stockTextKeyTyped
+      char caracter=evt.getKeyChar();
+      if(caracter<'0'||caracter>'9')evt.consume();
+    }//GEN-LAST:event_stockTextKeyTyped
+
+    private void precioTextKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_precioTextKeyTyped
+       char caracter=evt.getKeyChar();
+      if(caracter<'0'||caracter>'9')evt.consume();
+    }//GEN-LAST:event_precioTextKeyTyped
 
     public boolean comprobarCampos(){
+        /*Nombre = nombreText.getText().trim(); 
+        Precio = precioText.getText().trim();
+        Stock = stockText.getText().trim();
+        if (Nombre.equals("")|| Precio.equals("")||Stock.equals("")) 
+            JOptionPane.showMessageDialog(this, "Algun campo vacio");*/
+        // Validar que no esta vacio 
         return true;
     }
     
@@ -169,7 +214,7 @@ public class VentanaProducto extends javax.swing.JDialog {
     private javax.swing.JLabel jLabelUsuario;
     private javax.swing.JLabel jLabelUsuario1;
     private javax.swing.JLabel jLabelUsuario2;
-    private javax.swing.JTextField nameText;
+    private javax.swing.JTextField nombreText;
     private javax.swing.JTextField precioText;
     private javax.swing.JTextField stockText;
     // End of variables declaration//GEN-END:variables
