@@ -29,7 +29,7 @@ public class LinkedList {
     }
     public Object[] toArray(){
         
-        Producto[] temp = new Producto[cant];
+        Producto[] temp = new Producto[10006];
         GenericNode<Producto> curr = head;
         int i = 0;
         while(curr!=null){

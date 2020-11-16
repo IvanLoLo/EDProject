@@ -42,8 +42,8 @@ public class GeneralPrueba extends JFrame{
             case 1: return new dataStructures.Stack(size);
             case 2: return new dataStructures.List(size);
             case 3: return new dataStructures.LinkedList();
-            //case 4: return new dataStructures.Arbol();
-            default: System.out.println("Estructura no encontrada");
+            case 4: return new dataStructures.Heap(size);
+            default: System.out.println("Estructura no encontrada asignarEstructura");
         }
         
         return null;
@@ -51,7 +51,7 @@ public class GeneralPrueba extends JFrame{
     
     public GeneralPrueba(){
         initComponents();
-        structure = 1;
+        structure = 4;
         lista = asignarEstructura(10005);
         construirTabla();
         
@@ -93,6 +93,7 @@ public class GeneralPrueba extends JFrame{
                 nuevo.setVisible(true);
                 if(nuevo.pulsado){
                     insertarEstructura(nuevo.getTemp());
+                    ordenarEstructura();
                     //lista.sortedInsert(nuevo.getTemp());
                     construirTabla();
                 }
@@ -149,7 +150,7 @@ public class GeneralPrueba extends JFrame{
         
        
        
-        JButton btnBuscar = crearBtn("Buscar", "/Imagenes/Buscar.png");
+        JButton btnBuscar = crearBtn("Buscar", "/Imagenes/Search.png");
         btnBuscar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent arg0) {
@@ -181,7 +182,7 @@ public class GeneralPrueba extends JFrame{
         modelo = new ModeloTabla(datos, titulos);
         tabla.setModel(modelo);
         tabla.setFont(new java.awt.Font("Tahoma", 0, 26));
-        tabla.setRowHeight(26);
+        tabla.setRowHeight(30);
     }
     
     private Object[][] obtenerDatos(int titulosTam, Object[] productos){
@@ -244,8 +245,8 @@ public class GeneralPrueba extends JFrame{
             break;
             case 3: ((dataStructures.LinkedList) lista).insert(producto);
             break;
-            //case 4: ((dataStructures.Arbol) lista).insertar(producto);
-            default: System.out.println("Estructura no encontrada");
+            case 4: ((dataStructures.Heap) lista).insertItem(producto);
+            default: System.out.println("Estructura no encontrada insertarEstructura");
         }
         
     }
@@ -258,7 +259,7 @@ public class GeneralPrueba extends JFrame{
             break;
             //case 3: return new dataStructures.LinkedList();
             //case 4: return new dataStructures.Arbol();
-            default: System.out.println("Estructura no encontrada");
+            default: System.out.println("Estructura no encontrada actualizarProducto");
         }
         
     }
@@ -268,10 +269,10 @@ public class GeneralPrueba extends JFrame{
         switch(structure){
             case 1: ((dataStructures.Stack) lista).sort();
             break;
-            case 2: ((dataStructures.List) lista).sort();
+            case 2: //((dataStructures.List) lista).sort();
             break;
             case 3: //((dataStructures.LinkedList) lista); No tenemos un ordenamiento para LinkedList
-            //case 4: ((dataStructures.Arbol) lista).insertar(producto);
+            case 4: ((dataStructures.Heap) lista).sort();
             default: System.out.println("Estructura no encontrada");
         }
         
@@ -288,8 +289,9 @@ public class GeneralPrueba extends JFrame{
             break;
             case 3: ((dataStructures.LinkedList) lista).delete(item);
             break;
-            //case 4: ((dataStructures.Arbol) lista).insertar(producto);
-            default: System.out.println("Estructura no encontrada");
+            case 4: ((dataStructures.Heap) lista).delete(item);
+            break;
+            default: System.out.println("Estructura no encontrada eliminarProducto");
         }
         
     }
@@ -300,8 +302,8 @@ public class GeneralPrueba extends JFrame{
             case 1: return ((dataStructures.Stack) lista).empty();
             case 2: return ((dataStructures.List) lista).empty();
             case 3: return ((dataStructures.LinkedList) lista).empty();
-            //case 4: ((dataStructures.Arbol) lista).insertar(producto);
-            default: System.out.println("Estructura no encontrada");
+            case 4: return ((dataStructures.Heap) lista).empty();
+            default: System.out.println("Estructura no encontrada estructuraVacia");
         }
         
         return true;
@@ -316,8 +318,9 @@ public class GeneralPrueba extends JFrame{
             break;
             case 3: ((dataStructures.LinkedList) lista).printR(((dataStructures.LinkedList) lista).getHead());
             break;
-            //case 4: ((dataStructures.Arbol) lista).insertar(producto);
-            default: System.out.println("Estructura no encontrada");
+            case 4: ((dataStructures.Heap) lista).print();
+            break;
+            default: System.out.println("Estructura no encontrada imprimirEstructura");
         }
         
     }
@@ -328,8 +331,8 @@ public class GeneralPrueba extends JFrame{
             case 1: return ((dataStructures.Stack) lista).getSarray();
             case 2: return ((dataStructures.List) lista).getArray();
             case 3: return ((dataStructures.LinkedList) lista).toArray();
-            //case 4: ((dataStructures.Arbol) lista).insertar(producto);
-            default: System.out.println("Estructura no encontrada");
+            case 4: return ((dataStructures.Heap) lista).getArray();
+            default: System.out.println("Estructura no encontrada arrayEstructura");
         }
         
         return null;
@@ -341,8 +344,8 @@ public class GeneralPrueba extends JFrame{
             case 1: return ((dataStructures.Stack) lista).getTop();
             case 2: return ((dataStructures.List) lista).getCount();
             case 3: return ((dataStructures.LinkedList) lista).getCant();
-            //case 4: ((dataStructures.Arbol) lista).insertar(producto);
-            default: System.out.println("Estructura no encontrada");
+            case 4: return ((dataStructures.Heap) lista).getSize();
+            default: System.out.println("Estructura no encontrada countEstructura");
         }
         
         return -1;

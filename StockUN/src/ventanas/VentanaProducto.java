@@ -28,14 +28,13 @@ public class VentanaProducto extends javax.swing.JDialog {
         pulsado = false;
         nameBtn = name;
         initComponents();
-        initComponents();
         this.setResizable(false);        
         this.setLocationRelativeTo(null);
         if(btn.getText().equals("Guardar Cambios")){
-            stockText.setText(GeneralPrueba.getInformation()[0]);
-            stockText.setEditable(false);
-            nombreText.setText(GeneralPrueba.getInformation()[1]);
-            precioText.setText(GeneralPrueba.getInformation()[2]);
+            nombreText.setText(GeneralPrueba.getInformation()[0]);
+            nombreText.setEditable(false);
+            precioText.setText(GeneralPrueba.getInformation()[1]);
+            stockText.setText(GeneralPrueba.getInformation()[2]);
             
         }
     }
@@ -142,13 +141,13 @@ public class VentanaProducto extends javax.swing.JDialog {
         btn.setBackground(new java.awt.Color(0, 0, 0));
         btn.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         btn.setForeground(new java.awt.Color(255, 255, 255));
-        btn.setText("Guardar Cambios");
+        btn.setText(nameBtn);
         btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnActionPerformed(evt);
             }
         });
-        getContentPane().add(btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 300, 140, -1));
+        getContentPane().add(btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 300, 200, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/InicioNormal.jpg"))); // NOI18N
         jLabel1.setText("jLabel1");
@@ -172,7 +171,7 @@ public class VentanaProducto extends javax.swing.JDialog {
     private void btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActionPerformed
       if(comprobarCampos()){
             pulsado = true;
-            temp = new Producto(stockText.getText(), Long.parseLong(nombreText.getText()), Integer.parseInt(precioText.getText()));
+            temp = new Producto(nombreText.getText(), Long.parseLong(precioText.getText()), Integer.parseInt(stockText.getText()));
             System.out.println("Pulsado papá");
             dispose();
         }
@@ -180,7 +179,7 @@ public class VentanaProducto extends javax.swing.JDialog {
 
     private void nombreTextKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nombreTextKeyTyped
       char caracter=evt.getKeyChar();
-      if(caracter<'a'||caracter>'z'&& (caracter<'A'||caracter>'Z'))evt.consume();
+      if((caracter<'A'||caracter>'Z') && (caracter<'a'||caracter>'z'))evt.consume();
     }//GEN-LAST:event_nombreTextKeyTyped
 
     private void stockTextKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_stockTextKeyTyped

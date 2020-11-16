@@ -40,6 +40,7 @@ public class newReader {
             System.out.println("Inserting "+countEstructura()+" elements: "+(System.nanoTime()-timeList));
             
             if(structure==1) ((dataStructures.Stack) listado).sort();
+            else if(structure==4) ((dataStructures.Heap) listado).sort();
             
             sc.close();
         }catch(FileNotFoundException e) {
@@ -56,7 +57,8 @@ public class newReader {
             break;
             case 3: ((dataStructures.LinkedList) listado).insert(item);
             break;
-            //case 4: ((dataStructures.Arbol) lista).insertar(producto);
+            case 4: ((dataStructures.Heap) listado).insertItem(item);
+            break;
             default: System.out.println("Estructura no encontrada");
         }
         
@@ -68,7 +70,7 @@ public class newReader {
             case 1: return ((dataStructures.Stack) listado).getTop();
             case 2: return ((dataStructures.List) listado).getCount();
             case 3: return ((dataStructures.LinkedList) listado).getCant();
-            //case 4: ((dataStructures.Arbol) lista).insertar(producto);
+            case 4: return ((dataStructures.Heap) listado).getSize();
             default: System.out.println("Estructura no encontrada");
         }
         
