@@ -58,14 +58,16 @@ public class GeneralPrueba extends JFrame{
         
         this.setVisible(true);
         this.setLocationRelativeTo(null);
-        //this.setExtendedState(MAXIMIZED_BOTH);
+        this.setExtendedState(MAXIMIZED_BOTH);
         this.setMinimumSize(new Dimension(600,600));
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
-        this.pack();
+       // this.pack();
     }
     
     public void initComponents(){
+        //fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/InicioNormal.jpg")));
+        
         
         panelBtn = new JPanel();
         panelBtn.setLayout(new FlowLayout(FlowLayout.CENTER));
@@ -142,11 +144,7 @@ public class GeneralPrueba extends JFrame{
                 System.out.println("Venta");
             }
         });
-        JTextField Buscar = new JTextField();
-        Buscar.setBackground(new java.awt.Color(0, 0, 0, 150));
-        Buscar.setForeground(new java.awt.Color(255, 255, 255));
-        Buscar.setSize(100,30);
-        panelBtn.add(Buscar);
+        
         
        
        
@@ -157,6 +155,13 @@ public class GeneralPrueba extends JFrame{
                 System.out.println("Buscando");
             }
         });
+        JTextField Buscar = new JTextField();
+        Buscar.setBackground(new Color(255,255, 255));
+        Buscar.setForeground(new Color(0,0,0));        
+        Buscar.setPreferredSize(new Dimension(200,40));
+        Buscar.setFont(new Font("Tahoma", 0, 26));
+        Buscar.setText("Buscar");        
+        panelBtn.add(Buscar);
         
         
         scrollPaneTabla = new JScrollPane();
@@ -181,8 +186,18 @@ public class GeneralPrueba extends JFrame{
     private void construirTabla(String[] titulos, Object[][] datos){
         modelo = new ModeloTabla(datos, titulos);
         tabla.setModel(modelo);
-        tabla.setFont(new java.awt.Font("Tahoma", 0, 26));
+        tabla.setFont(new Font("Tahoma", 0, 24));
         tabla.setRowHeight(30);
+        tabla.getTableHeader().setFont(new Font("Tahoma", 1, 26));
+        //tabla.getTableHeader().setBackground(new Color(0,0,0,150));
+        //tabla.getTableHeader().setForeground(new Color(255, 255, 255));
+        //tabla.setBackground(new Color(0, 0, 0,150));
+        //tabla.setForeground(new Color(255, 255, 255));
+        
+            
+        
+        
+        
     }
     
     private Object[][] obtenerDatos(int titulosTam, Object[] productos){
@@ -220,7 +235,7 @@ public class GeneralPrueba extends JFrame{
         JPanel temp = new JPanel();
         temp.setLayout(new BoxLayout(temp, BoxLayout.Y_AXIS));
         JLabel lblTemp = new JLabel(msg);
-        lblTemp.setAlignmentX(0.5F);
+        lblTemp.setAlignmentX(0.5F);        
         temp.add(btn);
         temp.add(lblTemp);
         

@@ -54,8 +54,8 @@ public class General extends javax.swing.JFrame {
 
         jPanel3.setLayout(new javax.swing.BoxLayout(jPanel3, javax.swing.BoxLayout.Y_AXIS));
 
+        jButton5.setBackground(new java.awt.Color(204, 0, 51));
         jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Volver.png"))); // NOI18N
-        jButton5.setText("jButton5");
         jButton5.setAlignmentX(0.5F);
         jPanel3.add(jButton5);
 
@@ -65,15 +65,25 @@ public class General extends javax.swing.JFrame {
 
         jPanel2.add(jPanel3);
 
-        jTextField1.setText("jTextField1");
+        jTextField1.setText("BUscar");
+        jTextField1.setMaximumSize(new java.awt.Dimension(100, 30));
+        jTextField1.setMinimumSize(new java.awt.Dimension(100, 30));
+        jTextField1.setPreferredSize(new java.awt.Dimension(100, 30));
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
         jPanel2.add(jTextField1);
 
         getContentPane().add(jPanel2);
 
         jPanel1.setLayout(new java.awt.BorderLayout());
 
+        jTable1.setBackground(new java.awt.Color(102, 102, 102));
         jTable1.setBorder(new javax.swing.border.MatteBorder(null));
-        jTable1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jTable1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jTable1.setForeground(new java.awt.Color(255, 51, 0));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {"Cerveza",  new Long(2500),  new Integer(50)}
@@ -101,6 +111,8 @@ public class General extends javax.swing.JFrame {
         jTable1.setEditingColumn(1);
         jTable1.setRowHeight(34);
         jTable1.setSelectionBackground(new java.awt.Color(0, 0, 153));
+        jTable1.getTableHeader().setReorderingAllowed(false);
+        jTable1.setUpdateSelectionOnSort(false);
         jScrollPane1.setViewportView(jTable1);
         jTable1.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 
@@ -110,6 +122,10 @@ public class General extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
 
     /**
      * @param args the command line arguments
