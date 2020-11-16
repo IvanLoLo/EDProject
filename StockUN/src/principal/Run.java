@@ -18,7 +18,7 @@ public class Run {
         //new ventanas.InterfazPrincipal().setVisible(true);
         
         sc = new Scanner(System.in);
-        
+        //Todo listo
         //inventLista = new List(102);
         //inventStack = new Stack(102);
         inventLista = new dataStructures.List(100005);
