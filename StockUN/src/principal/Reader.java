@@ -11,14 +11,16 @@ import java.util.Scanner;
  */
 public class Reader {
     
-    private Stack stack;
-    private List list;
-    private LinkedList listRef;
+    private dataStructures.Stack stack;
+    private dataStructures.List list;
+    private dataStructures.LinkedList listRef;
+    private dataStructures.Heap heap;
 
-    public Reader(Stack stack, List list, LinkedList listRef) {
+    public Reader(dataStructures.Stack stack, dataStructures.List list, dataStructures.LinkedList listRef, dataStructures.Heap heap) {
         this.stack = stack;
         this.list = list;
         this.listRef = listRef;
+        this.heap = heap;
         read();
     }
     
@@ -33,7 +35,7 @@ public class Reader {
             File file = new File("src\\recursos\\Prueba10k.txt");
             Scanner sc = new Scanner(file);
             String[] linea;
-            /*
+            
             long timeStack = System.nanoTime();
             while(sc.hasNextLine()) {
                 linea=sc.nextLine().split(" ");
@@ -41,7 +43,7 @@ public class Reader {
                 stack.push(temp);
             }
             System.out.println("Inserting "+stack.getTop()+" elements Stack: "+(System.nanoTime()-timeStack));
-            */
+            
             sc = new Scanner(file);
             long timeList = System.nanoTime();
             while(sc.hasNextLine()) {
@@ -50,7 +52,7 @@ public class Reader {
                 list.sortedInsert(temp);
             }
             System.out.println("Inserting "+list.getCount()+" elements List: "+(System.nanoTime()-timeList));
-            /*
+            
             sc = new Scanner(file);
             long timeListRef = System.nanoTime();
             while(sc.hasNextLine()) {
@@ -59,7 +61,16 @@ public class Reader {
                 listRef.insert(temp);
             }
             System.out.println("Inserting "+listRef.getCant()+" elements LinkedList: "+(System.nanoTime()-timeListRef));
-            */
+            
+            sc = new Scanner(file);
+            long timeHeap = System.nanoTime();
+            while(sc.hasNextLine()) {
+                linea=sc.nextLine().split(" ");
+                temp = new Producto(linea[0], Long.parseLong(linea[1]), Integer.parseInt(linea[2]));
+                heap.insertItem(temp);
+            }
+            System.out.println("Inserting "+heap.getSize()+" elements Heap: "+(System.nanoTime()-timeHeap));
+            
             sc.close();
         }catch(FileNotFoundException e) {
             System.out.println("Error en la lectura del archivo\n"+e.getMessage());

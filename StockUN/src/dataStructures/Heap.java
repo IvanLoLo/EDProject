@@ -6,7 +6,8 @@ public class Heap {
 
     private final int n;
     private Producto[] array;
-    private int size, position;
+    public int size, position;
+    private boolean sorted;
 
     public Heap(int n) {
         this.n = n;
@@ -18,6 +19,7 @@ public class Heap {
         array[size] = item;
         moveUp();
         size++;
+        sorted = false;
     }
 
     private void moveUp() {
@@ -63,14 +65,43 @@ public class Heap {
 
     public void sort(){
         SortClass.heapSort(array, size);
+        sorted = true;
+    }
+    
+    public boolean doSearch(Producto item){
+        if(sorted) return binarySearch(item);
+        return search(item); 
+    }
+    
+    public boolean binarySearch(Producto item){
+        position = 0;
+        if(empty()) return false;
+        boolean found = false;
+        int i = 0;
+        int j = size-1;
+        int k;
+        long timeSearch=System.nanoTime();
+        do{
+            k = (i+j)/2;
+            //System.out.println("Buscado en "+k+": "+array[k]);
+            if(array[k].compareTo(item)<=0) i=k+1;
+            if(array[k].compareTo(item)>=0) j=k-1;
+        }while(i<=j);
+        position = k;
+        if(item.compareTo(array[position])== 0) found = true;
+        System.out.println("BinarySearching Heap: "+(System.nanoTime()-timeSearch));
+        //System.out.println(array[position]+" at: "+k+" found: "+found);
+        return found;
     }
     
     public boolean search(Producto item){
         int i=0;
+        long timeSearch = System.nanoTime();
         while(i<size-1 && array[i].compareTo(item)!=0) i++;
         if(i>array.length) return false;
         if(array[i].compareTo(item)==0){
             position = i;
+            System.out.println("Searching no binary Heap: "+(System.nanoTime()-timeSearch));
             return true;
         }
         return false;
@@ -89,7 +120,7 @@ public class Heap {
     
     public boolean delete(Producto item){
         int i=0;
-        if(!search(item)) return false;
+        if(!doSearch(item)) return false;
         for(int k = position; k<size-1; k++){
             array[k]=array[k+1];
         }
@@ -115,6 +146,7 @@ public class Heap {
     }
     
     public void print(){
+        if(!sorted) sort();
         for(int i=0; i<size; i++)
             System.out.print(array[i]+" | ");
         System.out.println("");
@@ -148,7 +180,7 @@ public class Heap {
         heap.sort();
         
         heap.delete(new Producto("Q", 0, 0));
-        System.out.println("Esta?: "+heap.search(new Producto("Zasd", 0, 0)));
+        System.out.println("Esta?: "+heap.doSearch(new Producto("Zasd", 0, 0)));
         System.out.println("Aqui esta: "+heap.giveMe(heap.position));
         //heap.delete(8);
         

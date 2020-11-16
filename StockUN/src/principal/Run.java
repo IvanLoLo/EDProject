@@ -7,24 +7,26 @@ import java.util.Scanner;
 public class Run {
     
     static int opcion;
-    static List inventLista;
-    static Stack inventStack;
-    static LinkedList inventListaRef;
+    static dataStructures.List inventLista;
+    static dataStructures.Stack inventStack;
+    static dataStructures.LinkedList inventListaRef;
+    static dataStructures.Heap inventHeap;
     static  Scanner sc;
     
     public static void main(String[] args){
         
-        new ventanas.InterfazPrincipal().setVisible(true);
+        //new ventanas.InterfazPrincipal().setVisible(true);
         
         sc = new Scanner(System.in);
         
         //inventLista = new List(102);
         //inventStack = new Stack(102);
-        inventLista = new List(100005);
-        inventStack = new Stack(100005);
-        inventListaRef = new LinkedList();
+        inventLista = new dataStructures.List(100005);
+        inventStack = new dataStructures.Stack(100005);
+        inventListaRef = new dataStructures.LinkedList();
+        inventHeap = new dataStructures.Heap(10005);
         
-        Reader read = new Reader(inventStack, inventLista, inventListaRef);
+        Reader read = new Reader(inventStack, inventLista, inventListaRef, inventHeap);
         
         while(true){
             System.out.println("Escoja una opcion:");
@@ -32,13 +34,15 @@ public class Run {
             System.out.println("2. Mostrar Stack");
             System.out.println("3. Mostrar Lista");
             System.out.println("4. Mostrar Lista Referenciada");
-            System.out.println("5. Buscar en Stack");
-            System.out.println("6. Buscar en Lista");
-            System.out.println("7. Buscar en Lista Referenciada");
-            System.out.println("8. Guardar y salir");
-            System.out.println("9. Salir sin guardar");
+            System.out.println("5. Mostrar Heap");
+            System.out.println("6. Buscar en Stack");
+            System.out.println("7. Buscar en Lista");
+            System.out.println("8. Buscar en Lista Referenciada");
+            System.out.println("9. Buscar en Heap");
+            System.out.println("10. Guardar y salir");
+            System.out.println("11. Salir sin guardar");
             opcion = comprobar(sc);
-            while(opcion<1 || opcion>10){
+            while(opcion<1 || opcion>11){
                 System.out.println("Ingrese una opción válida");
                 opcion = comprobar(sc);
             }
@@ -53,14 +57,16 @@ public class Run {
                     break;
                 case 4: inventListaRef.printR(inventListaRef.getHead());
                     break;
-                case 5:
-                case 6:
-                case 7: System.out.println("Ingrese el nombre del producto");
-                        buscar(sc.nextLine(), opcion);
+                case 5: inventHeap.print();
                     break;
-                case 8: guardar();
-                case 9: return;
-                case 10: inventLista.delete(new Producto("AaczwdzwWl", 0, 0));
+                case 6:
+                case 7:
+                case 8:
+                case 9: System.out.println("Ingrese el nombre del producto");
+                        buscar(sc.nextLine(), opcion);
+                        break;
+                case 10: guardar();
+                case 11: return;
                 default: System.out.println("Que paso");
             }
             System.out.println("Presione cualquier tecla para continuar...");
@@ -91,16 +97,19 @@ public class Run {
         inventStack.push(producto);
         inventLista.sortedInsert(producto);
         inventListaRef.insert(producto);
+        inventHeap.insertItem(producto);
     }
     
     private static void buscar(String name, int opc){
         Producto item = new Producto(name, 0, 0);
-        if(opc==5 && inventStack.doSearch(item,1))
+        if(opc==6 && inventStack.doSearch(item,1))
             System.out.println(inventStack.giveMe(inventStack.getPosition()));
-        else if(opc==6 && inventLista.smartSearch(item,1))
+        else if(opc==7 && inventLista.smartSearch(item,1))
             System.out.println(inventLista.giveMe(inventLista.getPosition()));
-        else if(opc==7){
+        else if(opc==8){
             buscarEnListaRef(item);
+        }else if(opc==9 && inventHeap.doSearch(item)){
+            System.out.println(inventHeap.giveMe(inventHeap.position));
         }
         else System.out.println("No se ha encontrado un producto con el nombre señalado");
             

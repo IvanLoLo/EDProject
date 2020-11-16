@@ -37,7 +37,7 @@ public class newReader {
                 temp = new Producto(linea[0], Long.parseLong(linea[1]), Integer.parseInt(linea[2]));
                 insertEstructura(temp);
             }
-            System.out.println("Inserting "+countEstructura()+" elements: "+(System.nanoTime()-timeList));
+            System.out.println("Inserting "+countEstructura()+" elements at "+listado.getClass()+": "+(System.nanoTime()-timeList));
             
             if(structure==1) ((dataStructures.Stack) listado).sort();
             else if(structure==4) ((dataStructures.Heap) listado).sort();

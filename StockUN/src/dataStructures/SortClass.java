@@ -41,11 +41,13 @@ public class SortClass {
 	}
 
 	public static void heapSort(Producto[] array, int n) {
-		makeHeap(array,n);
-		for(int i=n-1; i>0; i--) {
-			swapElements(array,0,i);
-			moveDown(array,0,i);
-		}
+            long timeSort = System.nanoTime();
+            makeHeap(array,n);
+            for(int i=n-1; i>0; i--) {
+                    swapElements(array,0,i);
+                    moveDown(array,0,i);
+            }
+            System.out.println("Sort Heap: "+(System.nanoTime()-timeSort));
 	}
 }
 

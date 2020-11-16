@@ -246,6 +246,7 @@ public class GeneralPrueba extends JFrame{
             case 3: ((dataStructures.LinkedList) lista).insert(producto);
             break;
             case 4: ((dataStructures.Heap) lista).insertItem(producto);
+            break;
             default: System.out.println("Estructura no encontrada insertarEstructura");
         }
         
@@ -273,7 +274,8 @@ public class GeneralPrueba extends JFrame{
             break;
             case 3: //((dataStructures.LinkedList) lista); No tenemos un ordenamiento para LinkedList
             case 4: ((dataStructures.Heap) lista).sort();
-            default: System.out.println("Estructura no encontrada");
+            break;
+            default: System.out.println("Estructura no encontrada ordenarEstructura");
         }
         
     }
