@@ -106,7 +106,7 @@ public class InterfazPrincipal extends javax.swing.JFrame {
         jComboBox1.setBackground(new java.awt.Color(0, 0, 0));
         jComboBox1.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jComboBox1.setForeground(new java.awt.Color(255, 255, 255));
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1.Stack", "2.Liista", "3.Lista referenciada", "4.Arbol" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1.Stack", "2.Lista", "3.Lista referenciada", "4.Arbol" }));
         getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 190, 130, 30));
 
         jLabelFondo.setBackground(new java.awt.Color(255, 255, 255));

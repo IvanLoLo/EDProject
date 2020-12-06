@@ -21,10 +21,10 @@ public class Run {
         //Todo listo
         //inventLista = new List(102);
         //inventStack = new Stack(102);
-        inventLista = new dataStructures.List(100005);
-        inventStack = new dataStructures.Stack(100005);
+        inventLista = new dataStructures.List(10000000);
+        inventStack = new dataStructures.Stack(10000000);
         inventListaRef = new dataStructures.LinkedList();
-        inventHeap = new dataStructures.Heap(10005);
+        inventHeap = new dataStructures.Heap(10000000);
         
         Reader read = new Reader(inventStack, inventLista, inventListaRef, inventHeap);
         

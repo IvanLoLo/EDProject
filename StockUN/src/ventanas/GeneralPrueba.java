@@ -51,7 +51,7 @@ public class GeneralPrueba extends JFrame{
     
     public GeneralPrueba(){
         initComponents();
-        structure = 4;
+        structure = 2;
         lista = asignarEstructura(10005);
         construirTabla();
         
