@@ -4,6 +4,8 @@ import java.awt.*;
 import static java.awt.Frame.MAXIMIZED_BOTH;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.*;
 import javax.swing.*;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
@@ -11,15 +13,17 @@ import principal.Producto;
 import ventanas.RecursosTabla.*;
 import javax.swing.table.DefaultTableModel;
 
-public class Clientes extends JFrame{
+public class Clientes extends JFrame implements MouseListener{
     
-    JLabel Agregar;
-    JPanel panelBtn, panelTabla;
+    JLabel Agregar,xd;
+    JPanel panelBtn, panelTabla,panelE;
     static JTable tabla,TCarrito;
     JScrollPane scrollPaneTabla,scrollCarrito;
     ModeloTabla modelo;
     Object lista;
     static int structure;
+    private int filasTabla;
+    private int columnasTabla;
     
     
     public static String[] getInformation(){
@@ -53,8 +57,9 @@ public class Clientes extends JFrame{
         initComponents();
         structure = 2;
         lista = asignarEstructura(10005);
-        //construirCarrito();
+        construirCarrito();
         construirTabla();
+       // this.updateUI();
         
         
         
@@ -70,19 +75,73 @@ public class Clientes extends JFrame{
     public void initComponents(){     
         panelBtn = new JPanel();
         panelBtn.setLayout(new FlowLayout(FlowLayout.CENTER));
+        panelE = new JPanel();
+        panelE.setLayout(new FlowLayout(FlowLayout.LEFT));
+       // panelE.setMaximumSize(new Dimension(30,60));
         
         panelTabla = new JPanel();
         panelTabla.setLayout(new BorderLayout());
+        JLabel Agregar = new JLabel ();
+        Agregar.setText("Carrito de compras            ");
+        Agregar.setFont(new Font("Tahoma", 1, 47));
+        Agregar.setBackground(new Color(255,255, 255));
+        panelE.add(Agregar);
+        JLabel xd = new JLabel ();
+        xd.setText("Productos disponibles");
+        xd.setFont(new Font("Tahoma", 1, 47));
+        xd.setBackground(new Color(255,255, 255));
+        panelE.add(xd);
         
+        
+        JButton btnSalir = crearBtn("Salir", "/Imagenes/Volver2.png");
+        btnSalir.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+                int exit;
+                exit = JOptionPane.showConfirmDialog(getContentPane(), "¿Seguro que desea salir?");
+                if(exit == JOptionPane.OK_OPTION){
+                    dispose();
+                    new InterfazPrincipal().setVisible(true);
+                }
+            }
+        });
+        JButton btnComprar = crearBtn("Finalizar Compra", "/Imagenes/Venta.png");
+        btnComprar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+                System.out.println("Venta");
+                
+                
+            }
+        });
+        JButton btnRastrear = crearBtn("nose", "/Imagenes/Eliminar.png");
+        btnRastrear.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+            System.out.println("Venta");
+            
+                
+               
+                
+            }
+        });
+         JButton btnVenta = crearBtn("Ver Resumen", "/Imagenes/Editar.png");
+        btnVenta.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+                System.out.println("Venta");
+            }
+        });
+         
         JTextField Buscar = new JTextField();
         Buscar.setBackground(new Color(255,255, 255));
         Buscar.setForeground(new Color(0,0,0));        
-        Buscar.setPreferredSize(new Dimension(1000,40));
+        Buscar.setPreferredSize(new Dimension(800,40));
         Buscar.setFont(new Font("Tahoma", 0, 26));
         Buscar.setText("Buscar");        
         panelBtn.add(Buscar);
         
-       JButton btnCarrito = crearBtn("Carrito", "/Imagenes/Venta.png");
+       JButton btnCarrito = crearBtnE("Buscar", "/Imagenes/Search.png");       
         btnCarrito.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent arg0) {
@@ -90,83 +149,100 @@ public class Clientes extends JFrame{
             }
         });
         
-        
         scrollCarrito = new JScrollPane();
         TCarrito = new JTable();
         scrollCarrito.setViewportView(TCarrito);
         
         scrollPaneTabla = new JScrollPane();       
-        tabla = new JTable();
+        tabla = new JTable();       
         scrollPaneTabla.setViewportView(tabla);
         
-        panelTabla.add(scrollPaneTabla);
-        //panelTabla.add(scrollCarrito);
+        panelTabla.add(scrollCarrito,BorderLayout.LINE_START);
+        panelTabla.add(scrollPaneTabla,BorderLayout.CENTER);
+        
         this.add(panelBtn);
+        this.add(panelE);
         this.add(panelTabla);
+        
     }
-    private void construirCarrito(){
-         Object[] productos = consultarProductos();
-        String[] titulos = {"Nombre", "Precio"};
+    private void construirCarrito( ){      
+	Object[] productosCarrito = {};
+        String[] titulos = {"Nombre", "Precio"," "};
+        String informacion[][] = new String[productosCarrito.length][titulos.length];
         
-        Object[][] data = obtenerDatos(titulos.length, productos);
-        modelo = new ModeloTabla(data, titulos);
-        tabla.setModel(modelo);
-        tabla.setFont(new Font("Tahoma", 0, 24));
-        tabla.setRowHeight(30);
-        tabla.getTableHeader().setFont(new Font("Tahoma", 1, 26));
+        for(int i=0; i<informacion.length; i++){
+            informacion[i][0] ="";//((Producto)productos[i]).getNombre();
+            informacion[i][1] = "";//String.valueOf(((Producto)productos[i]).getPrecio());            
+            informacion[i][2] ="Eliminar";
+            
+        }
+        Object[][] data = informacion;        
+        modelo=new ModeloTabla(data, titulos);	
+        TCarrito.setName("TCarrito");
+	TCarrito.setModel(modelo);
+        TCarrito.getColumnModel().getColumn(2).setMaxWidth(33);
+        TCarrito.setFont(new Font("Tahoma", 0, 24));
+        TCarrito.setRowHeight(33);
         
+        TCarrito.getTableHeader().setFont(new Font("Tahoma", 1, 26));		
+	filasTabla=TCarrito.getRowCount();
+	columnasTabla=TCarrito.getColumnCount();
+	TCarrito.getColumnModel().getColumn(2).setCellRenderer(new GestionCeldas("icono"));
+	TCarrito.getColumnModel().getColumn(0).setMaxWidth(300);
+        TCarrito.getColumnModel().getColumn(1).setMaxWidth(300);
+        
+	//scrollPaneTabla.setViewportView(TCarrito);
 
-         
+        
+	
     }
     private void construirTabla(){
         
-        Object[] productos = consultarProductos();
+     Object[] productos = consultarProductos();
         String[] titulos = {"Nombre", "Precio"," "};
-        
-        Object[][] data = obtenerDatos(titulos.length, productos);
-        construirTabla(titulos, data);
-    }
-   
-    
-    private void construirTabla(String[] titulos, Object[][] datos){
-        modelo = new ModeloTabla(datos, titulos);
-        tabla.setModel(modelo);
-        tabla.getColumnModel().getColumn(2).setMaxWidth(120);
-        tabla.getColumnModel().getColumn(2).setCellRenderer(new GestionCeldas("Icono"));
-      
-        
-        tabla.setFont(new Font("Tahoma", 0, 24));
-        tabla.setRowHeight(30);
-        tabla.getTableHeader().setFont(new Font("Tahoma", 1, 26));
-        //tabla.getTableHeader().setBackground(new Color(0,0,0,150));
-        //tabla.getTableHeader().setForeground(new Color(255, 255, 255));
-        //tabla.setBackground(new Color(0, 0, 0,150));
-        //tabla.setForeground(new Color(255, 255, 255));
-        
-            
-        
-        
-        
-    }
-    
-    private Object[][] obtenerDatos(int titulosTam, Object[] productos){
-        
-        String informacion[][] = new String[productos.length][titulosTam];
+        String informacion[][] = new String[productos.length][titulos.length];
         
         for(int i=0; i<informacion.length; i++){
             informacion[i][0] = ((Producto)productos[i]).getNombre();
             informacion[i][1] = String.valueOf(((Producto)productos[i]).getPrecio());            
             informacion[i][2] ="Agregar";
         }
+        Object[][] data = informacion;        
+        modelo=new ModeloTabla(data, titulos);
+        tabla.setName("tabla");
+	tabla.setModel(modelo);
+        tabla.getColumnModel().getColumn(2).setMaxWidth(33);
+        tabla.setFont(new Font("Tahoma", 0, 24));
+        tabla.setRowHeight(33);
+        //tabla.addMouseListener(this);
+        tabla.getTableHeader().setFont(new Font("Tahoma", 1, 26));		
+	filasTabla=tabla.getRowCount();
+	columnasTabla=tabla.getColumnCount();
+	tabla.getColumnModel().getColumn(2).setCellRenderer(new GestionCeldas("icono"));
+	//tabla.getColumnModel().getColumn(0).setMaxWidth(300);
+       // tabla.getColumnModel().getColumn(1).setMaxWidth(300);
         
-        return informacion;
+	//scrollPaneTabla.setViewportView(tabla);
+	
+        //tabla.getTableHeader().setBackground(new Color(0,0,0,150));
+        //tabla.getTableHeader().setForeground(new Color(255, 255, 255));
+        //tabla.setBackground(new Color(0, 0, 0,150));
+        //tabla.setForeground(new Color(255, 255, 255));
     }
-    
     private Object[] consultarProductos(){
         
         if(estructuraVacia()) new principal.newReader(lista, structure);
         
         return Arrays.copyOfRange(arrayEstructura(), 0, countEstructura());
+    }
+     private JButton crearBtnE(String msg, String path){
+        
+        JButton temp = new JButton();
+        temp.setIcon(new ImageIcon(getClass().getResource(path)));
+        temp.setAlignmentX(0.5F);
+        crearPanelBtn(temp, msg);
+        
+        return temp;
     }
     
     private JButton crearBtn(String msg, String path){
@@ -178,7 +254,18 @@ public class Clientes extends JFrame{
         
         return temp;
     }
-    
+    private void crearPanelBtnE(JButton btn, String msg){
+        
+        JPanel temp = new JPanel();
+        temp.setLayout(new BoxLayout(temp, BoxLayout.Y_AXIS));
+        JLabel lblTemp = new JLabel(msg);
+        lblTemp.setAlignmentX(0.5F);        
+        temp.add(btn);
+        temp.add(lblTemp);
+        
+        panelBtn.add(temp);
+        
+    }
     private void crearPanelBtn(JButton btn, String msg){
         
         JPanel temp = new JPanel();
@@ -317,6 +404,69 @@ public class Clientes extends JFrame{
         return -1;
         
     }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        //capturo fila o columna dependiendo de mi necesidad
+		int fila = tabla.rowAtPoint(e.getPoint());
+		int columna = tabla.columnAtPoint(e.getPoint());
+		
+		
+		if (columna==2) {
+                    
+                    
+		
+		
+		
+                    
+                    
+                    
+                    
+                    //ProductosCarrito+=
+                  //  modelo=new ModeloTabla(data, titulos);		
+                   // TCarrito.setModel(modelo);
+                    //this.paintAll(this);
+                    //construirCarrito();
+			
+		}
+		
+    }
+   /* private void validarSeleccionMouse(int fila) {
+		Utilidades.filaSeleccionada=fila;
+		
+		
+		//teniendo la fila entonces se obtiene el objeto correspondiente para enviarse como parammetro o imprimir la información
+		PersonaVo miPersona=new PersonaVo();
+		miPersona.setDocumento(tablaPersonas.getValueAt(fila, Utilidades.DOCUMENTO).toString());
+		miPersona.setNombre(tablaPersonas.getValueAt(fila, Utilidades.NOMBRE).toString());
+		
+		String info="INFO PERSONA\n";
+		info+="Documento: "+miPersona.getDocumento()+"\n";
+		info+="Nombre: "+miPersona.getNombre()+"\n";
+		
+		JOptionPane.showMessageDialog(null, info);
+	}*/
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     
 
 }

@@ -1,35 +1,50 @@
 package ventanas;
 
+import java.awt.Color;
 import java.awt.Component;
-import javax.swing.Icon;
+import java.awt.Font;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTable;
-import javax.swing.table.TableCellRenderer;
+import javax.swing.table.DefaultTableCellRenderer;
 
-/**
- *
- * @author Diego
- */
-public class GestionCeldas implements TableCellRenderer {
 
-    private  String tipo;
-    private JLabel jAgregar=new JLabel();
-    
+public class GestionCeldas extends DefaultTableCellRenderer{
+	
+	private String tipo="";
+	private JLabel label = new JLabel();
+	private ImageIcon iconoAgregar = new ImageIcon(getClass().getResource("/Imagenes/boton-agregar.png"));
+        private ImageIcon iconoEliminar = new ImageIcon(getClass().getResource("/Imagenes/eliminar.png"));
+	
 
-    public GestionCeldas(String tipo) {
-        this.tipo=tipo;
-    }
+	
+	public GestionCeldas(String tipo){
+		this.tipo=tipo;
+	}
 
-    @Override
-    public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        if(tipo.equals("icono"))      { 
-         jAgregar.setIcon(new ImageIcon(getClass().getResource("/Imagenes/Agregar")));
-         
+	@Override
+	public Component getTableCellRendererComponent(JTable table, Object value, boolean selected, boolean focused, int row, int column) {
+        if( tipo.equals("icono"))
+        {
+            if(String.valueOf(value).equals("Agregar")) {
+                label.setIcon(iconoAgregar);
+            } else if(String.valueOf(value).equals("Eliminar")){
+                label.setIcon(iconoEliminar);
+            }
+            
+           
+            
+            return label;
         }
-     
-     return jAgregar;
-    }
-     
+        
+        
+		
+		return this;
+		
+		
+	}
+	
+	
+	
 }
