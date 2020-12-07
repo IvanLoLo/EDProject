@@ -25,22 +25,18 @@ public class GestionCeldas extends DefaultTableCellRenderer{
 
 	@Override
 	public Component getTableCellRendererComponent(JTable table, Object value, boolean selected, boolean focused, int row, int column) {
-        if( tipo.equals("icono"))
-        {
-            if(String.valueOf(value).equals("Agregar")) {
-                label.setIcon(iconoAgregar);
-            } else if(String.valueOf(value).equals("Eliminar")){
-                label.setIcon(iconoEliminar);
+            if( tipo.equals("icono")){
+                if(String.valueOf(value).equals("Agregar")){
+                    label.setIcon(iconoAgregar);
+                } else{
+                    label.setIcon(iconoEliminar);
+                }
+                return label;
             }
-            
-           
-            
-            return label;
-        }
-        
-        
-		
-		return this;
+
+
+
+            return this;
 		
 		
 	}

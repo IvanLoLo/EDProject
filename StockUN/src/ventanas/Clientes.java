@@ -11,7 +11,6 @@ import javax.swing.*;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import principal.Producto;
 import ventanas.RecursosTabla.*;
-import javax.swing.table.DefaultTableModel;
 
 public class Clientes extends JFrame implements MouseListener{
     
@@ -21,6 +20,7 @@ public class Clientes extends JFrame implements MouseListener{
     JScrollPane scrollPaneTabla,scrollCarrito;
     ModeloTabla modelo;
     Object lista;
+    ArrayList<Object> carrito;
     static int structure;
     private int filasTabla;
     private int columnasTabla;
@@ -183,7 +183,7 @@ public class Clientes extends JFrame implements MouseListener{
         TCarrito.getColumnModel().getColumn(2).setMaxWidth(33);
         TCarrito.setFont(new Font("Tahoma", 0, 24));
         TCarrito.setRowHeight(33);
-        
+        TCarrito.addMouseListener(this);
         TCarrito.getTableHeader().setFont(new Font("Tahoma", 1, 26));		
 	filasTabla=TCarrito.getRowCount();
 	columnasTabla=TCarrito.getColumnCount();
@@ -214,7 +214,7 @@ public class Clientes extends JFrame implements MouseListener{
         tabla.getColumnModel().getColumn(2).setMaxWidth(33);
         tabla.setFont(new Font("Tahoma", 0, 24));
         tabla.setRowHeight(33);
-        //tabla.addMouseListener(this);
+        tabla.addMouseListener(this);
         tabla.getTableHeader().setFont(new Font("Tahoma", 1, 26));		
 	filasTabla=tabla.getRowCount();
 	columnasTabla=tabla.getColumnCount();
@@ -408,27 +408,26 @@ public class Clientes extends JFrame implements MouseListener{
     @Override
     public void mouseClicked(MouseEvent e) {
         //capturo fila o columna dependiendo de mi necesidad
-		int fila = tabla.rowAtPoint(e.getPoint());
-		int columna = tabla.columnAtPoint(e.getPoint());
-		
-		
-		if (columna==2) {
-                    
-                    
-		
-		
-		
-                    
-                    
-                    
-                    
-                    //ProductosCarrito+=
-                  //  modelo=new ModeloTabla(data, titulos);		
-                   // TCarrito.setModel(modelo);
-                    //this.paintAll(this);
-                    //construirCarrito();
-			
-		}
+        
+        int fila = tabla.rowAtPoint(e.getPoint());
+        int columna = tabla.columnAtPoint(e.getPoint());
+        
+        if(e.getComponent().equals(TCarrito)){
+            
+            ((ModeloTabla)TCarrito.getModel()).removeRow(fila);
+            
+        }else if (columna==2) {
+            System.out.println("Pulsado");
+            String nombreProducto = tabla.getValueAt(fila, 0).toString();
+            String precio = tabla.getValueAt(fila, 1).toString();
+            ((ModeloTabla)TCarrito.getModel()).addRow(new Object[] {nombreProducto, precio});
+        }
+
+            //ProductosCarrito+=
+          //  modelo=new ModeloTabla(data, titulos);		
+           // TCarrito.setModel(modelo);
+            //this.paintAll(this);
+            //construirCarrito();
 		
     }
    /* private void validarSeleccionMouse(int fila) {
@@ -449,22 +448,22 @@ public class Clientes extends JFrame implements MouseListener{
 
     @Override
     public void mousePressed(MouseEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //System.out.println("Pressed");
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //System.out.println("Released");
     }
 
     @Override
     public void mouseEntered(MouseEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //System.out.println("Entered");
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //System.out.println("Exited");
     }
 
     
