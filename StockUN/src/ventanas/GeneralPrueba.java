@@ -16,6 +16,7 @@ public class GeneralPrueba extends JFrame{
     JLabel fondo;
     JPanel panelBtn, panelTabla;
     static JTable tabla;
+    JTextField txtBuscar;
     JScrollPane scrollPaneTabla;
     ModeloTabla modelo;
     Object lista;
@@ -152,16 +153,16 @@ public class GeneralPrueba extends JFrame{
         btnBuscar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent arg0) {
-                System.out.println("Buscando");
+                buscarEstructura();
             }
         });
-        JTextField Buscar = new JTextField();
-        Buscar.setBackground(new Color(255,255, 255));
-        Buscar.setForeground(new Color(0,0,0));        
-        Buscar.setPreferredSize(new Dimension(200,40));
-        Buscar.setFont(new Font("Tahoma", 0, 26));
-        Buscar.setText("Buscar");        
-        panelBtn.add(Buscar);
+        txtBuscar = new JTextField();
+        txtBuscar.setBackground(new Color(255,255, 255));
+        txtBuscar.setForeground(new Color(0,0,0));        
+        txtBuscar.setPreferredSize(new Dimension(200,40));
+        txtBuscar.setFont(new Font("Tahoma", 0, 26));
+        txtBuscar.setText("Buscar");        
+        panelBtn.add(txtBuscar);
         
         
         scrollPaneTabla = new JScrollPane();
@@ -249,6 +250,48 @@ public class GeneralPrueba extends JFrame{
         } catch (InterruptedException ex) {
             System.out.println("Algo malo paso");
         }
+    }
+    
+    public void buscarEstructura(){
+        
+        String item = txtBuscar.getText();
+        
+        if(item.equals("")){
+            JOptionPane.showMessageDialog(null, "Por favor ingrese el nombre de un producto para buscar");
+            return;
+        }
+        
+        Producto producto = new Producto(item, 0, 0);
+        boolean found=false;
+        
+        switch(structure){
+            case 1: if (((dataStructures.Stack) lista).doSearch(producto, 0)){
+                        producto = ((dataStructures.Stack) lista).giveMe(((dataStructures.Stack) lista).getPosition());
+                        found = true;
+                    }else producto = null;
+            break;
+            case 2: if (((dataStructures.List) lista).smartSearch(producto, 0)){
+                        producto = ((dataStructures.List) lista).giveMe(((dataStructures.List) lista).getPosition());
+                        found = true;
+                    }else producto = null;
+            break;
+            case 3: if (((dataStructures.LinkedList) lista).search(producto, 0)){
+                        producto = ((dataStructures.LinkedList) lista).giveMe(((dataStructures.LinkedList) lista).getPosition());
+                        found = true;
+                    }else producto = null;
+            break;
+            case 4: if (((dataStructures.Heap) lista).doSearch(producto)){
+                        producto = ((dataStructures.Heap) lista).giveMe(((dataStructures.Heap) lista).position);
+                        found = true;
+                    }else producto = null;
+            break;
+            default: System.out.println("Estructura no encontrada insertarEstructura");
+        }
+        
+        if(!found) JOptionPane.showMessageDialog(null, "No encontramos el producto en el inventario :(");
+        else JOptionPane.showMessageDialog(null, "Producto: "+producto.getNombre()+"\nPrecio: "+producto.getPrecio()+
+                "\nStock: "+producto.getStock());
+        
     }
     
     private void insertarEstructura(Producto producto){

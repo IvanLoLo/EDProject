@@ -1,6 +1,9 @@
 package ventanas;
 
 import javax.swing.JOptionPane;
+import dataStructures.*;
+import principal.ReaderMap;
+import principal.SaveDB;
 
 /**
  *
@@ -9,9 +12,11 @@ import javax.swing.JOptionPane;
 public class InterfazPrincipal extends javax.swing.JFrame {
 
     public static String usuario = "";
+    public static Map<String, String> dataBase;
     String contrasenia = "";
     public InterfazPrincipal() {
         initComponents();
+        dataBase = new ReaderMap().mapa;
         this.setResizable(false);        
         this.setLocationRelativeTo(null);
     }
@@ -25,6 +30,7 @@ public class InterfazPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        dataBase = new Map<>(10);
         jButtonRegistrarse = new javax.swing.JButton();
         jButtonIniciarSesion = new javax.swing.JButton();
         jLabelUsuario = new javax.swing.JLabel();
@@ -119,8 +125,8 @@ public class InterfazPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonRegistrarseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistrarseActionPerformed
-        this.dispose();
-        new Registro().setVisible(true);
+        //this.dispose();
+        new RegistroPrueba(null, true, "Registro").setVisible(true);
     }//GEN-LAST:event_jButtonRegistrarseActionPerformed
 
     private void jButtonIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIniciarSesionActionPerformed
@@ -128,9 +134,16 @@ public class InterfazPrincipal extends javax.swing.JFrame {
         contrasenia = Contrasenia.getText().trim();
         if (usuario.equals("")|| contrasenia.equals("")) {
             JOptionPane.showMessageDialog(this, "Campo de usuario o contraseña vacios");
-        }else{//Falta confirmar que esten registrados
-            dispose();
-            new GeneralPrueba();
+        }else{
+            if(dataBase.get(usuario)!=null && dataBase.get(usuario).equals(contrasenia)){
+                SaveDB usersSaver = new SaveDB(dataBase);
+                usersSaver.save();
+                dispose();
+                new GeneralPrueba();
+            }else{
+                if(dataBase.get(usuario)!=null) JOptionPane.showMessageDialog(null, "Contraseña incorrecta. Intente de nuevo");
+                else JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrectos. Intente de nuevo");
+            }
         }
             
     }//GEN-LAST:event_jButtonIniciarSesionActionPerformed
