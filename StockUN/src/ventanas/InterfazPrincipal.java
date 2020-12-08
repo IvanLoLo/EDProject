@@ -2,6 +2,8 @@ package ventanas;
 
 import javax.swing.JOptionPane;
 import dataStructures.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import principal.ReaderMap;
 import principal.SaveDB;
 
@@ -19,6 +21,13 @@ public class InterfazPrincipal extends javax.swing.JFrame {
         dataBase = new ReaderMap().mapa;
         this.setResizable(false);        
         this.setLocationRelativeTo(null);
+        this.addWindowListener(new WindowAdapter() {
+                @Override
+                public void windowClosing(WindowEvent e) {
+                    SaveDB usersSaver = new SaveDB(dataBase);
+                    usersSaver.save();
+                }
+            });
     }
 
     /**
@@ -30,7 +39,6 @@ public class InterfazPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        dataBase = new Map<>(10);
         jButtonRegistrarse = new javax.swing.JButton();
         jButtonIniciarSesion = new javax.swing.JButton();
         jLabelUsuario = new javax.swing.JLabel();

@@ -17,7 +17,7 @@ public class ReaderMap<K, V> {
     public void read(){
         
         try {
-            mapa = new Map(1);
+            mapa = new Map(10);
             Producto temp;
             File file = new File("src\\recursos\\Mapa.txt");
             Scanner sc = new Scanner(file);

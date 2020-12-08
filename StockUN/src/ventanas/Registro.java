@@ -51,7 +51,7 @@ public class Registro extends javax.swing.JDialog {
         Permisos.setBackground(new java.awt.Color(0, 0, 0));
         Permisos.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         Permisos.setForeground(new java.awt.Color(255, 255, 255));
-        Permisos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrador" }));
+        Permisos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrador", "Cliente" }));
         Permisos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 PermisosActionPerformed(evt);

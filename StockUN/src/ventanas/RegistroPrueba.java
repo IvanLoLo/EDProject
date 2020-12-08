@@ -53,7 +53,7 @@ public class RegistroPrueba extends javax.swing.JDialog {
         Permisos.setBackground(new java.awt.Color(0, 0, 0));
         Permisos.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         Permisos.setForeground(new java.awt.Color(255, 255, 255));
-        Permisos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrador" }));
+        Permisos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrador", "Cliente" }));
         Permisos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 PermisosActionPerformed(evt);
@@ -240,8 +240,8 @@ public class RegistroPrueba extends javax.swing.JDialog {
     }                                                  
 
     private void RegistrarseActionPerformed(java.awt.event.ActionEvent evt) {                                            
-        
-        InterfazPrincipal.dataBase.add(jTextFieldUsuario2.getText(), Contrasenia2.getText(), 0);
+        String valor = Contrasenia2.getText()+" "+Permisos.getSelectedItem().toString();
+        InterfazPrincipal.dataBase.add(jTextFieldUsuario2.getText(), valor, 0);
         System.out.println("Agregado: "+InterfazPrincipal.dataBase.get(jTextFieldUsuario2.getText()));
         this.dispose();
         //new InterfazPrincipal().setVisible(true);
