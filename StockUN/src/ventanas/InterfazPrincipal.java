@@ -144,7 +144,8 @@ public class InterfazPrincipal extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Campo de usuario o contraseña vacios");
         }else{
             System.out.println("Accediendo: "+dataBase.get(usuario));
-            String[] valor =  dataBase.get(usuario).split("\\*");
+            String[] valor = {"", ""};
+            if(dataBase.get(usuario)!=null) valor =  dataBase.get(usuario).split("\\*");
             if(dataBase.get(usuario)!=null && valor[0].equals(contrasenia)){
                 SaveDB usersSaver = new SaveDB(dataBase);
                 usersSaver.save();
