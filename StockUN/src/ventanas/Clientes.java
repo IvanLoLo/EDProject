@@ -25,6 +25,7 @@ public class Clientes extends JFrame implements MouseListener{
     ArrayList<Object> carrito;
     boolean found;
     static int structure;
+    static long totalCompra;
     private int filasTabla;
     private int columnasTabla;
     
@@ -112,8 +113,19 @@ public class Clientes extends JFrame implements MouseListener{
         btnComprar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent arg0) {
-                System.out.println("Venta");
-                
+                System.out.println("Finalizar Compra");
+                int opc = JOptionPane.showConfirmDialog(null, "¿Desea realizar la compra de sus productos"
+                        + " por un total de: "+totalCompra+"?");
+                if(opc == JOptionPane.OK_OPTION){
+                    String dir = JOptionPane.showInputDialog(null, "Por favor ingrese la direccion a la "
+                            + "que desea se entregue el pedido");
+                    if(dir!=null){
+                        JOptionPane.showMessageDialog(null, "Se agendó la entrega de su pedido a la direccion: "+dir+
+                                "\nQue tenga un buen dia.");
+                        construirCarrito();
+                        totalCompra=0;
+                    }
+                }
                 
             }
         });
@@ -465,6 +477,7 @@ public class Clientes extends JFrame implements MouseListener{
         
         if(e.getComponent().equals(TCarrito)){
             
+            totalCompra -= Long.parseLong(TCarrito.getValueAt(fila, 1).toString())*Long.parseLong(TCarrito.getValueAt(fila, 2).toString());
             ((ModeloTabla)TCarrito.getModel()).removeRow(fila);
             
         }else if (columna==2) {
@@ -485,9 +498,12 @@ public class Clientes extends JFrame implements MouseListener{
                 +" todo nuestro stock en tu venta, que son "+stock+" articulos del producto");
                 cantidad = String.valueOf(stock);
             }
+            totalCompra += Long.parseLong(precio)*Long.parseLong(cantidad);
             //if(exit) return;
             ((ModeloTabla)TCarrito.getModel()).addRow(new Object[] {nombreProducto, precio, cantidad, ""});
         }
+        
+        //System.out.println("Total: "+totalCompra);
 
             //ProductosCarrito+=
           //  modelo=new ModeloTabla(data, titulos);		

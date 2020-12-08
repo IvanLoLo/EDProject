@@ -14,6 +14,7 @@ import principal.SaveDB;
 public class InterfazPrincipal extends javax.swing.JFrame {
 
     public static String usuario = "";
+    public static String direccion;
     public static Map<String, String> dataBase;
     String contrasenia = "";
     public InterfazPrincipal() {
@@ -144,11 +145,12 @@ public class InterfazPrincipal extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Campo de usuario o contraseña vacios");
         }else{
             System.out.println("Accediendo: "+dataBase.get(usuario));
-            String[] valor = {"", ""};
+            String[] valor = {"", "", ""};
             if(dataBase.get(usuario)!=null) valor =  dataBase.get(usuario).split("\\*");
             if(dataBase.get(usuario)!=null && valor[0].equals(contrasenia)){
                 SaveDB usersSaver = new SaveDB(dataBase);
                 usersSaver.save();
+                //direccion = valor[2].toString();
                 if(valor[1].equals("Administrador")){//Admin
                     dispose();
                     new GeneralPrueba();
