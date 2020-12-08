@@ -143,11 +143,18 @@ public class InterfazPrincipal extends javax.swing.JFrame {
         if (usuario.equals("")|| contrasenia.equals("")) {
             JOptionPane.showMessageDialog(this, "Campo de usuario o contraseña vacios");
         }else{
-            if(dataBase.get(usuario)!=null && dataBase.get(usuario).equals(contrasenia)){
+            System.out.println("Accediendo: "+dataBase.get(usuario));
+            String[] valor =  dataBase.get(usuario).split("\\*");
+            if(dataBase.get(usuario)!=null && valor[0].equals(contrasenia)){
                 SaveDB usersSaver = new SaveDB(dataBase);
                 usersSaver.save();
-                dispose();
-                new GeneralPrueba();
+                if(valor[1].equals("Administrador")){//Admin
+                    dispose();
+                    new GeneralPrueba();
+                }else{
+                    dispose();
+                    new Clientes();
+                }
             }else{
                 if(dataBase.get(usuario)!=null) JOptionPane.showMessageDialog(null, "Contraseña incorrecta. Intente de nuevo");
                 else JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrectos. Intente de nuevo");
