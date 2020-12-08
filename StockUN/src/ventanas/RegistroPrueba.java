@@ -240,7 +240,7 @@ public class RegistroPrueba extends javax.swing.JDialog {
     }                                                  
 
     private void RegistrarseActionPerformed(java.awt.event.ActionEvent evt) {                                            
-        String valor = Contrasenia2.getText()+" "+Permisos.getSelectedItem().toString();
+        String valor = Contrasenia2.getText()+"*"+Permisos.getSelectedItem().toString();
         InterfazPrincipal.dataBase.add(jTextFieldUsuario2.getText(), valor, 0);
         System.out.println("Agregado: "+InterfazPrincipal.dataBase.get(jTextFieldUsuario2.getText()));
         this.dispose();
