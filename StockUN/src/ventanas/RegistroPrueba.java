@@ -1,5 +1,7 @@
 package ventanas;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Diego
@@ -239,13 +241,17 @@ public class RegistroPrueba extends javax.swing.JDialog {
         // TODO add your handling code here:
     }                                                  
 
-    private void RegistrarseActionPerformed(java.awt.event.ActionEvent evt) {                                            
-        String valor = Contrasenia2.getText()+"*"+Permisos.getSelectedItem().toString();
-        InterfazPrincipal.dataBase.add(jTextFieldUsuario2.getText(), valor, 0);
-        System.out.println("Agregado: "+InterfazPrincipal.dataBase.get(jTextFieldUsuario2.getText()));
-        this.dispose();
-        //new InterfazPrincipal().setVisible(true);
-
+    private void RegistrarseActionPerformed(java.awt.event.ActionEvent evt) {
+        
+        if (jTextFieldUsuario.getText().trim().equals("")||jTextFieldUsuario1.getText().trim().equals("")||jTextFieldUsuario2.getText().trim().equals("")||jTextFieldUsuario5.getText().trim().equals("")||jTextFieldUsuario7.getText().trim().equals("")||Contrasenia1.getText().trim().equals("")||Contrasenia2.getText().trim().equals(""))
+            JOptionPane.showMessageDialog(null,"Por favor llene todos los campos");
+        else{
+            String valor = Contrasenia2.getText()+"*"+Permisos.getSelectedItem().toString();
+            InterfazPrincipal.dataBase.add(jTextFieldUsuario2.getText(), valor, 0);
+            System.out.println("Agregado: "+InterfazPrincipal.dataBase.get(jTextFieldUsuario2.getText()));
+            this.dispose();
+            //new InterfazPrincipal().setVisible(true);
+        }
     }                                           
 
     private void Contrasenia2ActionPerformed(java.awt.event.ActionEvent evt) {                                             

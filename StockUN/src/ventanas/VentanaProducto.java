@@ -193,11 +193,13 @@ public class VentanaProducto extends javax.swing.JDialog {
     }//GEN-LAST:event_precioTextKeyTyped
 
     public boolean comprobarCampos(){
-        /*Nombre = nombreText.getText().trim(); 
+        Nombre = nombreText.getText().trim(); 
         Precio = precioText.getText().trim();
         Stock = stockText.getText().trim();
-        if (Nombre.equals("")|| Precio.equals("")||Stock.equals("")) 
-            JOptionPane.showMessageDialog(this, "Algun campo vacio");*/
+        if (Nombre.equals("")|| Precio.equals("")||Stock.equals("")){
+            JOptionPane.showMessageDialog(this, "Algun campo vacio");
+            return false;
+        }
         // Validar que no esta vacio 
         return true;
     }

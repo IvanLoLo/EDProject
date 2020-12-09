@@ -156,9 +156,6 @@ public class GeneralPrueba extends JFrame{
                 
             
         });
-        
-        
-       
        
         JButton btnBuscar = crearBtn("Buscar", "/Imagenes/Search.png");
         btnBuscar.addActionListener(new ActionListener() {
@@ -300,34 +297,9 @@ public class GeneralPrueba extends JFrame{
         }
         
         if(!found) JOptionPane.showMessageDialog(null, "No encontramos el producto en el inventario :(");
-        else {//JOptionPane.showMessageDialog(null, "Producto: "+producto.getNombre()+"\nPrecio: "+producto.getPrecio()+
-             //   "\nStock: "+producto.getStock());
-             
-             int B =JOptionPane.showConfirmDialog(null, "Producto: "+producto.getNombre()+"\nPrecio: "+producto.getPrecio()+
-                        "\nStock: "+producto.getStock()+"\n¿Desea agregarlo al carrito de compras?");
-                    if(B == JOptionPane.OK_OPTION){
-                        
-                        String cantidad = JOptionPane.showInputDialog("Ingrese la cantidad de producto que desea:");
-            if(cantidad==null) return;
-            while(!isNumber(cantidad)){
-                cantidad = JOptionPane.showInputDialog("Entrada no valida.\nIngrese la cantidad de producto que desea:");
-                if(cantidad==null) return;
-            }
-            
-            //Producto producto = buscarEstructura(nombreProducto);
-            int stock = producto.getStock();
-            if(Integer.parseInt(cantidad)>stock){
-                JOptionPane.showMessageDialog(null, "La cantidad de stock no satisface tus necesidades. Pondremos"
-                +" todo nuestro stock en tu venta, que son "+stock+" articulos del producto");
-                cantidad = String.valueOf(stock);
-            }
-            totalCompra += (producto.getPrecio())*Long.parseLong(cantidad);
-            totalArticulos+=Long.parseLong(cantidad);
-            //if(exit) return;
-            ((ModeloTabla)TCarrito.getModel()).addRow(new Object[] {producto.getNombre(), producto.getPrecio(), cantidad, ""});
-                        
-                        
-                    }
+        else {
+            JOptionPane.showMessageDialog(null, "Producto: "+producto.getNombre()+
+                    "\nPrecio: "+producto.getPrecio()+"\nStock: "+producto.getStock());
         }
             
         

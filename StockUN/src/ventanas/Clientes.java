@@ -15,7 +15,7 @@ import ventanas.RecursosTabla.*;
 
 public class Clientes extends JFrame implements MouseListener{
     
-    JLabel Agregar,xd;
+    JLabel Agregar,xd, lblVenta;
     JPanel panelBtn, panelTabla,panelE;
     static JTable tabla,TCarrito;
     JScrollPane scrollPaneTabla,scrollCarrito;
@@ -109,6 +109,11 @@ public class Clientes extends JFrame implements MouseListener{
                 }
             }
         });
+        
+        lblVenta = new JLabel("<html>Costo Total <br/><html>$"+totalCompra);
+        lblVenta.setFont(new Font("Tahoma", 1, 30)); 
+        panelBtn.add(lblVenta);
+        
         JButton btnComprar = crearBtn("Finalizar Compra", "/Imagenes/Venta.png");
         btnComprar.addActionListener(new ActionListener() {
             @Override
@@ -118,7 +123,7 @@ public class Clientes extends JFrame implements MouseListener{
                     JOptionPane.showMessageDialog(null, "Por favor agregue articulos al carritos de compras");
                 else{
                 int opc = JOptionPane.showConfirmDialog(null, "¿Desea realizar la compra de "+totalArticulos+" articulos"
-                        + " por un total de: "+totalCompra+"?");
+                        + " por un total de: $"+totalCompra+"?");
                 if(opc == JOptionPane.OK_OPTION){
                     String dir = JOptionPane.showInputDialog(null, "Por favor ingrese la direccion a la "
                             + "que desea se entregue el pedido");
@@ -128,19 +133,12 @@ public class Clientes extends JFrame implements MouseListener{
                         
                         construirCarrito();
                         totalCompra=0;
+                        totalArticulos=0;
+                        lblVenta.setText("<html>Costo Total <br/><html>$"+totalCompra);
                     }
                 }
                 }
                 
-            }
-        });
-        
-         JButton btnVenta = crearBtn("Ver Resumen", "/Imagenes/Editar.png");
-        btnVenta.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent arg0) {
-                System.out.println("Venta");
-                //new Resumen().setVisible(true);
             }
         });
          
@@ -180,6 +178,7 @@ public class Clientes extends JFrame implements MouseListener{
             }
             totalCompra += (producto.getPrecio())*Long.parseLong(cantidad);
             totalArticulos+=Long.parseLong(cantidad);
+            lblVenta.setText("<html>Costo Total <br/><html>$"+totalCompra);
             //if(exit) return;
             ((ModeloTabla)TCarrito.getModel()).addRow(new Object[] {producto.getNombre(), producto.getPrecio(), cantidad, ""});
                         
@@ -499,6 +498,8 @@ public class Clientes extends JFrame implements MouseListener{
         if(e.getComponent().equals(TCarrito)){
             
             totalCompra -= Long.parseLong(TCarrito.getValueAt(fila, 1).toString())*Long.parseLong(TCarrito.getValueAt(fila, 2).toString());
+            totalArticulos -= Long.parseLong(TCarrito.getValueAt(fila, 2).toString());
+            lblVenta.setText("<html>Costo Total <br/><html>$"+totalCompra);
             ((ModeloTabla)TCarrito.getModel()).removeRow(fila);
             
         }else if (columna==2) {
@@ -521,6 +522,7 @@ public class Clientes extends JFrame implements MouseListener{
             }
             totalCompra += Long.parseLong(precio)*Long.parseLong(cantidad);
             totalArticulos+=Long.parseLong(cantidad);
+            lblVenta.setText("<html>Costo Total <br/><html>$"+totalCompra);
             //if(exit) return;
             ((ModeloTabla)TCarrito.getModel()).addRow(new Object[] {nombreProducto, precio, cantidad, ""});
         }
