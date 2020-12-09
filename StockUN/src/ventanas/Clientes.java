@@ -25,7 +25,7 @@ public class Clientes extends JFrame implements MouseListener{
     ArrayList<Object> carrito;
     boolean found;
     static int structure;
-    static long totalCompra;
+    static long totalCompra,totalArticulos;
     private int filasTabla;
     private int columnasTabla;
     
@@ -114,7 +114,10 @@ public class Clientes extends JFrame implements MouseListener{
             @Override
             public void actionPerformed(ActionEvent arg0) {
                 System.out.println("Finalizar Compra");
-                int opc = JOptionPane.showConfirmDialog(null, "¿Desea realizar la compra de sus productos"
+                if (TCarrito.getRowCount()==0)
+                    JOptionPane.showMessageDialog(null, "Por favor agregue articulos al carritos de compras");
+                else{
+                int opc = JOptionPane.showConfirmDialog(null, "¿Desea realizar la compra de "+totalArticulos+" articulos"
                         + " por un total de: "+totalCompra+"?");
                 if(opc == JOptionPane.OK_OPTION){
                     String dir = JOptionPane.showInputDialog(null, "Por favor ingrese la direccion a la "
@@ -122,29 +125,22 @@ public class Clientes extends JFrame implements MouseListener{
                     if(dir!=null){
                         JOptionPane.showMessageDialog(null, "Se agendó la entrega de su pedido a la direccion: "+dir+
                                 "\nQue tenga un buen dia.");
+                        
                         construirCarrito();
                         totalCompra=0;
                     }
                 }
+                }
                 
             }
         });
-        JButton btnRastrear = crearBtn("nose", "/Imagenes/Eliminar.png");
-        btnRastrear.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent arg0) {
-            System.out.println("Venta");
-            
-                
-               
-                
-            }
-        });
+        
          JButton btnVenta = crearBtn("Ver Resumen", "/Imagenes/Editar.png");
         btnVenta.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent arg0) {
                 System.out.println("Venta");
+                //new Resumen().setVisible(true);
             }
         });
          
@@ -162,10 +158,35 @@ public class Clientes extends JFrame implements MouseListener{
             public void actionPerformed(ActionEvent arg0) {
                 Producto producto = buscarEstructura(txtBuscar.getText());
                 if(!found) JOptionPane.showMessageDialog(null, "No encontramos el producto en el inventario :(");
-                else if(producto!=null)
-                    JOptionPane.showMessageDialog(null, "Producto: "+producto.getNombre()+"\nPrecio: "+producto.getPrecio()+
-                        "\nStock: "+producto.getStock());
+                else if(producto!=null){
+                    
+                    int B =JOptionPane.showConfirmDialog(null, "Producto: "+producto.getNombre()+"\nPrecio: "+producto.getPrecio()+
+                        "\nStock: "+producto.getStock()+"\n¿Desea agregarlo al carrito de compras?");
+                    if(B == JOptionPane.OK_OPTION){
+                        
+                        String cantidad = JOptionPane.showInputDialog("Ingrese la cantidad de producto que desea:");
+            if(cantidad==null) return;
+            while(!isNumber(cantidad)){
+                cantidad = JOptionPane.showInputDialog("Entrada no valida.\nIngrese la cantidad de producto que desea:");
+                if(cantidad==null) return;
             }
+            
+            //Producto producto = buscarEstructura(nombreProducto);
+            int stock = producto.getStock();
+            if(Integer.parseInt(cantidad)>stock){
+                JOptionPane.showMessageDialog(null, "La cantidad de stock no satisface tus necesidades. Pondremos"
+                +" todo nuestro stock en tu venta, que son "+stock+" articulos del producto");
+                cantidad = String.valueOf(stock);
+            }
+            totalCompra += (producto.getPrecio())*Long.parseLong(cantidad);
+            totalArticulos+=Long.parseLong(cantidad);
+            //if(exit) return;
+            ((ModeloTabla)TCarrito.getModel()).addRow(new Object[] {producto.getNombre(), producto.getPrecio(), cantidad, ""});
+                        
+                        
+                    }
+            }
+                }
         });
         
         scrollCarrito = new JScrollPane();
@@ -199,10 +220,10 @@ public class Clientes extends JFrame implements MouseListener{
 	filasTabla=TCarrito.getRowCount();
 	columnasTabla=TCarrito.getColumnCount();
 	TCarrito.getColumnModel().getColumn(3).setCellRenderer(new GestionCeldas("icono"));
-	TCarrito.getColumnModel().getColumn(0).setMaxWidth(300);
-        TCarrito.getColumnModel().getColumn(1).setMaxWidth(300);
+	TCarrito.getColumnModel().getColumn(0).setMaxWidth(250);
+        TCarrito.getColumnModel().getColumn(1).setMaxWidth(250);
         //TCarrito.getColumnModel().getColumn(2).setMinWidth(0);
-        TCarrito.getColumnModel().getColumn(2).setMaxWidth(50);
+        TCarrito.getColumnModel().getColumn(2).setMaxWidth(100);
         
 	//scrollPaneTabla.setViewportView(TCarrito);
 
@@ -499,6 +520,7 @@ public class Clientes extends JFrame implements MouseListener{
                 cantidad = String.valueOf(stock);
             }
             totalCompra += Long.parseLong(precio)*Long.parseLong(cantidad);
+            totalArticulos+=Long.parseLong(cantidad);
             //if(exit) return;
             ((ModeloTabla)TCarrito.getModel()).addRow(new Object[] {nombreProducto, precio, cantidad, ""});
         }
@@ -512,21 +534,7 @@ public class Clientes extends JFrame implements MouseListener{
             //construirCarrito();
 		
     }
-   /* private void validarSeleccionMouse(int fila) {
-		Utilidades.filaSeleccionada=fila;
-		
-		
-		//teniendo la fila entonces se obtiene el objeto correspondiente para enviarse como parammetro o imprimir la información
-		PersonaVo miPersona=new PersonaVo();
-		miPersona.setDocumento(tablaPersonas.getValueAt(fila, Utilidades.DOCUMENTO).toString());
-		miPersona.setNombre(tablaPersonas.getValueAt(fila, Utilidades.NOMBRE).toString());
-		
-		String info="INFO PERSONA\n";
-		info+="Documento: "+miPersona.getDocumento()+"\n";
-		info+="Nombre: "+miPersona.getNombre()+"\n";
-		
-		JOptionPane.showMessageDialog(null, info);
-	}*/
+  
 
     @Override
     public void mousePressed(MouseEvent e) {

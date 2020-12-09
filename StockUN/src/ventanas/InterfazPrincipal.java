@@ -47,7 +47,6 @@ public class InterfazPrincipal extends javax.swing.JFrame {
         Usuario = new javax.swing.JTextField();
         Contrasenia = new javax.swing.JPasswordField();
         jLabelIcono = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
         jLabelFondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -117,12 +116,6 @@ public class InterfazPrincipal extends javax.swing.JFrame {
         jLabelIcono.setText("Stock UN");
         jLabelIcono.setOpaque(true);
         getContentPane().add(jLabelIcono, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 30, -1, 70));
-
-        jComboBox1.setBackground(new java.awt.Color(0, 0, 0));
-        jComboBox1.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
-        jComboBox1.setForeground(new java.awt.Color(255, 255, 255));
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1.Stack", "2.Lista", "3.Lista referenciada", "4.Arbol" }));
-        getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 190, 130, 30));
 
         jLabelFondo.setBackground(new java.awt.Color(255, 255, 255));
         jLabelFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/InicioNormal.jpg"))); // NOI18N
@@ -214,7 +207,6 @@ public class InterfazPrincipal extends javax.swing.JFrame {
     private javax.swing.JTextField Usuario;
     private javax.swing.JButton jButtonIniciarSesion;
     private javax.swing.JButton jButtonRegistrarse;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabelContrasenia;
     private javax.swing.JLabel jLabelFondo;
     private javax.swing.JLabel jLabelIcono;

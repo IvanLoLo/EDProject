@@ -1,5 +1,7 @@
 package ventanas;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Diego
@@ -239,9 +241,15 @@ public class Registro extends javax.swing.JDialog {
 
     private void RegistrarseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrarseActionPerformed
         
-        InterfazPrincipal.dataBase.add(jTextFieldUsuario2.getText(), Contrasenia2.getText(), 0);
-        System.out.println("Agregado: "+InterfazPrincipal.dataBase.get(jTextFieldUsuario2.getText()));
-        this.dispose();
+        
+        if (jTextFieldUsuario.getText().trim().equals("")||jTextFieldUsuario1.getText().trim().equals("")||jTextFieldUsuario2.getText().trim().equals("")||jTextFieldUsuario5.getText().trim().equals("")||jTextFieldUsuario7.getText().trim().equals("")||Contrasenia1.getText().trim().equals("")||Contrasenia2.getText().trim().equals(""))
+            JOptionPane.showMessageDialog(null,"Por favor llene todos los campos");
+        else{
+            InterfazPrincipal.dataBase.add(jTextFieldUsuario2.getText(), Contrasenia2.getText(), 0);
+            System.out.println("Agregado: "+InterfazPrincipal.dataBase.get(jTextFieldUsuario2.getText()));
+            this.dispose();
+        }
+        
         //new InterfazPrincipal().setVisible(true);
 
     }//GEN-LAST:event_RegistrarseActionPerformed

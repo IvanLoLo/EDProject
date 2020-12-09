@@ -9,6 +9,9 @@ import javax.swing.*;
 import principal.Producto;
 import ventanas.RecursosTabla.*;
 import javax.swing.table.DefaultTableModel;
+import static ventanas.Clientes.TCarrito;
+import static ventanas.Clientes.totalArticulos;
+import static ventanas.Clientes.totalCompra;
 
 public class GeneralPrueba extends JFrame{
     
@@ -143,7 +146,15 @@ public class GeneralPrueba extends JFrame{
             @Override
             public void actionPerformed(ActionEvent arg0) {
                 System.out.println("Venta");
+                if(tabla.getSelectedRow()==-1){
+                    JOptionPane.showMessageDialog(null, "Por favor seleccione la fila que desea vender");
+                }else{
+                    
+                }
             }
+                
+                
+            
         });
         
         
@@ -289,8 +300,36 @@ public class GeneralPrueba extends JFrame{
         }
         
         if(!found) JOptionPane.showMessageDialog(null, "No encontramos el producto en el inventario :(");
-        else JOptionPane.showMessageDialog(null, "Producto: "+producto.getNombre()+"\nPrecio: "+producto.getPrecio()+
-                "\nStock: "+producto.getStock());
+        else {//JOptionPane.showMessageDialog(null, "Producto: "+producto.getNombre()+"\nPrecio: "+producto.getPrecio()+
+             //   "\nStock: "+producto.getStock());
+             
+             int B =JOptionPane.showConfirmDialog(null, "Producto: "+producto.getNombre()+"\nPrecio: "+producto.getPrecio()+
+                        "\nStock: "+producto.getStock()+"\n¿Desea agregarlo al carrito de compras?");
+                    if(B == JOptionPane.OK_OPTION){
+                        
+                        String cantidad = JOptionPane.showInputDialog("Ingrese la cantidad de producto que desea:");
+            if(cantidad==null) return;
+            while(!isNumber(cantidad)){
+                cantidad = JOptionPane.showInputDialog("Entrada no valida.\nIngrese la cantidad de producto que desea:");
+                if(cantidad==null) return;
+            }
+            
+            //Producto producto = buscarEstructura(nombreProducto);
+            int stock = producto.getStock();
+            if(Integer.parseInt(cantidad)>stock){
+                JOptionPane.showMessageDialog(null, "La cantidad de stock no satisface tus necesidades. Pondremos"
+                +" todo nuestro stock en tu venta, que son "+stock+" articulos del producto");
+                cantidad = String.valueOf(stock);
+            }
+            totalCompra += (producto.getPrecio())*Long.parseLong(cantidad);
+            totalArticulos+=Long.parseLong(cantidad);
+            //if(exit) return;
+            ((ModeloTabla)TCarrito.getModel()).addRow(new Object[] {producto.getNombre(), producto.getPrecio(), cantidad, ""});
+                        
+                        
+                    }
+        }
+            
         
     }
     
@@ -410,6 +449,14 @@ public class GeneralPrueba extends JFrame{
         
         return -1;
         
+    }
+    private static boolean isNumber(String n) {
+        try {
+                if(Integer.parseInt(n)>0) return true;
+                return false;
+        } catch (NumberFormatException nfe) {
+                return false;
+        }
     }
 
 }
