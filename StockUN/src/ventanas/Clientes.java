@@ -10,6 +10,7 @@ import java.util.*;
 import javax.swing.*;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import principal.Producto;
+import static ventanas.GeneralPrueba.getInformation;
 import static ventanas.GeneralPrueba.structure;
 import ventanas.RecursosTabla.*;
 
@@ -496,9 +497,13 @@ public class Clientes extends JFrame implements MouseListener{
         boolean exit = false;
         
         if(e.getComponent().equals(TCarrito)){
-            
             totalCompra -= Long.parseLong(TCarrito.getValueAt(fila, 1).toString())*Long.parseLong(TCarrito.getValueAt(fila, 2).toString());
             totalArticulos -= Long.parseLong(TCarrito.getValueAt(fila, 2).toString());
+            Producto producto = buscarEstructura(TCarrito.getValueAt(fila, 0).toString());
+            actualizarProducto(producto.getNombre(), 
+                    new Producto(producto.getNombre(), producto.getPrecio(), producto.getStock()+Integer.parseInt(TCarrito.getValueAt(fila, 2).toString())));
+            construirTabla();
+            
             lblVenta.setText("<html>Costo Total <br/><html>$"+totalCompra);
             ((ModeloTabla)TCarrito.getModel()).removeRow(fila);
             
@@ -522,6 +527,11 @@ public class Clientes extends JFrame implements MouseListener{
             }
             totalCompra += Long.parseLong(precio)*Long.parseLong(cantidad);
             totalArticulos+=Long.parseLong(cantidad);
+            
+            actualizarProducto(nombreProducto, 
+                    new Producto(nombreProducto, Long.parseLong(precio), producto.getStock()-Integer.parseInt(cantidad)));
+            construirTabla();
+            
             lblVenta.setText("<html>Costo Total <br/><html>$"+totalCompra);
             //if(exit) return;
             ((ModeloTabla)TCarrito.getModel()).addRow(new Object[] {nombreProducto, precio, cantidad, ""});

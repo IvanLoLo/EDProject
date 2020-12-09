@@ -32,7 +32,7 @@ public class Map<K,V> {
     
     public Map(int n){
         this.largoMapa = nextPrime(n);
-        System.out.println("Largo: "+largoMapa);
+        //System.out.println("Largo: "+largoMapa);
         mapa = new HashNode[largoMapa];
         keys = new GenericLinkedList<>();
         //values = new GenericLinkedList<>();
@@ -145,7 +145,7 @@ public class Map<K,V> {
     public void add(K key,V value, int n){
 
         int index=getHashIndex(key);
-        System.out.println("Index of '"+key+"' : "+index+" tamaño: "+largoMapa);
+        //System.out.println("Index of '"+key+"' : "+index+" tamaño: "+largoMapa);
         HashNode<K, V> head = mapa[index];
         HashNode<K, V> toAdd = new HashNode<>();
         toAdd.key=key;

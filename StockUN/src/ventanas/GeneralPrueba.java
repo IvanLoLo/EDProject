@@ -140,7 +140,7 @@ public class GeneralPrueba extends JFrame{
                 }
             }
         });
-        
+        /*
         btnVenta = crearBtn("Venta", "/Imagenes/Venta.png");
         btnVenta.addActionListener(new ActionListener() {
             @Override
@@ -156,7 +156,7 @@ public class GeneralPrueba extends JFrame{
                 
             
         });
-       
+        */
         JButton btnBuscar = crearBtn("Buscar", "/Imagenes/Search.png");
         btnBuscar.addActionListener(new ActionListener() {
             @Override
